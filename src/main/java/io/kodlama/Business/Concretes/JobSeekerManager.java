@@ -53,12 +53,13 @@ public class JobSeekerManager implements JobSeekerService {
                        if (emailValidation.EmailDogrula(emailValidation.EmailDogrula(), user)) {
                            userManager.insertUser(user);
                            jobSeekerService.save(jobSeeker);
+                           return new SuccessResult(true,"Kullanıcı başarı ile kaydedildi.");
                        }
-
+                        else return new UnsuccessfulResult(false,"Email Doğrulanmadı");
                     }
+                else return new UnsuccessfulResult(false , "Email Kayıtlı");
 
 
-                    return new SuccessResult(true,"Kullanıcı başarı ile kaydedildi.");
             }
                         else return new UnsuccessfulResult(false, "kullanıcı zaten kayıtlı.");
                 }
