@@ -41,13 +41,13 @@ public class JobSeekerManager implements JobSeekerService {
     public Result insert(UserEntity user, JobSeekerEntity jobSeeker) {
 
         try {
-            /* if(user.getUserEmail() != null && user.getRePassword() != null &&
+            if(user.getUserEmail() != null && user.getRePassword() != null &&
            user.getRePassword() != null && jobSeeker.getJobSeekerName() != null
            && jobSeeker.getJobSeekerSurname() != null
            && jobSeeker.getJobSeekerNationalId()!= 0
            && jobSeeker.getBirtday() != 0
            && jobSeeker.getJobSeekerPhone() != null
-           && jobSeeker.getJobSeekerAdress() != null) */{
+           && jobSeeker.getJobSeekerAdress() != null) {
                 if (mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
                         jobSeeker.getJobSeekerName()
                         , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
@@ -73,7 +73,7 @@ public class JobSeekerManager implements JobSeekerService {
                     } else return new UnsuccessfulResult(false, "kullanıcı zaten kayıtlı.");
                 } else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");
 
-            } //else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
+            }  else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
         }
         catch (Exception e) {
             e.getMessage();
