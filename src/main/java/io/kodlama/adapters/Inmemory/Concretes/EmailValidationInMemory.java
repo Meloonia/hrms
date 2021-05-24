@@ -3,10 +3,14 @@ package io.kodlama.adapters.Inmemory.Concretes;
 import io.kodlama.Entites.Concretes.EmailValidationEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
 import io.kodlama.adapters.Inmemory.Abstracts.EmailValidation;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 // Sahte Mail onay kontrol servisi.
+
+
+@Service
 public class EmailValidationInMemory implements EmailValidation {
    private List<String> emailCode = new ArrayList<>();
     public EmailValidationInMemory() {
