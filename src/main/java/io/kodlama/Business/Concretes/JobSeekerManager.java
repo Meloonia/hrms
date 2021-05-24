@@ -8,19 +8,20 @@ import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.JobSeekerManagerDao;
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
-import io.kodlama.adapters.MernisAdapter;
+import io.kodlama.adapters.Inmemory.Abstracts.Mernis;
+import io.kodlama.adapters.Inmemory.Concretes.MernisInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
 
-    MernisAdapter mernis;
+    Mernis mernis = new MernisInMemory();
     JobSeekerManagerDao jobSeekerService;
     UserManagerServices usermanager;
     @Autowired
-    public JobSeekerManager(MernisAdapter mernisAdapter, JobSeekerManagerDao jobSeekerService, UserManagerServices userManager) {
-        this.mernis = mernisAdapter;
+    public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerServices userManager) {
+
         this.jobSeekerService = jobSeekerService;
         this.usermanager = userManager;
     }
@@ -29,7 +30,7 @@ public class JobSeekerManager implements JobSeekerService {
     public Result insert(UserEntity user, JobSeekerEntity jobSeeker) {
 
         try {
-            if(mernis.MernisAdapters().TCKimlikNoDogrula(jobSeeker.getJobSeekerNationalId() ,
+            if(mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId() ,
                     jobSeeker.getJobSeekerName().toUpperCase()
                     , jobSeeker.getJobSeekerSurname().toUpperCase(),jobSeeker.getBirtday())) {
                 if (

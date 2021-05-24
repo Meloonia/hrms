@@ -14,19 +14,12 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping>
-          <factory-entry name="entityManagerFactory" value="966a454b-2240-415f-a4f5-3e3567605ed2" />
-          <factory-entry name="hrms" value="966a454b-2240-415f-a4f5-3e3567605ed2" />
-          <factory-entry name="noname-a.xml@0" value="966a454b-2240-415f-a4f5-3e3567605ed2" />
-        </datasource-mapping>
+        <datasource-mapping />
         <naming-strategy-map />
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
       <configuration />
-    </facet>
-    <facet type="WebServicesClient" name="WebServices Client">
-      <configuration ws.engine="Glassfish / JAX-WS 2.2 RI / Metro 1.X / JWSDP 2.2" />
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_16">
@@ -40,7 +33,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="EasyWSDLLib" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.6" level="project" />
