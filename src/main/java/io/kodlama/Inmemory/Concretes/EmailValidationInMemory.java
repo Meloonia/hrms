@@ -23,28 +23,18 @@ public class EmailValidationInMemory implements EmailValidation {
         emailCode.add("yeeey");
     }
 
-    public EmailValidationEntity EmailDogrula() {
-
-        return new EmailValidationEntity();
-    }
 
     @Override
     public boolean EmailDogrula(EmailValidationEntity email,UserEntity user) {
 
-            EmailDogrula();
+                email.setEmailValidationCode("ABC");
 
-            if(emailCode.stream().anyMatch(e-> e.equals(email.getEmailValidationCode()))) {
-                return true;
-
-            }
-                else return false;
-
+          return emailCode.stream().anyMatch(e-> e.equals(email.getEmailValidationCode()));
 
     }
 
     @Override
     public void sendMail() {
-
 
         System.out.println("Mail gönderildi.");
 

@@ -8,6 +8,7 @@ import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.JobSeekerManagerDao;
 import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 
+import io.kodlama.Entites.Concretes.EmailValidationEntity;
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
 import io.kodlama.Inmemory.Abstracts.EmailValidation;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
-
+   EmailValidationEntity email = new EmailValidationEntity();
     Mernis mernis = new MernisInMemory();
     EmailValidation emailValidation = new EmailValidationInMemory();
     JobSeekerManagerDao jobSeekerService;
@@ -53,11 +54,14 @@ public class JobSeekerManager implements JobSeekerService {
                     if (!
                             jobSeekerService.findAll().stream().anyMatch(j -> j.getJobSeekerNationalId() ==
                                     jobSeeker.getJobSeekerNationalId())) {
+
                         if (!userManagerDao.findAll().stream().anyMatch(u -> u.getUserEmail().equals(user.getUserEmail()))) {
 
                             emailValidation.sendMail();
 
-                            if (emailValidation.EmailDogrula(emailValidation.EmailDogrula(), user)) {
+
+                            if (emailValidation.EmailDogrula(email,user)) {
+                                user.setEmailValidation(true);
                                 userManager.insertUser(user);
                                 jobSeekerService.save(jobSeeker);
                                 return new SuccessResult(true, "Kullanıcı başarı ile kaydedildi.");
