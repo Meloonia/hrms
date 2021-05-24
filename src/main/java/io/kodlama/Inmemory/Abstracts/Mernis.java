@@ -1,4 +1,4 @@
-package io.kodlama.adapters.Inmemory.Abstracts;
+package io.kodlama.Inmemory.Abstracts;
 
 public interface Mernis {
 

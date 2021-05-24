@@ -10,10 +10,10 @@ import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
-import io.kodlama.adapters.Inmemory.Abstracts.EmailValidation;
-import io.kodlama.adapters.Inmemory.Abstracts.Mernis;
-import io.kodlama.adapters.Inmemory.Concretes.EmailValidationInMemory;
-import io.kodlama.adapters.Inmemory.Concretes.MernisInMemory;
+import io.kodlama.Inmemory.Abstracts.EmailValidation;
+import io.kodlama.Inmemory.Abstracts.Mernis;
+import io.kodlama.Inmemory.Concretes.EmailValidationInMemory;
+import io.kodlama.Inmemory.Concretes.MernisInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,20 +40,20 @@ public class JobSeekerManager implements JobSeekerService {
     public Result insert(UserEntity user, JobSeekerEntity jobSeeker) {
 
         try {
-            if(user.getUserEmail().length() == 0 && user.getRePassword().length() == 0 &&
-           !user.getRePassword().isEmpty() && jobSeeker.getJobSeekerName().length() == 0
-           && jobSeeker.getJobSeekerSurname().length() == 0
-           && String.valueOf(jobSeeker.getJobSeekerNationalId()).length() == 0
-           && String.valueOf(jobSeeker.getBirtday()).length() == 0
-           && jobSeeker.getJobSeekerPhone().length() == 0
-           && jobSeeker.getJobSeekerAdress().length() == 0) {
+            if(user.getUserEmail().length() != 0 && user.getRePassword().length() != 0 &&
+           user.getRePassword().length() != 0 && jobSeeker.getJobSeekerName().length() != 0
+           && jobSeeker.getJobSeekerSurname().length() != 0
+           && String.valueOf(jobSeeker.getJobSeekerNationalId()).length() != 0
+           && String.valueOf(jobSeeker.getBirtday()).length() != 0
+           && jobSeeker.getJobSeekerPhone().length() != 0
+           && jobSeeker.getJobSeekerAdress().length() != 0) {
                 if (mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
                         jobSeeker.getJobSeekerName()
                         , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
-                    if (
+                    if (!
                             jobSeekerService.findAll().stream().anyMatch(j -> j.getJobSeekerNationalId() ==
                                     jobSeeker.getJobSeekerNationalId())) {
-                        if (userManagerDao.findAll().stream().anyMatch(u -> u.getUserEmail().equals(user.getUserEmail()))) {
+                        if (!userManagerDao.findAll().stream().anyMatch(u -> u.getUserEmail().equals(user.getUserEmail()))) {
 
                             emailValidation.sendMail();
 

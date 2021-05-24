@@ -1,8 +1,8 @@
-package io.kodlama.adapters.Inmemory.Concretes;
+package io.kodlama.Inmemory.Concretes;
 
 import io.kodlama.Entites.Concretes.EmailValidationEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
-import io.kodlama.adapters.Inmemory.Abstracts.EmailValidation;
+import io.kodlama.Inmemory.Abstracts.EmailValidation;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
