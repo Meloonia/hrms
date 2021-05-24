@@ -25,16 +25,18 @@ public class MernisInMemory implements Mernis {
 
 
     };
-
+// Sahte Tc doğrulayan servis yazıldı.
     @Override
     public boolean TCNoDogrula(long TC, String name, String surname, int birtday) {
-        for (JobSeekerEntity seeker : liste) {
-            if (liste.stream().anyMatch(j -> j.getJobSeekerNationalId() == TC && j.getJobSeekerName().equals(name) &&
-                    j.getJobSeekerSurname().equals(surname) && j.getBirtday() == birtday)) {
 
+            if (liste.stream().anyMatch(j -> j.getJobSeekerNationalId() == TC &&
+                    j.getJobSeekerName().equals(name) &&
+                    j.getJobSeekerSurname().equals(surname) &&
+                    j.getBirtday() == birtday)) {
+                return true;
             } else return false;
-        }
-        return true;
+
+
     }
 
 

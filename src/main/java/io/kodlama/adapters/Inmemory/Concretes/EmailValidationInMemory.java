@@ -20,14 +20,14 @@ public class EmailValidationInMemory implements EmailValidation {
     @Override
     public boolean EmailDogrula(String code,UserEntity user) {
 
-        for(var email :emailCode) {
+
 
             if(emailCode.stream().anyMatch(e-> e.equals(code))) {
 
-            user.setEmailValidation(true);
+                user.setEmailValidation(true);
             }
                 else return false;
-        }
+
         return true;
     }
 
