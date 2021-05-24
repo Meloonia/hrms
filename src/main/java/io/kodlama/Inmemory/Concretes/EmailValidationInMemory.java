@@ -15,7 +15,7 @@ public class EmailValidationInMemory implements EmailValidation {
    private List<String> emailCode = new ArrayList<>();
     public EmailValidationInMemory() {
 
-        UserEntity user = new UserEntity();
+
 
         emailCode.add("Mailkodu");
         emailCode.add("Denemekodu");
@@ -27,7 +27,7 @@ public class EmailValidationInMemory implements EmailValidation {
     @Override
     public boolean EmailDogrula(EmailValidationEntity email,UserEntity user) {
 
-                email.setEmailValidationCode("ABC");
+
 
           return emailCode.stream().anyMatch(e-> e.equals(email.getEmailValidationCode()));
 

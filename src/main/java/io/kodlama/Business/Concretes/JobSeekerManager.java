@@ -41,24 +41,24 @@ public class JobSeekerManager implements JobSeekerService {
     public Result insert(UserEntity user, JobSeekerEntity jobSeeker) {
 
         try {
-            if(user.getUserEmail().length() != 0 && user.getRePassword().length() != 0 &&
-           user.getRePassword().length() != 0 && jobSeeker.getJobSeekerName().length() != 0
-           && jobSeeker.getJobSeekerSurname().length() != 0
-           && String.valueOf(jobSeeker.getJobSeekerNationalId()).length() != 0
-           && String.valueOf(jobSeeker.getBirtday()).length() != 0
-           && jobSeeker.getJobSeekerPhone().length() != 0
-           && jobSeeker.getJobSeekerAdress().length() != 0) {
+            if(user.getUserEmail() != null && user.getRePassword() != null &&
+           user.getRePassword() != null && jobSeeker.getJobSeekerName() != null
+           && jobSeeker.getJobSeekerSurname() != null
+           && jobSeeker.getJobSeekerNationalId()!= 0
+           && jobSeeker.getBirtday() != 0
+           && jobSeeker.getJobSeekerPhone() != null
+           && jobSeeker.getJobSeekerAdress() != null) {
                 if (mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
                         jobSeeker.getJobSeekerName()
                         , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
-                    if (!
-                            jobSeekerService.findAll().stream().anyMatch(j -> j.getJobSeekerNationalId() ==
+                    if (
+                            jobSeekerService.findAll().stream().noneMatch(j -> j.getJobSeekerNationalId() ==
                                     jobSeeker.getJobSeekerNationalId())) {
 
-                        if (!userManagerDao.findAll().stream().anyMatch(u -> u.getUserEmail().equals(user.getUserEmail()))) {
+                        if (userManagerDao.findAll().stream().noneMatch(u -> u.getUserEmail().equals(user.getUserEmail()))) {
 
                             emailValidation.sendMail();
-
+                            email.setEmailValidationCode("ABC");
 
                             if (emailValidation.EmailDogrula(email,user)) {
                                 user.setEmailValidation(true);
