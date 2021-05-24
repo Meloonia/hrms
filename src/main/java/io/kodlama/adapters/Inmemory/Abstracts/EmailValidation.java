@@ -5,8 +5,9 @@ import io.kodlama.Entites.Concretes.UserEntity;
 
 public interface EmailValidation {
 
-    boolean EmailDogrula(String code,UserEntity user);
-    void sendMail(EmailValidationEntity validationCode,UserEntity user);
+    boolean EmailDogrula(EmailValidationEntity email,UserEntity user);
+    EmailValidationEntity EmailDogrula();
+    void sendMail();
 
 
 }

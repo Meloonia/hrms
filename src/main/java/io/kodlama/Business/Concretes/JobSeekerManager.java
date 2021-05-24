@@ -6,9 +6,13 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.JobSeekerManagerDao;
+import io.kodlama.DataAccess.Abstracts.UserManagerDao;
+import io.kodlama.Entites.Concretes.EmailValidationEntity;
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.adapters.Inmemory.Abstracts.EmailValidation;
 import io.kodlama.adapters.Inmemory.Abstracts.Mernis;
+import io.kodlama.adapters.Inmemory.Concretes.EmailValidationInMemory;
 import io.kodlama.adapters.Inmemory.Concretes.MernisInMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,13 +21,19 @@ import org.springframework.stereotype.Service;
 public class JobSeekerManager implements JobSeekerService {
 
     Mernis mernis = new MernisInMemory();
+    EmailValidation emailValidation = new EmailValidationInMemory();
     JobSeekerManagerDao jobSeekerService;
-    UserManagerServices usermanager;
+    UserManagerDao userManagerDao;
+    UserManagerServices userManager;
+
     @Autowired
-    public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerServices userManager) {
+    public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
+      UserManagerServices userManager ) {
 
         this.jobSeekerService = jobSeekerService;
-        this.usermanager = userManager;
+        this.userManager = userManager;
+        this.userManagerDao = userManagerDao;
+
     }
 
     @Override
@@ -31,13 +41,22 @@ public class JobSeekerManager implements JobSeekerService {
 
         try {
             if(mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId() ,
-                    jobSeeker.getJobSeekerName().toUpperCase()
-                    , jobSeeker.getJobSeekerSurname().toUpperCase(),jobSeeker.getBirtday())) {
+                    jobSeeker.getJobSeekerName()
+                    , jobSeeker.getJobSeekerSurname(),jobSeeker.getBirtday())) {
                 if (
                         jobSeekerService.findAll().stream().anyMatch(j -> j.getJobSeekerNationalId() ==
                                 jobSeeker.getJobSeekerNationalId())) {
-                    usermanager.insertUser(user);
-                    jobSeekerService.save(jobSeeker);
+                    if(userManagerDao.findAll().stream().anyMatch(u -> u.getUserEmail().equals(user.getRePassword()))){
+
+                        emailValidation.sendMail();
+
+                       if (emailValidation.EmailDogrula(emailValidation.EmailDogrula(), user)) {
+                           userManager.insertUser(user);
+                           jobSeekerService.save(jobSeeker);
+                       }
+
+                    }
+
 
                     return new SuccessResult(true,"Kullanıcı başarı ile kaydedildi.");
             }

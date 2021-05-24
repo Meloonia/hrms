@@ -11,32 +11,39 @@ public class EmailValidationInMemory implements EmailValidation {
    private List<String> emailCode = new ArrayList<>();
     public EmailValidationInMemory() {
 
+        UserEntity user = new UserEntity();
+
         emailCode.add("Mailkodu");
         emailCode.add("Denemekodu");
         emailCode.add("ABC");
         emailCode.add("yeeey");
     }
 
-    @Override
-    public boolean EmailDogrula(String code,UserEntity user) {
+    public EmailValidationEntity EmailDogrula() {
 
-
-
-            if(emailCode.stream().anyMatch(e-> e.equals(code))) {
-
-                user.setEmailValidation(true);
-            }
-                else return false;
-
-        return true;
+        return new EmailValidationEntity();
     }
 
     @Override
-    public void sendMail(EmailValidationEntity validationCode,UserEntity user) {
+    public boolean EmailDogrula(EmailValidationEntity email,UserEntity user) {
+
+            EmailDogrula();
+
+            if(emailCode.stream().anyMatch(e-> e.equals(email.getEmailValidationCode()))) {
+                return true;
+
+            }
+                else return false;
+
+
+    }
+
+    @Override
+    public void sendMail() {
 
 
         System.out.println("Mail gönderildi.");
-        EmailDogrula(validationCode.getEmailValidationCode(),user);
+
     }
 
 
