@@ -36,7 +36,7 @@ public class BusinessAreaController {
 	@PostMapping("/insert")
 
 	public Result insert(BusinessSectorsEntity businessAreasEntity) {
-		return this.businessAreaServices.insert( businessAreasEntity);
+		return this.businessAreaServices.insert(businessAreasEntity);
 	}
 
 

@@ -3,6 +3,7 @@ package io.kodlama.Business.Concretes;
 import io.kodlama.Business.Abstracts.BusinessAreaServices;
 import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
+import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.BusinessAreaDao;
 import io.kodlama.Entites.Concretes.BusinessSectorsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,14 @@ public class BusinessAreaManager implements BusinessAreaServices {
 
 	@Override
 	public Result insert(BusinessSectorsEntity businessAreas) {
-		this.businessAreaDao.save(businessAreas);
-		return new SuccessResult(true,"İş alanı eklendi");
+
+		if(businessAreaDao.findAll().stream().noneMatch(b -> b.getBusinessSectorName().
+				equals(businessAreas.getBusinessSectorName()))) {
+
+			this.businessAreaDao.save(businessAreas);
+			return new SuccessResult(true,"İş alanı eklendi");
+		}
+		else return new UnsuccessfulResult(false , "İş alanı zaten mevcut");
 	}
 
 
