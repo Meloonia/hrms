@@ -4,7 +4,6 @@ import io.kodlama.Entites.Abstracts.UsersEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -37,13 +36,13 @@ public class JobSeekerEntity implements UsersEntity {
     @Column(name = "job_seeker_birtday")
     private int birtday;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "fk_user_id" , referencedColumnName = "user_id" )
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "job_seeker_id" , referencedColumnName = "user_id" )
     private UserEntity user;
 
-    public JobSeekerEntity(UserEntity user) {
-        this.user = user;
-        this.jobSeekerId = user.getUserId();
-    }
+    //public JobSeekerEntity(UserEntity user) {
+      //  this.user = user;
+     //   this.jobSeekerId = user.getUserId();
+   // }
 
 }

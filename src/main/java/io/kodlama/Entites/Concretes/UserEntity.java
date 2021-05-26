@@ -1,11 +1,11 @@
 package io.kodlama.Entites.Concretes;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -14,6 +14,10 @@ import javax.persistence.*;
 @Table(name = "users")
 public class UserEntity {
 
+    private Set<SystemManagerEntity> systemManagerEntity  = new HashSet<SystemManagerEntity>();
+    private Set<JobSeekerEntity> jobSeekerEntity = new HashSet<JobSeekerEntity>();
+    private Set<EmployerEntity> employerEntities = new HashSet<EmployerEntity>();
+  //  private Set<EmailValidationEntity> emailValidationEntities = new HashSet<EmailValidationEntity>();
 
     @Column
     @Id
@@ -33,23 +37,32 @@ public class UserEntity {
     @Column(name = "user_Email_validation")
     private boolean emailValidation;
 
-    @OneToOne(mappedBy = "parentUser" )
+
+  /*  @OneToMany(mappedBy = "parentUser" , fetch =FetchType.LAZY )
     private UserEntity user;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_user_id")
     private UserEntity parentUser;
+ */
+    @OneToMany
+    private Set<SystemManagerEntity> getSystemManagerEntity() {
+        return this.systemManagerEntity;
+    }
 
-    @OneToOne
-    private SystemManagerEntity systemManager;
 
-    @OneToOne
-    private JobSeekerEntity jobSeekerEntity;
+    @OneToMany
+    private Set<JobSeekerEntity> getJobSeekerEntity() {
+        return this.jobSeekerEntity;
+    }
 
-    @OneToOne
-    private EmployerEntity employer;
+    @OneToMany
+    private Set<EmployerEntity> getEmployerEntities(){
+        return this.employerEntities;
+    }
 
-    @OneToOne
-    EmailValidationEntity emailValidationEntity;
+  //  private Set<EmailValidationEntity> getEmailValidationEntity() {
+   //    return this.emailValidationEntities;
+  //  }
 
 }

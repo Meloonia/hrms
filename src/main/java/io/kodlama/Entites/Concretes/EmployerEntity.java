@@ -39,13 +39,12 @@ public class EmployerEntity implements UsersEntity {
     private String EmployerWebsite;
 
     @PrimaryKeyJoinColumn(name = "fk_user_id",referencedColumnName = "user_id")
-    @OneToOne
+    @ManyToOne
     UserEntity user;
 
-    public EmployerEntity(UserEntity user) {
-
-        this.userId = user.getUserId();
-        this.user = user;
-    }
+  //  public EmployerEntity(UserEntity user) {
+//   this.userId = user.getUserId();
+    //    this.user = user;
+  //  }
 
 }

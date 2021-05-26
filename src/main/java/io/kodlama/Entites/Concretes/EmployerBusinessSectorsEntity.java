@@ -19,11 +19,11 @@ public class EmployerBusinessSectorsEntity {
     @Column(name = "employer_business_sectors_id")
     private long employerBusinessSectorId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employer_entity_id")
     private EmployerEntity employerEntity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "business_sector_id")
     private BusinessSectorsEntity businessSectorsEntity;
 }

@@ -15,7 +15,7 @@ public class SystemManagerEntity {
 
 
     @Id
-    @PrimaryKeyJoinColumn(name = "fk_user_id" , referencedColumnName = "user_id" )
+    @PrimaryKeyJoinColumn(name = "system_manager_id" , referencedColumnName = "user_id" )
     private long SystemManagerId;
 
     @Column(name = "system_manager_name")
@@ -33,12 +33,12 @@ public class SystemManagerEntity {
     @Column(name = "system_manager_adress")
     private String SystemManagerAdress;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "fk_user_id" , referencedColumnName = "user_id" )
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "system_manager_id" , referencedColumnName = "user_id" )
     private UserEntity user;
 
-    public SystemManagerEntity(UserEntity user) {
+   // public SystemManagerEntity(UserEntity user) {
 
-        this.SystemManagerId = user.getUserId();
-    }
+       // this.SystemManagerId = user.getUserId();
+ //   }
 }

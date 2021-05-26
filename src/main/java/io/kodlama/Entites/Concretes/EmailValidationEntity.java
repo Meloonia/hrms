@@ -15,8 +15,6 @@ public class EmailValidationEntity {
 
 
     @Id
-
-
     private long userId;
 
     @Column
@@ -26,13 +24,13 @@ public class EmailValidationEntity {
     private String emailValidationCode;
 
     @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 
-    public EmailValidationEntity(UserEntity user) {
-        this.userId = user.getUserId();
-        this.user = user;
-    }
+   // public EmailValidationEntity(UserEntity user) {
+        //this.userId = user.getUserId();
+       // this.user = user;
+   // }
 
 
 }
