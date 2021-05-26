@@ -34,6 +34,7 @@ public class EmployerEntity implements UsersEntity {
     @Column(name ="employer_adress")
     private String employerAdress;
 
+
     @Column(name = "business_sectors_ids")
     private long[] businessSectors;
 
