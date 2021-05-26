@@ -18,14 +18,14 @@ public class UserEntity {
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long UserId;
+    private long userId;
 
     @NotNull
     @Column(name = "user_email")
-    private String UserEmail;
+    private String userEmail;
     @NotNull
     @Column(name = "user_password")
-    private String UserPassword;
+    private String userPassword;
     @NotNull
     @Column(name = "user_repassword")
     private String rePassword;
@@ -33,8 +33,12 @@ public class UserEntity {
     @Column(name = "user_Email_validation")
     private boolean emailValidation;
 
-    @OneToOne(mappedBy = "UserEntity" , cascade = CascadeType.REMOVE )
+    @OneToOne(mappedBy = "parentUser" )
     private UserEntity user;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_user_id")
+    private UserEntity parentUser;
 
     @OneToOne
     private SystemManagerEntity systemManager;
@@ -47,7 +51,5 @@ public class UserEntity {
 
     @OneToOne
     EmailValidationEntity emailValidationEntity;
-
-
 
 }

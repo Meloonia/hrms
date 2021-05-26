@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,8 +15,6 @@ import javax.persistence.*;
 @Table(name="employers")
 public class EmployerEntity implements UsersEntity {
 
-
-
     @Id
     @Column(name = "fk_user_id")
 
@@ -23,7 +22,6 @@ public class EmployerEntity implements UsersEntity {
 
     @Column(name = "employer_name")
     private String employerName;
-
 
     @Column(name = "employer_email")
     private String employerEmail;
@@ -34,9 +32,8 @@ public class EmployerEntity implements UsersEntity {
     @Column(name ="employer_adress")
     private String employerAdress;
 
-
-    @Column(name = "business_sectors_ids")
-    private long[] businessSectors;
+    @OneToMany(mappedBy = "employerEntity", fetch = FetchType.LAZY)
+    private List<EmployerBusinessSectorsEntity> employerBusinessSectorsEntities;
 
     @Column (name = "employer_website")
     private String EmployerWebsite;
