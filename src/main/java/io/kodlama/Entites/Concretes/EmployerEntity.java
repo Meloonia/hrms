@@ -18,7 +18,7 @@ public class EmployerEntity implements UsersEntity {
 
     @Id
     @Column(name = "fk_user_id")
-    @JoinColumn(name = "fk_user_id",referencedColumnName = "user_id")
+
     private long userId;
 
     @Column(name = "employer_name")
@@ -38,4 +38,15 @@ public class EmployerEntity implements UsersEntity {
 
     @Column (name = "employer_website")
     private String EmployerWebsite;
+
+    @PrimaryKeyJoinColumn(name = "fk_user_id",referencedColumnName = "user_id")
+    @OneToOne
+    UserEntity user;
+
+    public EmployerEntity(UserEntity user) {
+
+        this.userId = user.getUserId();
+        this.user = user;
+    }
+
 }

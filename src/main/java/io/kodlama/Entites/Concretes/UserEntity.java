@@ -33,4 +33,21 @@ public class UserEntity {
     @Column(name = "user_Email_validation")
     private boolean emailValidation;
 
+    @OneToOne(mappedBy = "UserEntity" , cascade = CascadeType.REMOVE )
+    private UserEntity user;
+
+    @OneToOne
+    private SystemManagerEntity systemManager;
+
+    @OneToOne
+    private JobSeekerEntity jobSeekerEntity;
+
+    @OneToOne
+    private EmployerEntity employer;
+
+    @OneToOne
+    EmailValidationEntity emailValidationEntity;
+
+
+
 }

@@ -13,8 +13,9 @@ import javax.persistence.*;
 @Table(name = "system_managers")
 public class SystemManagerEntity {
 
+
     @Id
-    @JoinColumn(name = "fk_user_id" , referencedColumnName = "user_id" )
+    @PrimaryKeyJoinColumn(name = "fk_user_id" , referencedColumnName = "user_id" )
     private long SystemManagerId;
 
     @Column(name = "system_manager_name")
@@ -31,4 +32,13 @@ public class SystemManagerEntity {
 
     @Column(name = "system_manager_adress")
     private String SystemManagerAdress;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn(name = "fk_user_id" , referencedColumnName = "user_id" )
+    private UserEntity user;
+
+    public SystemManagerEntity(UserEntity user) {
+
+        this.SystemManagerId = user.getUserId();
+    }
 }

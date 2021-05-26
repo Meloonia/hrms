@@ -13,8 +13,9 @@ import javax.persistence.*;
 @Table(name = "email_validations")
 public class EmailValidationEntity {
 
+
     @Id
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+
 
     private long userId;
 
@@ -23,4 +24,15 @@ public class EmailValidationEntity {
 
     @Column(name ="email_validation_code")
     private String emailValidationCode;
+
+    @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @OneToOne
+    private UserEntity user;
+
+    public EmailValidationEntity(UserEntity user) {
+        this.userId = user.getUserId();
+        this.user = user;
+    }
+
+
 }
