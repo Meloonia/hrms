@@ -34,7 +34,8 @@ public class EmployerEntity implements UsersEntity {
     @Column(name ="employer_adress")
     private String employerAdress;
 
-    // Db Sektör Id ları dizi olarak eklenecek.
+    @Column(name = "business_sectors_ids")
+    private long[] businessSectors;
 
     @Column (name = "employer_website")
     private String EmployerWebsite;
