@@ -21,7 +21,7 @@ public class EmployerBusinessSectorsEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employer_entity_id")
-    private EmployerEntity employerEntity; = 2020
+    private EmployerEntity employerEntity;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "business_sector_id")

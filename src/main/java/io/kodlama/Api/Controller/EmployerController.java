@@ -25,7 +25,7 @@ public class EmployerController {
 
     @PostMapping("/insertemployer")
 
-    public Result insertEmployer(EmployerEntity employer , UserEntity user) {
+    public Result insertEmployer( EmployerEntity employer , UserEntity user) {
 
         return this.employerServices.insert(user,employer);
 
