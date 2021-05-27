@@ -5,18 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "system_managers")
-public class SystemManagerEntity {
+
+public class SystemManagerEntity implements Serializable {
 
 
-    @Id
-    @PrimaryKeyJoinColumn(name = "system_manager_id" , referencedColumnName = "user_id" )
-    private long SystemManagerId;
+  // @Id
+    @Column(name = "system_manager_id")
+   private long systemManagerId;
 
     @Column(name = "system_manager_name")
     private String SystemManagerName;
@@ -33,12 +35,10 @@ public class SystemManagerEntity {
     @Column(name = "system_manager_adress")
     private String SystemManagerAdress;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "system_manager_id" , referencedColumnName = "user_id" )
+    @Id
+  @ManyToOne( fetch =  FetchType.LAZY)
+    @JoinColumn(name = "system_manager_id")
     private UserEntity user;
 
-   // public SystemManagerEntity(UserEntity user) {
 
-       // this.SystemManagerId = user.getUserId();
- //   }
 }

@@ -46,9 +46,9 @@ public class JobSeekerManager implements JobSeekerService {
                     && jobSeeker.getBirtday() != 0
                     && jobSeeker.getJobSeekerPhone() != null
                     && jobSeeker.getJobSeekerAdress() != null) {
-                if (mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
-                        jobSeeker.getJobSeekerName()
-                        , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
+               // if (mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
+                  //      jobSeeker.getJobSeekerName()
+                    //    , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
                     if (
                             jobSeekerService.findAll().stream().noneMatch(j -> j.getJobSeekerNationalId() ==
                                     jobSeeker.getJobSeekerNationalId())) {
@@ -61,8 +61,8 @@ public class JobSeekerManager implements JobSeekerService {
                         } else return new UnsuccessfulResult(false, "Email Kayıtlı");
                     } else return new UnsuccessfulResult(false, "kullanıcı zaten kayıtlı.");
 
-                } else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");
-            }   else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
+                } //else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");
+           /* } */  else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
 
         }
 

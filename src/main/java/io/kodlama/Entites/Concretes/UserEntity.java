@@ -5,26 +5,34 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+
 import java.util.Set;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+
 public class UserEntity {
 
-    private Set<SystemManagerEntity> systemManagerEntity  = new HashSet<SystemManagerEntity>();
-    private Set<JobSeekerEntity> jobSeekerEntity = new HashSet<JobSeekerEntity>();
-    private Set<EmployerEntity> employerEntities = new HashSet<EmployerEntity>();
-  //  private Set<EmailValidationEntity> emailValidationEntities = new HashSet<EmailValidationEntity>();
 
-    @Column
+    @OneToMany(mappedBy = "systemManagerId" , fetch = FetchType.LAZY)
+    private Set<SystemManagerEntity> systemManagerEntities = new HashSet<>(0);
+    @OneToMany(mappedBy =  "jobSeekerId" , fetch = FetchType.LAZY)
+    private Set<JobSeekerEntity> jobSeekerEntities = new HashSet<>(0);
+    @OneToMany(mappedBy = "userId" , fetch = FetchType.LAZY)
+    private Set<EmployerEntity> employerEntities = new HashSet<>(0);
+    @OneToMany(mappedBy = "userId",fetch = FetchType.LAZY)
+    private Set<EmailValidationEntity> emailValidationEntities = new HashSet<>(0);
+
+    @Column(name = "user_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
-    @NotNull
+
     @Column(name = "user_email")
     private String userEmail;
     @NotNull
@@ -38,31 +46,48 @@ public class UserEntity {
     private boolean emailValidation;
 
 
-  /*  @OneToMany(mappedBy = "parentUser" , fetch =FetchType.LAZY )
+
+     /*  @OneToMany(mappedBy = "systemManagerId" , fetch = FetchType.LAZY)
+
+    public Set<SystemManagerEntity> getSystemManagerEntity() {
+      return  this.systemManagerEntities;
+    }
+
+    @OneToMany(mappedBy =  "jobSeekerId" , fetch = FetchType.LAZY)
+    public Set<JobSeekerEntity> getJobSeekerEntity(){
+           return this.jobSeekerEntities;
+    }
+
+    @OneToMany(mappedBy = "userId" , fetch = FetchType.LAZY)
+    public Set<EmployerEntity> getEmployerEntity(){
+           return this.employerEntities;
+    }
+
+    @OneToMany(mappedBy = "userId",fetch = FetchType.LAZY)
+    public Set<EmailValidationEntity> getEmailValidation(){
+           return this.emailValidationEntities;
+    } /*
+     /*  @OneToMany(mappedBy = "parentUser" , fetch =FetchType.LAZY )
     private UserEntity user;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_user_id")
     private UserEntity parentUser;
  */
-    @OneToMany
-    private Set<SystemManagerEntity> getSystemManagerEntity() {
-        return this.systemManagerEntity;
+/*@OneToMany (mappedBy = "systemManagerEntity")
+   public Set<SystemManagerEntity> getSystemManagerEntity{
+    return this.systemManagerEntities;
     }
 
 
-    @OneToMany
-    private Set<JobSeekerEntity> getJobSeekerEntity() {
-        return this.jobSeekerEntity;
-    }
 
-    @OneToMany
-    private Set<EmployerEntity> getEmployerEntities(){
-        return this.employerEntities;
-    }
+    @OneToMany(mappedBy = "jobSeekerEntity")
+   private JobSeekerEntity jobSeekerEntity;
 
-  //  private Set<EmailValidationEntity> getEmailValidationEntity() {
-   //    return this.emailValidationEntities;
-  //  }
+    @OneToMany(mappedBy = "emplorEntity")
+    private EmployerEntity employerEntity;
 
-}
+    @OneToMany(mappedBy = "emailValidationEntity")
+   private EmailValidationEntity emailValidationEntity; */
+   }
+

@@ -19,7 +19,8 @@ public class EmployerController {
 
     private EmployerServices employerServices;
     @Autowired
-    public EmployerController(EmployerServices employerServices) {
+    public EmployerController(EmployerServices employerServices)
+    {
         this.employerServices = employerServices;
     }
 

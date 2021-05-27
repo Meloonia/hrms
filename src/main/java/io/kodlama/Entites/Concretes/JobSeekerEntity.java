@@ -6,16 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "job_seekers")
-public class JobSeekerEntity implements UsersEntity {
+//@PrimaryKeyJoinColumn(name = "job_seeker_id" , referencedColumnName = "user_id" )
+public class JobSeekerEntity implements Serializable {
 
-    @Id
-
+   @Id
+   @Column(name = "job_seeker_id")
     private long jobSeekerId;
 
     @Column(name= "job_seeker_national_id")
@@ -36,8 +38,9 @@ public class JobSeekerEntity implements UsersEntity {
     @Column(name = "job_seeker_birtday")
     private int birtday;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "job_seeker_id" , referencedColumnName = "user_id" )
+    @Id
+    @ManyToOne ( fetch =  FetchType.LAZY , targetEntity = UserEntity.class )
+    @JoinColumn(name = "job_seeker_id" , referencedColumnName = "user_id" )
     private UserEntity user;
 
     //public JobSeekerEntity(UserEntity user) {

@@ -12,6 +12,7 @@ import io.kodlama.Entites.Concretes.UserEntity;
 
 
 import io.kodlama.Inmemory.Concretes.EmailValidationInMemory;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+@NoArgsConstructor
 public class EmployerManager implements EmployerServices {
     EmailValidationInMemory emailValidation = new EmailValidationInMemory();
     EmployersDao employersDao;
