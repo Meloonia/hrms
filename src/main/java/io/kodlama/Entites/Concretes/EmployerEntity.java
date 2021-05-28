@@ -17,10 +17,10 @@ import java.util.List;
 
 public class EmployerEntity implements Serializable {
 
-   // @Id
-    @Column(name = "fk_user_id")
-  //  @PrimaryKeyJoinColumn(name = "fk_user_id" , referencedColumnName = "user_id" )
-      private long userId;
+    @Id
+    @Column(name = "employer_id")
+
+    private long employerId;
 
     @Column(name = "employer_name")
     private String employerName;
@@ -34,21 +34,12 @@ public class EmployerEntity implements Serializable {
     @Column(name ="employer_adress")
     private String employerAdress;
 
-  //  @OneToMany(mappedBy = "employerEntity", fetch = FetchType.LAZY)
-    //private List<EmployerBusinessSectorsEntity> employerBusinessSectorsEntities;
-
     @Column (name = "employer_website")
     private String EmployerWebsite;
 
-  //  @Id
-   // @JoinColumn(name = "fk_user_id",referencedColumnName = "user_id")
-    @Id
-  @ManyToOne( fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
-  @JoinColumn(name = "fk_user_id" , referencedColumnName = "user_id")
+  @ManyToOne( fetch =  FetchType.LAZY)
+  @PrimaryKeyJoinColumn(name = "employer_id")
    private UserEntity user;
-  //  public EmployerEntity(UserEntity user) {
-//   this.userId = user.getUserId();
-    //    this.user = user;
-  //  }
+
 
 }

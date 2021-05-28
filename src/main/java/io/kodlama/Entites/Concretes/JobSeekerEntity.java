@@ -1,5 +1,6 @@
 package io.kodlama.Entites.Concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.kodlama.Entites.Abstracts.UsersEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,11 +14,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "job_seekers")
-//@PrimaryKeyJoinColumn(name = "job_seeker_id" , referencedColumnName = "user_id" )
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","UserEntity"})
 public class JobSeekerEntity implements Serializable {
 
    @Id
    @Column(name = "job_seeker_id")
+
     private long jobSeekerId;
 
     @Column(name= "job_seeker_national_id")
@@ -38,14 +40,9 @@ public class JobSeekerEntity implements Serializable {
     @Column(name = "job_seeker_birtday")
     private int birtday;
 
-    @Id
-    @ManyToOne ( fetch =  FetchType.LAZY , targetEntity = UserEntity.class )
-    @JoinColumn(name = "job_seeker_id" , referencedColumnName = "user_id" )
-    private UserEntity user;
+    @PrimaryKeyJoinColumn(name = "job_seeker_id")
+    @ManyToOne ( fetch =  FetchType.LAZY)
 
-    //public JobSeekerEntity(UserEntity user) {
-      //  this.user = user;
-     //   this.jobSeekerId = user.getUserId();
-   // }
+    private UserEntity user;
 
 }

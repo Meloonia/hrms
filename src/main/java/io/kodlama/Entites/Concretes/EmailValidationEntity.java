@@ -14,10 +14,11 @@ import java.io.Serializable;
 @Table(name = "email_validations")
 public class EmailValidationEntity implements Serializable {
 
-  //  @PrimaryKeyJoinColumn(name = "user_id" , referencedColumnName = "user_id" )
+
    @Id
-   @Column(name = "user_id")
-    private long userId;
+   @Column(name = "email_validations_id")
+
+    private long emailValidationsId;
 
     @Column
     private String email;
@@ -25,9 +26,8 @@ public class EmailValidationEntity implements Serializable {
     @Column(name ="email_validation_code")
     private String emailValidationCode;
 
-    @Id
-   @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @ManyToOne(fetch = FetchType.LAZY , targetEntity = UserEntity.class)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "email_validations_id")
     private UserEntity user;
 
 

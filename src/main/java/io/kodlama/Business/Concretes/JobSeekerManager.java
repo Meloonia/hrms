@@ -50,13 +50,13 @@ public class JobSeekerManager implements JobSeekerService {
                   //      jobSeeker.getJobSeekerName()
                     //    , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
                     if (
-                            jobSeekerService.findAll().stream().noneMatch(j -> j.getJobSeekerNationalId() ==
-                                    jobSeeker.getJobSeekerNationalId())) {
+                            userManagerDao.findAll().stream().noneMatch(u -> u.getUserEmail().equals(user.getUserEmail()))) {
 
-                        if (userManagerDao.findAll().stream().noneMatch(u -> u.getUserEmail().equals(user.getUserEmail()))) {
+                        if (jobSeekerService.findAll().stream().noneMatch(j -> j.getJobSeekerNationalId() ==
+                                jobSeeker.getJobSeekerNationalId())) {
 
-                            //  userManager.insertUser(user);
-                            //jobSeekerService.save(jobSeeker);
+                             userManager.insertUser(user);
+                            jobSeekerService.save(jobSeeker);
                             return new SuccessResult(true, "Kullanıcı başarı ile kaydedildi.");
                         } else return new UnsuccessfulResult(false, "Email Kayıtlı");
                     } else return new UnsuccessfulResult(false, "kullanıcı zaten kayıtlı.");

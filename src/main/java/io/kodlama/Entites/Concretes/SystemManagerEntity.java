@@ -16,8 +16,9 @@ import java.io.Serializable;
 public class SystemManagerEntity implements Serializable {
 
 
-  // @Id
+    @Id
     @Column(name = "system_manager_id")
+
    private long systemManagerId;
 
     @Column(name = "system_manager_name")
@@ -35,9 +36,9 @@ public class SystemManagerEntity implements Serializable {
     @Column(name = "system_manager_adress")
     private String SystemManagerAdress;
 
-    @Id
-  @ManyToOne( fetch =  FetchType.LAZY)
-    @JoinColumn(name = "system_manager_id")
+    @PrimaryKeyJoinColumn(name = "system_manager_id")
+    @ManyToOne( fetch =  FetchType.LAZY)
+
     private UserEntity user;
 
 
