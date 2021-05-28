@@ -36,10 +36,10 @@ public class JobSeekerManager implements JobSeekerService {
     }
 
     @Override
-    public Result insert(UserEntity user, JobSeekerEntity jobSeeker) {
+    public Result insert(UserEntity user,JobSeekerEntity jobSeeker) {
 
         try {
-            if (user.getUserEmail() != null && user.getRePassword() != null &&
+           if (user.getUserEmail() != null && user.getRePassword() != null &&
                     user.getRePassword() != null && jobSeeker.getJobSeekerName() != null
                     && jobSeeker.getJobSeekerSurname() != null
                     && jobSeeker.getJobSeekerNationalId() != 0

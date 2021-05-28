@@ -1,5 +1,6 @@
 package io.kodlama.Entites.Concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.kodlama.Entites.Abstracts.UsersEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name="employers")
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","UserEntity"})
 public class EmployerEntity implements Serializable {
 
     @Id
@@ -37,7 +38,7 @@ public class EmployerEntity implements Serializable {
     @Column (name = "employer_website")
     private String EmployerWebsite;
 
-  @ManyToOne( fetch =  FetchType.LAZY)
+  @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
   @PrimaryKeyJoinColumn(name = "employer_id")
    private UserEntity user;
 

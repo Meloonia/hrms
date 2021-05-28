@@ -25,20 +25,20 @@ public class UserEntity {
     @Column(name = "user_id", unique = true)
     private long userId;
 
-      @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private Set<SystemManagerEntity> systemManagerEntities = new HashSet<>(0);
+      @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY )
+    private Set<SystemManagerEntity> systemManagerEntities = new HashSet<>();
 
 
-    @OneToMany(mappedBy =  "user" , fetch = FetchType.LAZY)
-    private Set<JobSeekerEntity> jobSeekerEntities = new HashSet<>(0);
+    @OneToMany(mappedBy =  "user" , fetch = FetchType.LAZY )
+    private Set<JobSeekerEntity> jobSeekerEntities = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
-    private Set<EmployerEntity> employerEntities = new HashSet<>(0);
+    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY )
+    private Set<EmployerEntity> employerEntities = new HashSet<>();
 
 
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private Set<EmailValidationEntity> emailValidationEntities = new HashSet<>(0);
+    private Set<EmailValidationEntity> emailValidationEntities = new HashSet<>();
 
     @Column(name = "user_email")
     private String userEmail;

@@ -41,7 +41,7 @@ public class JobSeekerEntity implements Serializable {
     private int birtday;
 
     @PrimaryKeyJoinColumn(name = "job_seeker_id")
-    @ManyToOne ( fetch =  FetchType.LAZY)
+    @ManyToOne ( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
 
     private UserEntity user;
 

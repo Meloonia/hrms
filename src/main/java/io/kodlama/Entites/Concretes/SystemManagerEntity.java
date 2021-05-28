@@ -1,5 +1,6 @@
 package io.kodlama.Entites.Concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "system_managers")
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","UserEntity"})
 public class SystemManagerEntity implements Serializable {
 
 
@@ -37,7 +38,7 @@ public class SystemManagerEntity implements Serializable {
     private String SystemManagerAdress;
 
     @PrimaryKeyJoinColumn(name = "system_manager_id")
-    @ManyToOne( fetch =  FetchType.LAZY)
+    @ManyToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
 
     private UserEntity user;
 
