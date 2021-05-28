@@ -13,12 +13,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table(name = "email_validations")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","UserEntity"})
-public class EmailValidationEntity implements Serializable {
 
 
-   @Id
-   @Column(name = "email_validations_id")
+public class EmailValidationEntity{
+
+
+    @Id
+    @Column(name = "email_validations_id")
 
     private long emailValidationsId;
 
@@ -32,15 +33,4 @@ public class EmailValidationEntity implements Serializable {
     @PrimaryKeyJoinColumn(name = "email_validations_id")
     private UserEntity user;
 
-
-
-
-
-  //  public UserEntity getUserEntities() {
-     //   return userEntities;
-    //}
-
-   // public void setUserEntities(UserEntity userEntities) {
-     //   this.userEntities = userEntities;
-    //}
 }

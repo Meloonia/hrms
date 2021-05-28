@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,14 +14,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "system_managers")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","UserEntity"})
-public class SystemManagerEntity implements Serializable {
+
+public class SystemManagerEntity {
+
 
 
     @Id
     @Column(name = "system_manager_id")
 
-   private long systemManagerId;
+    private long systemManagerId;
 
     @Column(name = "system_manager_name")
     private String SystemManagerName;

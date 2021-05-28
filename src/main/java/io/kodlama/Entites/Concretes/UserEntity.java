@@ -1,13 +1,10 @@
 package io.kodlama.Entites.Concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
-
 import java.util.Set;
 
 
@@ -16,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","UserEntity"})
 public class UserEntity {
 
 
@@ -25,7 +22,7 @@ public class UserEntity {
     @Column(name = "user_id", unique = true)
     private long userId;
 
-      @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY )
+    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY )
     private Set<SystemManagerEntity> systemManagerEntities = new HashSet<>();
 
 
@@ -52,5 +49,6 @@ public class UserEntity {
     @Column(name = "user_Email_validation")
     private boolean emailValidation;
 
-   }
+
+}
 

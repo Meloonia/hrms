@@ -15,8 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name="employers")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","UserEntity"})
-public class EmployerEntity implements Serializable {
+
+public class EmployerEntity {
 
     @Id
     @Column(name = "employer_id")
@@ -38,9 +38,8 @@ public class EmployerEntity implements Serializable {
     @Column (name = "employer_website")
     private String EmployerWebsite;
 
-  @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
-  @PrimaryKeyJoinColumn(name = "employer_id")
-   private UserEntity user;
-
+    @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "employer_id")
+    private UserEntity user;
 
 }

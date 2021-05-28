@@ -78,4 +78,6 @@ public class JobSeekerManager implements JobSeekerService {
     public List<JobSeekerEntity> getAll() {
         return jobSeekerService.findAll();
     }
+
+
 }
