@@ -5,8 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -23,8 +25,8 @@ public class BusinessSectorsEntity {
     @Column(name = "business_sector_name")
     private String businessSectorName;
 
-    @OneToMany(mappedBy = "businessSectorsEntity", fetch = FetchType.LAZY)
-    private List<EmployerBusinessSectorsEntity> employerBusinessSectorsEntities;
+    @OneToMany(mappedBy = "business_sectors" ,fetch =FetchType.LAZY )
+    private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
     @Override
     public boolean equals(Object o) {
