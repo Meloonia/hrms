@@ -1,12 +1,23 @@
 package io.kodlama.Utils.Controls;
 
+import io.kodlama.DataAccess.Abstracts.EmailValidationDao;
+import io.kodlama.DataAccess.Abstracts.EmployersDao;
 import io.kodlama.Entites.dto.EmployerDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 @Service
 public class EmployerControl implements EmployerControlService{
+
+    EmailValidationDao emailValidationDao;
+
+    @Autowired
+    public EmployerControl( EmailValidationDao emailValidationDao) {
+        this.emailValidationDao = emailValidationDao;
+    }
+
     @Override
     public boolean nameLenghtControl(EmployerDto employerEntity) {
         if(
@@ -29,5 +40,10 @@ public class EmployerControl implements EmployerControlService{
         }else {
             return false;
         }
+    }
+
+    @Override
+    public boolean emailControl(EmployerDto employerEntity) {
+        return emailValidationDao.findAll().stream().noneMatch(e -> e.isValidation());
     }
 }

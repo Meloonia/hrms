@@ -56,14 +56,15 @@ public class EmployerManager implements EmployerServices {
             if (
                     employerControlService.nameLenghtControl(employerEntity)
             ) {
-                if (employerControlService.emailDomainControl(employerEntity)) {
-                    modelMapper.map(employerEntities, EmployerEntity.class);
-                    userManager.insertUser(modelMapper.map(employerEntity, UserEntity.class));
-                    employersDao.save(employerEntities);
-                    return new SuccessResult(true, "Şirket başarı ile kaydedildi.");
-                } else return new UnsuccessfulResult(false, "isimler 2 harften fazla olmalıdır");
-            } else return new UnsuccessfulResult(false, "Email doğrulanamadı");
-
+                if (employerControlService.emailControl(employerEntity)) {
+                    if (employerControlService.emailDomainControl(employerEntity)) {
+                        modelMapper.map(employerEntities, EmployerEntity.class);
+                        userManager.insertUser(modelMapper.map(employerEntity, UserEntity.class));
+                        employersDao.save(employerEntities);
+                        return new SuccessResult(true, "Şirket başarı ile kaydedildi.");
+                    } else return new UnsuccessfulResult(false, "isimler 2 harften fazla olmalıdır");
+                } else return new UnsuccessfulResult(false, "Email zaten mevcut");
+            } else return new UnsuccessfulResult(false, "Email Doğrulanamadı");
 
         } catch (Exception e) {
 

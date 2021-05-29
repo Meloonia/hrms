@@ -1,14 +1,10 @@
 package io.kodlama.Entites.Concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.kodlama.Entites.Abstracts.UsersEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -35,6 +31,9 @@ public class EmployerEntity {
 
     @Column (name = "employer_website")
     private String EmployerWebsite;
+
+    @Column (name = "employer_personel_validation")
+    private boolean personelValidation;
 
     @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
 
