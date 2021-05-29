@@ -17,7 +17,7 @@ import java.io.Serializable;
 
 public class EmailValidationEntity{
 
-
+    @JoinColumn(name = "email_validations_id")
     @Id
     @Column(name = "email_validations_id")
 
@@ -29,8 +29,10 @@ public class EmailValidationEntity{
     @Column(name ="email_validation_code")
     private String emailValidationCode;
 
+    @Column private boolean validation;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "email_validations_id")
+
     private UserEntity user;
 
 }

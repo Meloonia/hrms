@@ -46,9 +46,6 @@ public class UserEntity {
     @Column(name = "user_repassword")
     private String rePassword;
 
-    @Column(name = "user_Email_validation")
-    private boolean emailValidation;
-
 
 }
 

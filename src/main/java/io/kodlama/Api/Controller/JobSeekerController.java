@@ -4,6 +4,7 @@ import io.kodlama.Business.Abstracts.JobSeekerService;
 import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.Entites.dto.JobSeekerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +23,9 @@ public class JobSeekerController {
     }
 
     @PostMapping("/insert")
-    public Result insertJobseeker(@RequestBody JobSeekerEntity jobSeeker , @RequestBody UserEntity user) {
+    public Result insertJobseeker(@RequestBody JobSeekerDto jobSeeker) {
 
-        return this.jobSeekerService.insert(user,jobSeeker);
+        return this.jobSeekerService.insert(jobSeeker);
 
 
     }

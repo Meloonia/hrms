@@ -18,6 +18,7 @@ import java.util.List;
 
 public class EmployerEntity {
 
+    @JoinColumn(name = "employer_id")
     @Id
     @Column(name = "employer_id")
 
@@ -39,7 +40,7 @@ public class EmployerEntity {
     private String EmployerWebsite;
 
     @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "employer_id")
+
     private UserEntity user;
 
 }

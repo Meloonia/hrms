@@ -17,13 +17,13 @@ import java.io.Serializable;
 @Table(name = "job_seekers")
 
 public class JobSeekerEntity {
-
  @Id
+ @JoinColumn(name = "job_seeker_id")
  @Column(name = "job_seeker_id")
 
  private long jobSeekerId;
 
- @Column(name= "job_seeker_national_id")
+ @Column(name = "job_seeker_national_id")
  private long jobSeekerNationalId;
 
  @Column(name = "job_seeker_name")
@@ -41,9 +41,8 @@ public class JobSeekerEntity {
  @Column(name = "job_seeker_birtday")
  private int birtday;
 
- @PrimaryKeyJoinColumn(name = "job_seeker_id")
- @ManyToOne ( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
+
+ @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
  private UserEntity user;
-
 }
