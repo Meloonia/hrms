@@ -5,6 +5,7 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.DataAccess.Abstracts.EmployersDao;
 import io.kodlama.Entites.Concretes.EmployerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.Entites.dto.EmployerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,9 @@ public class EmployerController {
 
     @PostMapping("/insertemployer")
 
-    public Result insertEmployer(@RequestBody EmployerEntity employer ,@RequestBody UserEntity user) {
+    public Result insertEmployer(@RequestBody EmployerDto employer) {
 
-        return this.employerServices.insert(user,employer);
+        return this.employerServices.insert(employer);
 
     }
 

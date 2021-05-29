@@ -6,13 +6,17 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.EmployersDao;
-import io.kodlama.Entites.Concretes.EmailValidationEntity;
+
 import io.kodlama.Entites.Concretes.EmployerEntity;
+
 import io.kodlama.Entites.Concretes.UserEntity;
 
 
+import io.kodlama.Entites.dto.EmployerDto;
 import io.kodlama.Inmemory.Concretes.EmailValidationInMemory;
+import io.kodlama.Utils.Controls.EmployerControlService;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,34 +32,38 @@ public class EmployerManager implements EmployerServices {
     EmployersDao employersDao;
     UserManager userManager;
     SystemManager systemManagerService;
+    ModelMapper modelMapper;
+    EmployerControlService employerControlService;
+
     @Autowired
-    public EmployerManager(EmployersDao employersDao, UserManager userManager, SystemManager systemManagerService) {
+    public EmployerManager(EmployersDao employersDao, UserManager userManager,
+                           SystemManager systemManagerService, ModelMapper modelMapper
+            , EmployerControlService employerControlService) {
         this.employersDao = employersDao;
         this.userManager = userManager;
         this.systemManagerService = systemManagerService;
+        this.modelMapper = modelMapper;
+        this.employerControlService = employerControlService;
     }
 
 
     @Override
-    public Result insert(UserEntity user, EmployerEntity employerEntity) {
+    public Result insert(EmployerDto employerEntity) {
         try {
+            EmployerEntity employerEntities = modelMapper.map(employerEntity, EmployerEntity.class);
+
+
             if (
-                    user.getUserEmail().length() != 0
-                            && user.getUserPassword().length() != 0
-                            && user.getRePassword().length() != 0
-                            && checkIfMailDomain(employerEntity)
+                    employerControlService.nameLenghtControl(employerEntity)
             ) {
-                if(emailValidation.EmailDogrula(new EmailValidationEntity(),user)) {
-                    if(systemManagerService.employerConfirm()) {
-                        userManager.insertUser(user);
-                        employersDao.save(employerEntity);
-                        return new SuccessResult(true,"Şirket başarı ile kaydedildi.");
-                    }
-                    else  return new UnsuccessfulResult(false,"Email doğrulanmadı.");
-                }
-                else return new UnsuccessfulResult(false , "website domaini ile mail domaini aynı olmalı");
-            }
-            else return new UnsuccessfulResult(false,"Şirket kaydında hata oluştu.");
+                if (employerControlService.emailDomainControl(employerEntity)) {
+                    modelMapper.map(employerEntities, EmployerEntity.class);
+                    userManager.insertUser(modelMapper.map(employerEntity, UserEntity.class));
+                    employersDao.save(employerEntities);
+                    return new SuccessResult(true, "Şirket başarı ile kaydedildi.");
+                } else return new UnsuccessfulResult(false, "isimler 2 harften fazla olmalıdır");
+            } else return new UnsuccessfulResult(false, "Email doğrulanamadı");
+
 
         } catch (Exception e) {
 
@@ -70,13 +78,4 @@ public class EmployerManager implements EmployerServices {
     }
 
 
-    public boolean checkIfMailDomain(EmployerEntity employerEntity) {
-        String regex = "^[A-Za-z0-9._%+-]+@" + employerEntity.getEmployerWebsite() +"$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(employerEntity.getEmployerEmail());
-        if(matcher.matches()) {
-            return true;
-        }else {
-            return false;
-        }
-} }
+}

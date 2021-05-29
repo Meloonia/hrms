@@ -1,14 +1,15 @@
-package io.kodlama.Business.Concretes;
+package io.kodlama.Utils.Controls;
 
-import io.kodlama.Business.Abstracts.NullControlService;
 import io.kodlama.DataAccess.Abstracts.JobSeekerManagerDao;
 import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import io.kodlama.Utils.Controls.JobSeekerControl;
 
 @Service
-class JobSeekerControl implements NullControlService {
+public
+class JobSeekerControl implements JobSeekerControlService {
 
     private final UserManagerDao userManagerDao;
     private final JobSeekerManagerDao jobSeekerManagerDao;

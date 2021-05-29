@@ -1,8 +1,8 @@
-package io.kodlama.Business.Abstracts;
+package io.kodlama.Utils.Controls;
 
 import io.kodlama.Entites.dto.JobSeekerDto;
 
-public interface NullControlService {
+public interface JobSeekerControlService {
 
     boolean nullControl(JobSeekerDto jobSeekerDto);
     boolean emailControl(JobSeekerDto jobSeekerDto);

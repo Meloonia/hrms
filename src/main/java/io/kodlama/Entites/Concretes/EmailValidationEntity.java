@@ -1,12 +1,11 @@
 package io.kodlama.Entites.Concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 @Data
 @NoArgsConstructor
@@ -29,7 +28,7 @@ public class EmailValidationEntity{
     @Column(name ="email_validation_code")
     private String emailValidationCode;
 
-    @Column private boolean validation;
+    @Column private boolean validation = false;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 

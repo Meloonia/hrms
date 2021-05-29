@@ -14,6 +14,7 @@ import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Inmemory.Abstracts.Mernis;
 import io.kodlama.Inmemory.Concretes.MernisInMemory;
 
+import io.kodlama.Utils.Controls.JobSeekerControl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

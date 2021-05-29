@@ -27,9 +27,6 @@ public class EmployerEntity {
     @Column(name = "employer_name")
     private String employerName;
 
-    @Column(name = "employer_email")
-    private String employerEmail;
-
     @Column(name = "employer_phone")
     private String employerPhone;
 
