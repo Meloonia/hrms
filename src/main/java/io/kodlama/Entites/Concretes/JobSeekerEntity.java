@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 public class JobSeekerEntity {
  @Id
- @JoinColumn(name = "job_seeker_id")
+ @JoinColumn()
  @Column(name = "job_seeker_id")
 
  private long jobSeekerId;

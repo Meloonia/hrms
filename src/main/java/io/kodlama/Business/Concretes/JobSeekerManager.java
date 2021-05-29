@@ -24,7 +24,7 @@ import java.util.List;
 public class JobSeekerManager implements JobSeekerService {
 
     Mernis mernis = new MernisInMemory();
-
+    JobSeekerControl jobSeekerControl;
     JobSeekerManagerDao jobSeekerService;
     UserManagerDao userManagerDao;
     UserManagerServices userManager;
@@ -32,13 +32,13 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Autowired
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
-      UserManagerServices userManager , ModelMapper modelMapper ) {
+                            UserManagerServices userManager , ModelMapper modelMapper , JobSeekerControl jobSeekerControl) {
 
         this.jobSeekerService = jobSeekerService;
         this.userManager = userManager;
         this.userManagerDao = userManagerDao;
         this.modelMapper = modelMapper;
-
+        this.jobSeekerControl = jobSeekerControl;
     }
 
 
@@ -47,33 +47,24 @@ public class JobSeekerManager implements JobSeekerService {
 
         try {
 
-            JobSeekerEntity jobSeekerEntity = new JobSeekerEntity();
+            JobSeekerEntity jobSeekerEntity;
 
-            jobSeeker = modelMapper.map(jobSeekerEntity,JobSeekerDto.class);
-           if (jobSeeker.getUserEmail() != null && jobSeeker.getRePassword() != null &&
-                   jobSeeker.getUserPassword() != null && jobSeeker.getJobSeekerName() != null
-                    && jobSeeker.getJobSeekerSurname() != null
-                    && jobSeeker.getJobSeekerNationalId() != 0
-                    && jobSeeker.getBirtday() != 0
-                    && jobSeeker.getJobSeekerPhone() != null
-                    && jobSeeker.getJobSeekerAdress() != null) {
+            jobSeekerEntity = modelMapper.map(jobSeeker,JobSeekerEntity.class);
+
+           if (jobSeekerControl.nullControl(jobSeeker)) {
                // if (mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
                   //      jobSeeker.getJobSeekerName()
                     //    , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
-               JobSeekerDto finalJobSeeker = jobSeeker;
+
                if (
-                      userManagerDao.findAll().stream().noneMatch(u -> u.getUserEmail().equals(finalJobSeeker.getUserEmail()))) {
-                    userManagerDao.findAll().stream().noneMatch((u -> u.getUserEmail().equals(jobSeekerEntity.getUser().getUserEmail())));
+                      jobSeekerControl.emailControl(jobSeeker)) {
 
-                   if (jobSeekerService.findAll().stream().noneMatch(j -> j.getJobSeekerNationalId() ==
-                                jobSeekerEntity.getJobSeekerNationalId())) {
 
-                           jobSeekerEntity.setJobSeekerAdress(jobSeeker.getJobSeekerAdress());
-                           jobSeekerEntity.setJobSeekerPhone(jobSeeker.getJobSeekerPhone());
-                           jobSeekerEntity.setJobSeekerNationalId(jobSeeker.getJobSeekerNationalId());
-                           jobSeekerEntity.setJobSeekerName(jobSeeker.getJobSeekerName());
-                           jobSeekerEntity.setJobSeekerSurname(jobSeeker.getJobSeekerSurname());
-                           jobSeekerEntity.setBirtday(jobSeeker.getBirtday());
+                   if (jobSeekerControl.userControl(jobSeeker)) {
+
+                       modelMapper.map(jobSeekerEntity , JobSeekerEntity.class);
+                           userManager.insertUser(modelMapper.map(jobSeeker , UserEntity.class));
+                           jobSeekerService.save(jobSeekerEntity);
 
 
 
