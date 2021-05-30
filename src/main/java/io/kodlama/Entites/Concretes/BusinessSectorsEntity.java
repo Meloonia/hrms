@@ -25,7 +25,7 @@ public class BusinessSectorsEntity {
     @Column(name = "business_sector_name")
     private String businessSectorName;
 
-    @OneToMany(mappedBy = "business_sectors" ,fetch =FetchType.LAZY )
+    @OneToMany(mappedBy = "businessSector" ,fetch =FetchType.LAZY )
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
     @Override

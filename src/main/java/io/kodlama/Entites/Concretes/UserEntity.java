@@ -37,7 +37,7 @@ public class UserEntity {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private Set<EmailValidationEntity> emailValidationEntities = new HashSet<>();
 
-    @OneToMany(mappedBy = "user" ,fetch =FetchType.LAZY )
+    @OneToMany(mappedBy = "userId" ,fetch =FetchType.LAZY )
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
     @Column(name = "user_email")

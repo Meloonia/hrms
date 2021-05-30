@@ -1,10 +1,9 @@
 package io.kodlama.Entites.Concretes;
 
+import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.Tables;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,9 +13,10 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "job_advertisement")
-public class JobAdverstisementEntity {
+public class JobAdverstisementEntity{
 
     @Id
+    @JoinColumn(name = "user_id")
     @Column(name = "user_id")
     private long userId;
 
@@ -26,6 +26,7 @@ public class JobAdverstisementEntity {
     @Column(name="active")
     private boolean active;
 
+    @JoinColumn(name = "business_sector")
     @Column(name = "business_sector")
 
     private int businessSector;
@@ -35,6 +36,7 @@ public class JobAdverstisementEntity {
 
     @Column(name = "active_date")
     private Date activeDate;
+
 
     @Column(name = "open_positions")
     private int openPosition;

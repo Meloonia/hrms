@@ -3,6 +3,8 @@ package io.kodlama.Api.Controller;
 import io.kodlama.Business.Abstracts.BusinessAreaServices;
 import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Entites.Concretes.BusinessSectorsEntity;
+import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
+import io.kodlama.Entites.dto.BusinessSectorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,9 +30,15 @@ public class BusinessAreaController {
 	//Get adresi.
 	@GetMapping("/getall")
 	
-	public List<BusinessSectorsEntity> getAll() {
+	public List<BusinessSectorDto> getAll() {
 		
 		return businessAreaServices.getAll();
+	}
+
+	@GetMapping("/getallactivesectors")
+
+	public List<ActiveJobAdverstisementDto> getAllActiveSectors(){
+		return businessAreaServices.getAllActiveSectors();
 	}
 
 	@PostMapping("/insert")
