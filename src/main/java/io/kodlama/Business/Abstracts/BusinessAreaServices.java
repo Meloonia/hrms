@@ -12,7 +12,6 @@ public interface BusinessAreaServices {
 
 	List<BusinessSectorDto> getAll();
 	Result insert(BusinessSectorsEntity businessAreas);
-	public List<ActiveJobAdverstisementDto> getAllActiveSectors();
-	List<BusinessSectorToEmployerDto> getAllActiveSectorsDate();
+
 
 }

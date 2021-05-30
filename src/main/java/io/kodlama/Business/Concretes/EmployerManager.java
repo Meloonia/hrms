@@ -10,6 +10,7 @@ import io.kodlama.Entites.Concretes.EmployerEntity;
 import io.kodlama.Entites.Concretes.JobAdverstisementEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
 import io.kodlama.Entites.dto.AddJobAdvertDto;
+import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 import io.kodlama.Entites.dto.EmployerDto;
 import io.kodlama.Inmemory.Concretes.EmailValidationInMemory;
 import io.kodlama.Utils.Controls.EmployerControlService;
@@ -18,6 +19,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -88,6 +90,25 @@ public class EmployerManager implements EmployerServices {
         }
 
 
+    }
+
+    @Override
+    public List<BusinessSectorToEmployerDto> getAllJobAdvert(EmployerEntity employer) {
+
+        List<BusinessSectorToEmployerDto> jobAdverstisementEntities = new ArrayList<>();
+
+        modelMapper.map(jobAdverstisementEntities,BusinessSectorToEmployerDto.class);
+        for(JobAdverstisementEntity job : jobAdvertisementDao.findAll()) {
+
+            if(job.getUserId() == employer.getEmployerId() ) {
+
+                jobAdverstisementEntities.add(modelMapper.map(jobAdverstisementEntities,BusinessSectorToEmployerDto.class));
+
+            }
+
+        }
+
+        return jobAdverstisementEntities.stream().toList();
     }
 
 

@@ -36,11 +36,6 @@ public class BusinessAreaController {
 		return businessAreaServices.getAll();
 	}
 
-	@GetMapping("/getallactivesectors")
-
-	public List<ActiveJobAdverstisementDto> getAllActiveSectors(){
-		return businessAreaServices.getAllActiveSectors();
-	}
 
 	@PostMapping("/insert")
 
@@ -48,9 +43,6 @@ public class BusinessAreaController {
 		return this.businessAreaServices.insert(businessAreasEntity);
 	}
 
-	@GetMapping("/gettallactivesectordate")
-	public List<BusinessSectorToEmployerDto> getAllActiveSectorsDate() {
-		return businessAreaServices.getAllActiveSectorsDate();
-	}
+
 
 }
