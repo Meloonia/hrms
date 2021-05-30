@@ -5,6 +5,7 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Entites.Concretes.BusinessSectorsEntity;
 import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import io.kodlama.Entites.dto.BusinessSectorDto;
+import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,9 @@ public class BusinessAreaController {
 		return this.businessAreaServices.insert(businessAreasEntity);
 	}
 
-
+	@GetMapping("/gettallactivesectordate")
+	public List<BusinessSectorToEmployerDto> getAllActiveSectorsDate() {
+		return businessAreaServices.getAllActiveSectorsDate();
+	}
 
 }

@@ -5,6 +5,7 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.DataAccess.Abstracts.EmployersDao;
 import io.kodlama.Entites.Concretes.EmployerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.EmployerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,4 +37,10 @@ public class EmployerController {
         return this.employerServices.getAll();
         }
 
+        @PostMapping("/addJobAdvert")
+
+    public Result insertJobAdvert(AddJobAdvertDto addJobAdvertDto) {
+
+        return this.employerServices.addJobAdvert( addJobAdvertDto);
+        }
 }

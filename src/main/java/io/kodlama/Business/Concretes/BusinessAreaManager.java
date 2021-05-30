@@ -13,6 +13,7 @@ import io.kodlama.Entites.dto.BusinessSectorDto;
 import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
@@ -79,7 +80,7 @@ public class BusinessAreaManager implements BusinessAreaServices {
 		for (JobAdverstisementEntity job: jobAdvertisementDao.findAll()) {
 
 			if(job.isActive()) {
-				list.add((ActiveJobAdverstisementDto) list);
+				list.add((modelMapper.map(list , ActiveJobAdverstisementDto.class)));
 			}
 		}
 
@@ -87,8 +88,22 @@ public class BusinessAreaManager implements BusinessAreaServices {
 	}
 
 	@Override
+	@Query("select desciription,active,openPosition,activeDate,businessSector,relaseDate from JobAdverstisementEntity order by activeDate desc ")
 	public List<BusinessSectorToEmployerDto> getAllActiveSectorsDate() {
-		return null;
+
+		JobAdverstisementEntity jobAdverstisementEntity = new JobAdverstisementEntity();
+		BusinessSectorToEmployerDto businessSectorToEmployerDto = new BusinessSectorToEmployerDto();
+		jobAdverstisementEntity = modelMapper.map(businessSectorToEmployerDto,JobAdverstisementEntity.class);
+
+		List<BusinessSectorToEmployerDto> list = new ArrayList<>();
+
+		for (JobAdverstisementEntity job: jobAdvertisementDao.findAll()) {
+
+			if(true) {
+				list.add((modelMapper.map(list , BusinessSectorToEmployerDto.class)));
+			}
+		}
+		return list.stream().toList();
 	}
 
 

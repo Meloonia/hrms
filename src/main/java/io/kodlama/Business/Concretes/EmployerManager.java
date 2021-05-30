@@ -1,17 +1,15 @@
 package io.kodlama.Business.Concretes;
 
 import io.kodlama.Business.Abstracts.EmployerServices;
-
 import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.EmployersDao;
-
+import io.kodlama.DataAccess.Abstracts.JobAdvertisementDao;
 import io.kodlama.Entites.Concretes.EmployerEntity;
-
+import io.kodlama.Entites.Concretes.JobAdverstisementEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
-
-
+import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.EmployerDto;
 import io.kodlama.Inmemory.Concretes.EmailValidationInMemory;
 import io.kodlama.Utils.Controls.EmployerControlService;
@@ -20,30 +18,28 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 @NoArgsConstructor
 public class EmployerManager implements EmployerServices {
-    EmailValidationInMemory emailValidation = new EmailValidationInMemory();
+
     EmployersDao employersDao;
     UserManager userManager;
     SystemManager systemManagerService;
     ModelMapper modelMapper;
     EmployerControlService employerControlService;
-
+    JobAdvertisementDao jobAdvertisementDao;
     @Autowired
     public EmployerManager(EmployersDao employersDao, UserManager userManager,
                            SystemManager systemManagerService, ModelMapper modelMapper
-            , EmployerControlService employerControlService) {
+            , EmployerControlService employerControlService , JobAdvertisementDao jobAdvertisementDao) {
         this.employersDao = employersDao;
         this.userManager = userManager;
         this.systemManagerService = systemManagerService;
         this.modelMapper = modelMapper;
         this.employerControlService = employerControlService;
+        this.jobAdvertisementDao = jobAdvertisementDao;
     }
 
 
@@ -76,6 +72,22 @@ public class EmployerManager implements EmployerServices {
     @Override
     public List<EmployerEntity> getAll() {
         return employersDao.findAll();
+    }
+
+    @Override
+    public Result addJobAdvert(AddJobAdvertDto addJobAdvertDto) {
+
+
+        try {
+         jobAdvertisementDao.save(modelMapper.map(addJobAdvertDto, JobAdverstisementEntity.class));
+
+         return new SuccessResult(true , "İş ilanı eklendi");
+        }
+        catch (Exception e) {
+            return new UnsuccessfulResult(false , "iş ilanı eklenemedi");
+        }
+
+
     }
 
 

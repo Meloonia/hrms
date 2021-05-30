@@ -35,6 +35,9 @@ public class EmployerEntity {
     @Column (name = "employer_personel_validation")
     private boolean personelValidation;
 
+    @Column(name = "employer_city")
+    @JoinColumn(name ="employer_city")
+    private int cityId;
     @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
 
     private UserEntity user;

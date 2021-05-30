@@ -24,7 +24,7 @@ public class JobAdverstisementEntity{
     private String desciription;
 
     @Column(name="active")
-    private boolean active;
+    private boolean active = true;
 
     @JoinColumn(name = "business_sector")
     @Column(name = "business_sector")

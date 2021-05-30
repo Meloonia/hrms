@@ -5,13 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class ActiveJobAdverstisementDto {
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AddJobAdvertDto {
+    private long employerId;
     private String businessSectorName;
-    private String employername;
     private Date relaseDate = new Date();
     private Date activeDate= new Date();
     private  int openPosition;
