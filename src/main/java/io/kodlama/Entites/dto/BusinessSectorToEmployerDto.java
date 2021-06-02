@@ -13,9 +13,11 @@ public class BusinessSectorToEmployerDto {
 
     private String employerName;
     private String businessSectorName;
+    private int minSalary;
+    private int maxSlaray;
     private int openPosition;
-    private Date relaseDate = new Date();
-    private Date activeDate= new Date();
+    private Date relaseDate;
+    private Date activeDate;
     private boolean active;
 
 }

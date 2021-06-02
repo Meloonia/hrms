@@ -11,6 +11,8 @@ import io.kodlama.Entites.Concretes.JobSeekerEntity;
 
 import io.kodlama.Entites.Concretes.UserEntity;
 import io.kodlama.Entites.dto.JobSeekerDto;
+import io.kodlama.Entites.dto.JobSeekerExperienceDto;
+import io.kodlama.Entites.dto.JobSeekerSchoolDto;
 import io.kodlama.Inmemory.Abstracts.Mernis;
 import io.kodlama.Inmemory.Concretes.MernisInMemory;
 
@@ -33,7 +35,8 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Autowired
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
-                            UserManagerServices userManager , ModelMapper modelMapper , JobSeekerControl jobSeekerControl) {
+                            UserManagerServices userManager , ModelMapper modelMapper ,
+                            JobSeekerControl jobSeekerControl) {
 
         this.jobSeekerService = jobSeekerService;
         this.userManager = userManager;
@@ -91,6 +94,27 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public List<JobSeekerEntity> getAll() {
         return jobSeekerService.findAll();
+    }
+
+    @Override
+    public Result insertJobExperience(JobSeekerExperienceDto jobSeekerExperienceDto) {
+        JobSeekerEntity jobSeekerEntity = new JobSeekerEntity();
+        modelMapper.map(jobSeekerEntity,JobSeekerExperienceDto.class);
+        jobSeekerService.save(jobSeekerEntity);
+        return new SuccessResult(true,"eklendi.");
+    }
+
+    @Override
+    public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto) {
+        JobSeekerEntity jobSeekerEntity = new JobSeekerEntity();
+        modelMapper.map(jobSeekerEntity,JobSeekerExperienceDto.class);
+        jobSeekerService.save(jobSeekerEntity);
+        return new SuccessResult(true,"eklendi.");
+    }
+
+    @Override
+    public List<JobSeekerEntity> getDateSchoolYear() {
+        return jobSeekerService.getAllByGradiuationYear();
     }
 
 

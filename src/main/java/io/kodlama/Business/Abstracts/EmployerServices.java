@@ -8,6 +8,7 @@ import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 import io.kodlama.Entites.dto.EmployerDto;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

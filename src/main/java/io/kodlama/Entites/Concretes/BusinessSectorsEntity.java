@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -21,23 +23,13 @@ public class BusinessSectorsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_sector_id")
     private long businessSectorId;
-
+    @NotNull
+    @NotBlank
     @Column(name = "business_sector_name")
     private String businessSectorName;
 
     @OneToMany(mappedBy = "businessSector" ,fetch =FetchType.LAZY )
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BusinessSectorsEntity that = (BusinessSectorsEntity) o;
-        return businessSectorId == that.businessSectorId;
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(businessSectorId);
-    }
 }

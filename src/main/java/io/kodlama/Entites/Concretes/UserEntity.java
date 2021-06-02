@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,12 +43,19 @@ public class UserEntity {
     @OneToMany(mappedBy = "userId" ,fetch =FetchType.LAZY )
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
+    @NotNull
+    @NotBlank
+    @Email
     @Column(name = "user_email")
     private String userEmail;
+    @NotNull
+    @NotBlank
 
     @Column(name = "user_password")
-    private String userPassword;
 
+    private String userPassword;
+    @NotNull
+    @NotBlank
     @Column(name = "user_repassword")
     private String rePassword;
 

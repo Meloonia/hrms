@@ -7,16 +7,11 @@ import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.BusinessAreaDao;
 import io.kodlama.DataAccess.Abstracts.JobAdvertisementDao;
 import io.kodlama.Entites.Concretes.BusinessSectorsEntity;
-import io.kodlama.Entites.Concretes.JobAdverstisementEntity;
-import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import io.kodlama.Entites.dto.BusinessSectorDto;
-import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,23 +40,26 @@ public class BusinessAreaManager implements BusinessAreaServices {
 		BusinessSectorDto businessSectorDto = new BusinessSectorDto();
 		List<BusinessSectorDto> liste = new ArrayList<>();
 		BusinessSectorsEntity businessSectorsEntity= new BusinessSectorsEntity();
-		businessSectorsEntity= modelMapper.map(businessSectorDto , BusinessSectorsEntity.class);
+
+		modelMapper.map(businessSectorsEntity,BusinessSectorDto.class);
 
 		for(BusinessSectorsEntity list : businessAreaDao.findAll()) {
-
-			liste.add(modelMapper.map(liste , (Type) BusinessSectorDto.class));
+			modelMapper.map(list,BusinessSectorDto.class);
+			liste.add(modelMapper.map(list,BusinessSectorDto.class));
 
 		}
 		return liste.stream().toList();
 	}
 
 	@Override
-	public Result insert(BusinessSectorsEntity businessAreas) {
+	public Result insert(BusinessSectorDto businessAreas) {
+
+		BusinessSectorsEntity businessSectorsEntity = modelMapper.map(businessAreas,BusinessSectorsEntity.class);
 
 		if(businessAreaDao.findAll().stream().noneMatch(b -> b.getBusinessSectorName().
 				equals(businessAreas.getBusinessSectorName()))) {
 
-			this.businessAreaDao.save(businessAreas);
+			this.businessAreaDao.save(businessSectorsEntity);
 			return new SuccessResult(true,"İş alanı eklendi");
 		}
 		else return new UnsuccessfulResult(false , "İş alanı zaten mevcut");

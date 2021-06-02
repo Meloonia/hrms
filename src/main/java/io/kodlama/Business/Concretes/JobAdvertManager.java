@@ -1,9 +1,12 @@
 package io.kodlama.Business.Concretes;
 
 import io.kodlama.Business.Abstracts.JobAdverstisementServices;
+import io.kodlama.Core.utilities.results.Result;
+import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.DataAccess.Abstracts.JobAdvertisementDao;
 import io.kodlama.Entites.Concretes.JobAdverstisementEntity;
 import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
+import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 
 import org.modelmapper.ModelMapper;
@@ -25,12 +28,21 @@ public class JobAdvertManager implements JobAdverstisementServices {
         this.jobAdvertisementDao = jobAdvertisementDao;
     }
 
+
+    public Result addJobAdvert(AddJobAdvertDto addJobAdvertDto) {
+
+       JobAdverstisementEntity jobAdverstisementEntity = modelMapper.map(addJobAdvertDto ,JobAdverstisementEntity.class );
+
+       jobAdvertisementDao.save(jobAdverstisementEntity);
+       return new SuccessResult(true , "veri kaydedildi");
+    }
+
     @Override
     public List<ActiveJobAdverstisementDto> getAllActiveSectors() {
 
-        JobAdverstisementEntity jobAdverstisementEntity = new JobAdverstisementEntity();
+
         ActiveJobAdverstisementDto jobAdverstisementDto = new ActiveJobAdverstisementDto();
-        jobAdverstisementEntity = modelMapper.map(jobAdverstisementDto,JobAdverstisementEntity.class);
+        JobAdverstisementEntity jobAdverstisementEntity  = modelMapper.map(jobAdverstisementDto,JobAdverstisementEntity.class);
 
         List<ActiveJobAdverstisementDto> list = new ArrayList<>();
 
@@ -41,16 +53,16 @@ public class JobAdvertManager implements JobAdverstisementServices {
             }
         }
 
-        return list.stream().toList();
+        return list;
     }
 
     @Override
-    @Query("select desciription,active,openPosition,activeDate,businessSector,relaseDate from JobAdverstisementEntity order by activeDate desc ")
     public List<BusinessSectorToEmployerDto> getAllActiveSectorsDate() {
 
         JobAdverstisementEntity jobAdverstisementEntity = new JobAdverstisementEntity();
         BusinessSectorToEmployerDto businessSectorToEmployerDto = new BusinessSectorToEmployerDto();
         jobAdverstisementEntity = modelMapper.map(businessSectorToEmployerDto,JobAdverstisementEntity.class);
+
 
         List<BusinessSectorToEmployerDto> list = new ArrayList<>();
 

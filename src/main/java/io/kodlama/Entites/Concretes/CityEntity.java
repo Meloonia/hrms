@@ -23,7 +23,7 @@ public class CityEntity {
     @Column(name = "city_name")
     private String cityname;
 
-    @OneToMany(mappedBy = "city" , fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cityId" , fetch = FetchType.LAZY)
     private Set<EmployerEntity> employerEntity = new HashSet<>();
 
 }

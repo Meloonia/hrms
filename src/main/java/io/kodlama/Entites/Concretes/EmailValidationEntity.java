@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Data
@@ -23,6 +26,9 @@ public class EmailValidationEntity{
     private long emailValidationsId;
 
     @Column
+    @NotNull
+    @NotBlank
+    @Email
     private String email;
 
     @Column(name ="email_validation_code")

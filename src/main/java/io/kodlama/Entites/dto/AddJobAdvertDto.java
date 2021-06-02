@@ -15,4 +15,6 @@ public class AddJobAdvertDto {
     private Date relaseDate = new Date();
     private Date activeDate= new Date();
     private  int openPosition;
+    private int minSalary;
+    private int maxSalary;
 }
