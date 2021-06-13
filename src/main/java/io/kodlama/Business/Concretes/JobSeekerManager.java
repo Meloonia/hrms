@@ -26,7 +26,7 @@ import java.util.List;
 @Service
 public class JobSeekerManager implements JobSeekerService {
 
-    Mernis mernis = new MernisInMemory();
+    Mernis fakeMernis = new MernisInMemory();
     JobSeekerControl jobSeekerControl;
     JobSeekerManagerDao jobSeekerService;
     UserManagerDao userManagerDao;
@@ -51,14 +51,12 @@ public class JobSeekerManager implements JobSeekerService {
 
         try {
 
-            JobSeekerEntity jobSeekerEntity;
-
-            jobSeekerEntity = modelMapper.map(jobSeeker,JobSeekerEntity.class);
+            JobSeekerEntity jobSeekerEntity = modelMapper.map(jobSeeker,JobSeekerEntity.class);
 
            if (jobSeekerControl.nullControl(jobSeeker)) {
-               // if (mernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
-                  //      jobSeeker.getJobSeekerName()
-                    //    , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
+                if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
+                       jobSeeker.getJobSeekerName()
+                       , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
 
                if (
                       jobSeekerControl.emailControl(jobSeeker)) {
@@ -77,8 +75,8 @@ public class JobSeekerManager implements JobSeekerService {
                         } else return new UnsuccessfulResult(false, "Email Kayıtlı");
                     } else return new UnsuccessfulResult(false, "kullanıcı zaten kayıtlı.");
 
-                } //else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");
-           /* } */  else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
+                } else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");
+            }   else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
 
         }
 
@@ -112,10 +110,6 @@ public class JobSeekerManager implements JobSeekerService {
         return new SuccessResult(true,"eklendi.");
     }
 
-    @Override
-    public List<JobSeekerEntity> getDateSchoolYear() {
-        return jobSeekerService.getAllByGradiuationYear();
-    }
 
 
 }

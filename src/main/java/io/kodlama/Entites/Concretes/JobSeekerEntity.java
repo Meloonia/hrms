@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -85,4 +87,8 @@ public class JobSeekerEntity {
  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
  private UserEntity user;
+
+ @OneToMany(targetEntity = JobSeekerCvEntity.class , cascade = CascadeType.ALL)
+ Set<JobSeekerCvEntity> jobSeekerCvEntitySet = new HashSet<>();
+
 }

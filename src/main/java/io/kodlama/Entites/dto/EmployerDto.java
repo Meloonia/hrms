@@ -1,9 +1,8 @@
 package io.kodlama.Entites.dto;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @NoArgsConstructor
@@ -14,5 +13,8 @@ public class EmployerDto {
     private String rePassword;
     private String employerName;
     private String employerAdress;
-    private String EmployerWebsite;
+    private String employerWebsite;
+
+
+
 }

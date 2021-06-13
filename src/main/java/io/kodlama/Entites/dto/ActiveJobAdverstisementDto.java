@@ -5,9 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class ActiveJobAdverstisementDto {
 
     private String businessSectorName;
@@ -15,4 +16,6 @@ public class ActiveJobAdverstisementDto {
     private Date relaseDate = new Date();
     private Date activeDate= new Date();
     private  int openPosition;
+
+
 }

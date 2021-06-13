@@ -34,14 +34,19 @@ public class JobAdverstisementEntity{
     @Column(name = "business_sector")
 
     private int businessSector;
+
+    @Temporal(TemporalType.DATE)
     @NotNull
     @NotBlank
     @Column(name = "relase_date")
-    private java.sql.Date relaseDate;
+    private Date relaseDate;
+
+
+    @Temporal(TemporalType.DATE)
     @NotNull
     @NotBlank
     @Column(name = "active_date")
-    private java.sql.Date activeDate;
+    private Date activeDate;
     @NotNull
     @NotBlank
     @Column(name = "min_salary")
@@ -65,6 +70,6 @@ public class JobAdverstisementEntity{
 
     private UserEntity userEntity;
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
-    private EmployerEntity employer;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    private EmployerEntity employer;
 }

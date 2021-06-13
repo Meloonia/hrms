@@ -59,6 +59,8 @@ public class UserEntity {
     @Column(name = "user_repassword")
     private String rePassword;
 
+    @OneToMany(targetEntity = JobSeekerCvEntity.class)
+    Set<JobSeekerCvEntity> jobSeekerCvEntitySet = new HashSet<>();
 
 }
 

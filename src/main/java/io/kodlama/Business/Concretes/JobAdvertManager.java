@@ -29,9 +29,10 @@ public class JobAdvertManager implements JobAdverstisementServices {
     }
 
 
+        @Override
     public Result addJobAdvert(AddJobAdvertDto addJobAdvertDto) {
 
-       JobAdverstisementEntity jobAdverstisementEntity = modelMapper.map(addJobAdvertDto ,JobAdverstisementEntity.class );
+        JobAdverstisementEntity jobAdverstisementEntity = modelMapper.map(addJobAdvertDto,JobAdverstisementEntity.class);
 
        jobAdvertisementDao.save(jobAdverstisementEntity);
        return new SuccessResult(true , "veri kaydedildi");

@@ -1,5 +1,7 @@
 package io.kodlama.Entites.dto;
 
+import io.kodlama.Entites.Concretes.JobSeekerEntity;
+import io.kodlama.Entites.Concretes.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,11 +14,14 @@ import java.util.Date;
 public class JobSeekerSchoolDto {
 
     private long UserId;
-    private String jobSekerSchool;
+    private String jobSeekerSchool;
 
     private Date gradiuationYear;
     private String jobSeekerCollageDepartment;
     private Date startYear;
 
 
-}
+
+    }
+
+

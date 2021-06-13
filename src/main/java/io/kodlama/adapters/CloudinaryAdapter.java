@@ -1,7 +1,9 @@
 package io.kodlama.adapters;
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CloudinaryAdapter {
 
     Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
@@ -11,8 +13,8 @@ public class CloudinaryAdapter {
 
 
     public Cloudinary CloudinaryAdapter(){
-        Cloudinary cloudinary = new Cloudinary();
-        return cloudinary;
+
+        return this.cloudinary;
 
     }
 

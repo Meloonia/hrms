@@ -19,4 +19,7 @@ public class JobSeekerDto {
     private int birtday;
     private String jobSeekerPhone;
     private String jobSeekerAdress;
+
+
+
 }

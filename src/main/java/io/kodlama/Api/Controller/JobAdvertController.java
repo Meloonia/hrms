@@ -1,13 +1,15 @@
 package io.kodlama.Api.Controller;
 
 import io.kodlama.Business.Abstracts.JobAdverstisementServices;
+import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.DataAccess.Abstracts.JobAdvertisementDao;
 import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
+import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import java.util.List;
 
 @RestController
@@ -29,5 +31,11 @@ public class JobAdvertController {
     @GetMapping("/gettallactivesectordate")
     public List<BusinessSectorToEmployerDto> getAllActiveSectorsDate() {
         return jobAdverstisementServices.getAllActiveSectorsDate();
+    }
+
+    @PostMapping("/addjobadvert")
+    public Result addJobAdvert(@RequestBody AddJobAdvertDto addJobAdvertDto) {
+
+        return jobAdverstisementServices.addJobAdvert(addJobAdvertDto);
     }
 }

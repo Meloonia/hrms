@@ -16,6 +16,6 @@ public interface JobSeekerService {
     List<JobSeekerEntity> getAll();
     Result insertJobExperience(JobSeekerExperienceDto jobSeekerExperienceDto);
     Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto);
-    List<JobSeekerEntity> getDateSchoolYear();
+
 
 }

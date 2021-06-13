@@ -1,5 +1,6 @@
 package io.kodlama.Entites.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,4 +12,6 @@ public class EmailValidationDto {
 
     private String email;
     private boolean validation;
+
+
 }
