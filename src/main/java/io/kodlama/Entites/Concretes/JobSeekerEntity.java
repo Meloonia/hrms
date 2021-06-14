@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,9 +22,9 @@ import java.util.Set;
 
 public class JobSeekerEntity {
  @Id
- @JoinColumn()
- @Column(name = "job_seeker_id")
 
+ @Column(name = "job_seeker_id")
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
  private long jobSeekerId;
 
  @NotNull
@@ -79,10 +78,14 @@ public class JobSeekerEntity {
  private String jobSeekerGithubAdress;
 
  @Column(name = "job_seeker_linkedln_adress")
- private String jpbSeekerLinkedlnAdress;
+ private String jobSeekerLinkedlnAdress;
 
  @Column(name = "job_seeker_desciription")
  private String jobSeekerDesciription;
+
+ @JoinColumn(referencedColumnName = "user_id")
+ @Column(name = "user_user_id",insertable = false,updatable = false)
+ private long userId;
 
  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 

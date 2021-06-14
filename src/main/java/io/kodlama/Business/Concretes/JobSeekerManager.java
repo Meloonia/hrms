@@ -10,6 +10,7 @@ import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.Entites.dto.AccountDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
@@ -21,6 +22,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -54,9 +56,9 @@ public class JobSeekerManager implements JobSeekerService {
             JobSeekerEntity jobSeekerEntity = modelMapper.map(jobSeeker,JobSeekerEntity.class);
 
            if (jobSeekerControl.nullControl(jobSeeker)) {
-                if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
-                       jobSeeker.getJobSeekerName()
-                       , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
+              //  if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
+                //       jobSeeker.getJobSeekerName()
+                  //     , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
 
                if (
                       jobSeekerControl.emailControl(jobSeeker)) {
@@ -75,8 +77,8 @@ public class JobSeekerManager implements JobSeekerService {
                         } else return new UnsuccessfulResult(false, "Email Kayıtlı");
                     } else return new UnsuccessfulResult(false, "kullanıcı zaten kayıtlı.");
 
-                } else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");
-            }   else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
+                } //else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");}
+               else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
 
         }
 
@@ -91,6 +93,7 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Override
     public List<JobSeekerEntity> getAll() {
+
         return jobSeekerService.findAll();
     }
 
@@ -103,13 +106,31 @@ public class JobSeekerManager implements JobSeekerService {
     }
 
     @Override
-    public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto) {
-        JobSeekerEntity jobSeekerEntity = new JobSeekerEntity();
-        modelMapper.map(jobSeekerEntity,JobSeekerExperienceDto.class);
-        jobSeekerService.save(jobSeekerEntity);
+    public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long userId) {
+        JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
+
+        modelMapper.map(jobSeekerSchoolDto,JobSeekerEntity.class);
+
+        jobSeekerService.saveAndFlush(jobSeekerEntity);
         return new SuccessResult(true,"eklendi.");
     }
 
+    @Override
+    public Result insertAccount(AccountDto accountDto, long userId) {
+
+        JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
+        modelMapper.map(accountDto,JobSeekerEntity.class);
+        jobSeekerService.saveAndFlush(jobSeekerEntity);
+
+        return null;
+    }
+
+    @Override
+    public List<JobSeekerEntity> getbyDate() {
+     return jobSeekerService.findAllByStartYearAndGradiuationYearOrderByStartYearDesc();
+    }
 
 
 }
+
+

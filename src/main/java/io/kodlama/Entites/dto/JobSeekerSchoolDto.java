@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class JobSeekerSchoolDto {
 
-    private long UserId;
+
     private String jobSeekerSchool;
 
     private Date gradiuationYear;

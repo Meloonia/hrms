@@ -1,16 +1,15 @@
-import { Button } from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import './layouts/button'
+import { Button } from 'reactstrap';
+import './layouts/Nav'
 
 
 
 function App() {
   return (
     <div className="App">
+      <nav/>
 
-     <button></button>
- 
     </div>
   );
 }

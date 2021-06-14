@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 public class JobSeekerExperienceDto {
 
-    private long userId;
+
     private String jobSeekerExperience;
 
 
