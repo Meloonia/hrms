@@ -20,7 +20,7 @@ public class JobSeekerCvManager implements JobSeekerCvService {
     CloudinaryAdapter cloudinaryAdapter;
 
     @Autowired
-    public JobSeekerCvManager(JobSeekerCvDao jobSeekerCvDao,ModelMapper modelMapper,CloudinaryAdapter cloudinaryAdapter) {
+    public JobSeekerCvManager(JobSeekerCvDao jobSeekerCvDao,ModelMapper modelMapper, CloudinaryAdapter cloudinaryAdapter) {
         this.jobSeekerCvDao = jobSeekerCvDao;
         this.modelMapper = modelMapper;
         this.cloudinaryAdapter= cloudinaryAdapter;
@@ -30,9 +30,8 @@ public class JobSeekerCvManager implements JobSeekerCvService {
     public Result addCv(CvDto cvDto) throws IOException {
 
         JobSeekerCvEntity jobSeekerCvEntity = modelMapper.map(cvDto ,JobSeekerCvEntity.class );
-            cloudinaryAdapter.CloudinaryAdapter().uploader().upload(cvDto.getImageUrl(), ObjectUtils.emptyMap());
+        cloudinaryAdapter.CloudinaryAdapter().uploader().upload(cvDto.getImageUrl(), ObjectUtils.emptyMap());
             jobSeekerCvDao.save(jobSeekerCvEntity);
-
 
         return new SuccessResult(true,"Kaydedildi");
     }
