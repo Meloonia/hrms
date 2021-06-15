@@ -9,6 +9,7 @@ import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 
+import io.kodlama.Entites.dto.ConverterDto.AddJobDtoConverter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -21,20 +22,21 @@ public class JobAdvertManager implements JobAdverstisementServices {
 
     private final ModelMapper modelMapper;
     private final JobAdvertisementDao jobAdvertisementDao;
-
+    private final AddJobDtoConverter jobDtoConverter;
     @Autowired
-    private  JobAdvertManager(ModelMapper modelMapper , JobAdvertisementDao jobAdvertisementDao) {
+    private  JobAdvertManager(ModelMapper modelMapper , JobAdvertisementDao jobAdvertisementDao,AddJobDtoConverter addJobDtoConverter) {
         this.modelMapper=modelMapper;
         this.jobAdvertisementDao = jobAdvertisementDao;
+        this.jobDtoConverter = addJobDtoConverter;
     }
 
 
         @Override
     public Result addJobAdvert(AddJobAdvertDto addJobAdvertDto) {
 
-        JobAdverstisementEntity jobAdverstisementEntity = modelMapper.map(addJobAdvertDto,JobAdverstisementEntity.class);
+        //JobAdverstisementEntity jobAdverstisementEntity = modelMapper.map(addJobAdvertDto,JobAdverstisementEntity.class);
 
-       jobAdvertisementDao.save(jobAdverstisementEntity);
+       jobAdvertisementDao.save(jobDtoConverter.jobAdverstisementConverter(addJobAdvertDto));
        return new SuccessResult(true , "veri kaydedildi");
     }
 
