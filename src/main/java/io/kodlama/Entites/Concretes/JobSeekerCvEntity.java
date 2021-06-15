@@ -20,14 +20,14 @@ public class JobSeekerCvEntity {
     @Column(name = "cv_id")
     private long cvId;
 
-    @JoinColumn(name = "userId")
-    private long userId;
 
     @Column(name = "cv_image_url")
     private String imageUrl;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private UserEntity user;
+
 
     @ManyToOne
     private JobSeekerEntity jobSeekerEntity;

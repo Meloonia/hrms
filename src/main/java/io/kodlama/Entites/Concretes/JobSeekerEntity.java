@@ -30,15 +30,15 @@ public class JobSeekerEntity {
 
  @NotNull
  @NotBlank
- @Column(name = "job_seeker_national_id")
+ @Column(name = "job_seeker_national_id",nullable = false)
  private long jobSeekerNationalId;
  @NotNull
  @NotBlank
- @Column(name = "job_seeker_name")
+ @Column(name = "job_seeker_name",nullable = false)
  private String jobSeekerName;
  @NotNull
  @NotBlank
- @Column(name = "job_seeker_surname")
+ @Column(name = "job_seeker_surname",nullable = false)
  private String jobSeekerSurname;
  @NotNull
  @NotBlank
@@ -50,7 +50,7 @@ public class JobSeekerEntity {
  private String jobSeekerAdress;
  @NotNull
  @NotBlank
- @Column(name = "job_seeker_birtday")
+ @Column(name = "job_seeker_birtday",nullable = false)
  private int birtday;
  @NotNull
  @NotBlank

@@ -46,17 +46,17 @@ public class UserEntity {
     @NotNull
     @NotBlank
     @Email
-    @Column(name = "user_email")
+    @Column(name = "user_email",nullable = false)
     private String userEmail;
     @NotNull
     @NotBlank
 
-    @Column(name = "user_password")
+    @Column(name = "user_password",nullable = false)
 
     private String userPassword;
     @NotNull
     @NotBlank
-    @Column(name = "user_repassword")
+    @Column(name = "user_repassword",nullable = false)
     private String rePassword;
 
     @OneToMany(mappedBy = "user")

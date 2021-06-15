@@ -29,16 +29,16 @@ public class SystemManagerEntity {
     private long systemManagerId;
     @NotNull
     @NotBlank
-    @Column(name = "system_manager_name")
+    @Column(name = "system_manager_name",nullable = false)
     private String SystemManagerName;
     @NotNull
     @NotBlank
-    @Column(name = "system_manager_surname")
+    @Column(name = "system_manager_surname",nullable = false)
     private String SystemManagersurname;
     @NotNull
     @NotBlank
     @Email
-    @Column(name = "system_manager_email")
+    @Column(name = "system_manager_email",nullable = false)
     private String SystemManagerEmail;
     @NotNull
     @NotBlank

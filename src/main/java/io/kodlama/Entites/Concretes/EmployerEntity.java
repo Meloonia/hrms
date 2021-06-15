@@ -24,7 +24,7 @@ public class EmployerEntity {
     private long employerId;
     @NotNull
     @NotBlank
-    @Column(name = "employer_name")
+    @Column(name = "employer_name",nullable = false)
     private String employerName;
 
     @NotNull
@@ -39,7 +39,7 @@ public class EmployerEntity {
 
     @NotNull
     @NotBlank
-    @Column (name = "employer_website")
+    @Column (name = "employer_website",nullable = false)
     private String EmployerWebsite;
 
     @NotNull

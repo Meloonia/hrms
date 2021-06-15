@@ -22,7 +22,7 @@ public class JobAdverstisementEntity{
     private long jobAdvertId;
     @NotNull
     @NotBlank
-    @Column(name = "desciription")
+    @Column(name = "desciription",nullable = false)
     private String desciription;
 
     @Column(name="active")

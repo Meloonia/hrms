@@ -37,7 +37,7 @@ public class EmailValidationEntity{
     @Column private boolean validation = false;
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "emailValidationsId",referencedColumnName ="user_id")
+    @JoinColumn(name = "user_id",referencedColumnName ="user_id")
     private UserEntity user;
 
 }

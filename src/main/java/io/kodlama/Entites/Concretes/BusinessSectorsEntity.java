@@ -25,7 +25,7 @@ public class BusinessSectorsEntity {
     private long businessSectorId;
     @NotNull
     @NotBlank
-    @Column(name = "business_sector_name")
+    @Column(name = "business_sector_name",nullable = false)
     private String businessSectorName;
 
     @OneToMany(mappedBy = "businessSector" ,fetch =FetchType.LAZY )
