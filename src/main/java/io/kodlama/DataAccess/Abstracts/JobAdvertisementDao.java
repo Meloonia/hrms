@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdverstisementEntity , Long> {
 
-
+List<JobAdverstisementEntity> getByActiveIsAndUserId(boolean status,long UserId);
 }

@@ -9,10 +9,10 @@ import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 
+import io.kodlama.Entites.dto.ConverterDto.ActiveJobAdvertisementDtoConverter;
 import io.kodlama.Entites.dto.ConverterDto.AddJobDtoConverter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,11 +23,14 @@ public class JobAdvertManager implements JobAdverstisementServices {
     private final ModelMapper modelMapper;
     private final JobAdvertisementDao jobAdvertisementDao;
     private final AddJobDtoConverter jobDtoConverter;
+    private final ActiveJobAdvertisementDtoConverter activeJobAdvertisementDtoConverter;
     @Autowired
-    private  JobAdvertManager(ModelMapper modelMapper , JobAdvertisementDao jobAdvertisementDao,AddJobDtoConverter addJobDtoConverter) {
+    private  JobAdvertManager(ModelMapper modelMapper , JobAdvertisementDao jobAdvertisementDao,
+                              ActiveJobAdvertisementDtoConverter activeJobAdvertisementDtoConverter, AddJobDtoConverter addJobDtoConverter) {
         this.modelMapper=modelMapper;
         this.jobAdvertisementDao = jobAdvertisementDao;
         this.jobDtoConverter = addJobDtoConverter;
+        this.activeJobAdvertisementDtoConverter = activeJobAdvertisementDtoConverter;
     }
 
 
@@ -40,7 +43,6 @@ public class JobAdvertManager implements JobAdverstisementServices {
        return new SuccessResult(true , "veri kaydedildi");
     }
 
-    @Override
     public List<ActiveJobAdverstisementDto> getAllActiveSectors() {
 
 
@@ -57,6 +59,8 @@ public class JobAdvertManager implements JobAdverstisementServices {
         }
 
         return list;
+
+
     }
 
     @Override
