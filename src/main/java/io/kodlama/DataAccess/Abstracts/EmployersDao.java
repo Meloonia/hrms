@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 public interface EmployersDao extends JpaRepository<EmployerEntity,Long> {
 
-    EmployerEntity getEmployerEntityByEmployerIdAnd(long id);
 
 }

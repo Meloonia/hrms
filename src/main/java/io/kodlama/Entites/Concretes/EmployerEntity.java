@@ -18,7 +18,6 @@ import java.util.Set;
 
 public class EmployerEntity {
 
-    @JoinColumn(name = "employer_id")
     @Id
     @Column(name = "employer_id")
 
@@ -55,12 +54,12 @@ public class EmployerEntity {
     private int cityId;
 
     @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
-
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY , cascade =  CascadeType.REFRESH , targetEntity = CityEntity.class)
     private CityEntity cityEntity;
 
-    @OneToMany(mappedBy = "",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employer",fetch = FetchType.LAZY)
     private Set<JobAdverstisementEntity> jobAdverstisementEntities  = new HashSet<>();
 }

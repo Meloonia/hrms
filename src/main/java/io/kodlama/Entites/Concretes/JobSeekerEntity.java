@@ -22,7 +22,7 @@ import java.util.Set;
 
 public class JobSeekerEntity {
  @Id
- @JoinColumn(referencedColumnName = "user_id" ,name = "user_user_id")
+
 
  @Column(name = "job_seeker_id")
  @GeneratedValue(strategy = GenerationType.AUTO)
@@ -88,7 +88,7 @@ public class JobSeekerEntity {
  private long userId;*/
 
  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-
+ @JoinColumn(name = "user_id")
  private UserEntity user;
 
  @OneToMany(targetEntity = JobSeekerCvEntity.class , cascade = CascadeType.ALL)

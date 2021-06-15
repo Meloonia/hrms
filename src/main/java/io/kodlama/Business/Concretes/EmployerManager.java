@@ -100,7 +100,7 @@ public class EmployerManager implements EmployerServices {
         modelMapper.map(jobAdverstisementEntities,BusinessSectorToEmployerDto.class);
         for(JobAdverstisementEntity job : jobAdvertisementDao.findAll()) {
 
-            if(job.getUserId() == employer.getEmployerId() ) {
+            if(job.getEmployer().getEmployerId() == employer.getEmployerId() ) {
 
                 jobAdverstisementEntities.add(modelMapper.map(jobAdverstisementEntities,BusinessSectorToEmployerDto.class));
 

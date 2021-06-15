@@ -23,23 +23,23 @@ public class JobAdvertManager implements JobAdverstisementServices {
     private final ModelMapper modelMapper;
     private final JobAdvertisementDao jobAdvertisementDao;
     private final AddJobDtoConverter jobDtoConverter;
-    private final ActiveJobAdvertisementDtoConverter activeJobAdvertisementDtoConverter;
+
     @Autowired
     private  JobAdvertManager(ModelMapper modelMapper , JobAdvertisementDao jobAdvertisementDao,
-                              ActiveJobAdvertisementDtoConverter activeJobAdvertisementDtoConverter, AddJobDtoConverter addJobDtoConverter) {
+                              AddJobDtoConverter addJobDtoConverter) {
         this.modelMapper=modelMapper;
         this.jobAdvertisementDao = jobAdvertisementDao;
         this.jobDtoConverter = addJobDtoConverter;
-        this.activeJobAdvertisementDtoConverter = activeJobAdvertisementDtoConverter;
+
     }
 
 
         @Override
     public Result addJobAdvert(AddJobAdvertDto addJobAdvertDto) {
 
-        //JobAdverstisementEntity jobAdverstisementEntity = modelMapper.map(addJobAdvertDto,JobAdverstisementEntity.class);
+        JobAdverstisementEntity jobAdverstisementEntity = modelMapper.map(addJobAdvertDto,JobAdverstisementEntity.class);
 
-       jobAdvertisementDao.save(jobDtoConverter.jobAdverstisementConverter(addJobAdvertDto));
+       jobAdvertisementDao.save(jobAdverstisementEntity);
        return new SuccessResult(true , "veri kaydedildi");
     }
 

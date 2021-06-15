@@ -33,14 +33,14 @@ public class UserEntity {
     private Set<JobSeekerEntity> jobSeekerEntities = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY )
+    @OneToMany(fetch = FetchType.LAZY )
     private Set<EmployerEntity> employerEntities = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private Set<EmailValidationEntity> emailValidationEntities = new HashSet<>();
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+    private EmailValidationEntity emailValidationEntities;
 
-    @OneToMany(mappedBy = "userId" ,fetch =FetchType.LAZY )
+    @OneToMany(mappedBy = "userEntity" ,fetch =FetchType.LAZY )
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
     @NotNull
@@ -59,7 +59,7 @@ public class UserEntity {
     @Column(name = "user_repassword")
     private String rePassword;
 
-    @OneToMany(targetEntity = JobSeekerCvEntity.class)
+    @OneToMany(mappedBy = "user")
     Set<JobSeekerCvEntity> jobSeekerCvEntitySet = new HashSet<>();
 
 }

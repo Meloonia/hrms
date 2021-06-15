@@ -18,9 +18,8 @@ import java.util.Date;
 public class JobAdverstisementEntity{
 
     @Id
-    @JoinColumn(name = "user_id")
-    @Column(name = "user_id")
-    private long userId;
+    @Column(name = "job_advert_id")
+    private long jobAdvertId;
     @NotNull
     @NotBlank
     @Column(name = "desciription")
@@ -30,7 +29,7 @@ public class JobAdverstisementEntity{
     private boolean active = true;
     @NotNull
     @NotBlank
-    @JoinColumn(name = "business_sector")
+
     @Column(name = "business_sector")
 
     private int businessSector;
@@ -64,12 +63,14 @@ public class JobAdverstisementEntity{
     private CityEntity city;
 
     @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "business_sector", insertable = false,updatable = false)
     private BusinessSectorsEntity businessSectorsEntity;
 
     @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
 
     private UserEntity userEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private EmployerEntity employer;
 }

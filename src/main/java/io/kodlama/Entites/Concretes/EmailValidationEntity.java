@@ -19,9 +19,9 @@ import javax.validation.constraints.NotNull;
 
 public class EmailValidationEntity{
 
-    @JoinColumn(name = "email_validations_id")
+
     @Id
-    @Column(name = "email_validations_id")
+    @Column(name = "email_validation_id")
 
     private long emailValidationsId;
 
@@ -36,8 +36,8 @@ public class EmailValidationEntity{
 
     @Column private boolean validation = false;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "emailValidationsId",referencedColumnName ="user_id")
     private UserEntity user;
 
 }

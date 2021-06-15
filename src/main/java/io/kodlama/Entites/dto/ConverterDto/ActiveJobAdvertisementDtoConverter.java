@@ -5,6 +5,9 @@ import io.kodlama.DataAccess.Abstracts.EmployersDao;
 import io.kodlama.Entites.Concretes.BusinessSectorsEntity;
 import io.kodlama.Entites.Concretes.EmployerEntity;
 import io.kodlama.Entites.Concretes.JobAdverstisementEntity;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Bean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,26 +17,30 @@ import java.util.Date;
    Date relaseDate,
     Date activeDate,
     int openPosition,*/
+@AllArgsConstructor
+
 public class ActiveJobAdvertisementDtoConverter {
 
 
 
-    private final BusinessAreaDao businessAreaDao;
-    private final EmployersDao employersDao;
+    private  BusinessAreaDao businessAreaDao;
+    private  EmployersDao employersDao;
     private SimpleDateFormat bicim=new SimpleDateFormat("yyyy/MM/dd");
 
-    public ActiveJobAdvertisementDtoConverter(EmployersDao employersDao,BusinessAreaDao businessAreaDao) {
+
+
+    public ActiveJobAdvertisementDtoConverter(EmployersDao employersDao, BusinessAreaDao businessAreaDao) {
 
 
         this.businessAreaDao = businessAreaDao;
         this.employersDao = employersDao;
     }
 
-    public EmployerEntity employerNameConverter(long id){
+   /* public EmployerEntity employerNameConverter(long id){
 
         EmployerEntity employerEntity = employersDao.getEmployerEntityByEmployerIdAnd(id);
         return employerEntity;
-    }
+    }*/
 
     public BusinessSectorsEntity businessSectorsConverter(int Id) {
         BusinessSectorsEntity businessSectorsEntity  = businessAreaDao.getBusinessSectorsEntityByBusinessSectorId(Id);
@@ -44,7 +51,7 @@ public class ActiveJobAdvertisementDtoConverter {
 
     }
 
-    public JobAdverstisementEntity converterJobAdvertisementDto(
+    public JobAdverstisementEntity converterEntityJobAdvertisementToDto(
 
                                                                 Date relaseDate,
                                                                 Date activeDate,

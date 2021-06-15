@@ -20,10 +20,10 @@ public class JobSeekerCvManager implements JobSeekerCvService {
     CloudinaryAdapter cloudinaryAdapter;
 
     @Autowired
-    public JobSeekerCvManager(JobSeekerCvDao jobSeekerCvDao,ModelMapper modelMapper ,CloudinaryAdapter cloudinaryAdapter) {
+    public JobSeekerCvManager(JobSeekerCvDao jobSeekerCvDao,ModelMapper modelMapper,CloudinaryAdapter cloudinaryAdapter) {
         this.jobSeekerCvDao = jobSeekerCvDao;
         this.modelMapper = modelMapper;
-        this.cloudinaryAdapter = cloudinaryAdapter;
+        this.cloudinaryAdapter= cloudinaryAdapter;
     }
 
     @Override

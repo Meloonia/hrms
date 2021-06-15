@@ -3,9 +3,9 @@ import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
+@Service
 public class CloudinaryAdapter {
-    @Bean
+
     public Cloudinary CloudinaryAdapter(){
         return new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", "ilkerhrmsproject",

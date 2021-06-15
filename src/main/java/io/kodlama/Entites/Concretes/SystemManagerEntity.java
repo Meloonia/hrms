@@ -21,7 +21,7 @@ import java.io.Serializable;
 public class SystemManagerEntity {
 
 
-    @JoinColumn(name = "system_manager_id")
+
 
     @Id
     @Column(name = "system_manager_id")
@@ -50,7 +50,7 @@ public class SystemManagerEntity {
     private String SystemManagerAdress;
 
     @ManyToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
-
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
 
