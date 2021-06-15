@@ -23,6 +23,13 @@ public class EmployerController {
         this.employerServices = employerServices;
     }
 
+
+        @GetMapping("/getemployer")
+    public List<EmployerEntity> getallEmployer() {
+
+        return this.employerServices.getAll();
+        }
+
     @PostMapping("/insertemployer")
 
     public Result insertEmployer(@RequestBody EmployerDto employer) {
@@ -31,15 +38,9 @@ public class EmployerController {
 
     }
 
-        @GetMapping("/getemployer")
-    public List<EmployerEntity> getallEmployer() {
-
-        return this.employerServices.getAll();
-        }
-
         @PostMapping("/addJobAdvert")
 
-    public Result insertJobAdvert(AddJobAdvertDto addJobAdvertDto) {
+    public Result insertJobAdvert(@RequestBody AddJobAdvertDto addJobAdvertDto) {
 
         return this.employerServices.addJobAdvert( addJobAdvertDto);
         }

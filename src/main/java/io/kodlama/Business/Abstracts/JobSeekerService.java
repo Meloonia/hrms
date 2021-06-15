@@ -18,6 +18,6 @@ public interface JobSeekerService {
     Result insertJobExperience(JobSeekerExperienceDto jobSeekerExperienceDto);
     Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long UserId);
     Result insertAccount(AccountDto accountDto,long userId);
-    List<JobSeekerEntity> getbyDate();
+
 
 }

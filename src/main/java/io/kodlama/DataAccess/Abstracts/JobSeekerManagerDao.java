@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface JobSeekerManagerDao extends JpaRepository<JobSeekerEntity , Long> {
 
-    List<JobSeekerEntity> findAllByStartYearAndGradiuationYearOrderByStartYearDesc();
 
 
 }

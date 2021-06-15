@@ -22,9 +22,10 @@ import java.util.Set;
 
 public class JobSeekerEntity {
  @Id
+ @JoinColumn(referencedColumnName = "user_id" ,name = "user_user_id")
 
  @Column(name = "job_seeker_id")
- @GeneratedValue(strategy = GenerationType.IDENTITY)
+ @GeneratedValue(strategy = GenerationType.AUTO)
  private long jobSeekerId;
 
  @NotNull
@@ -83,9 +84,8 @@ public class JobSeekerEntity {
  @Column(name = "job_seeker_desciription")
  private String jobSeekerDesciription;
 
- @JoinColumn(referencedColumnName = "user_id")
- @Column(name = "user_user_id",insertable = false,updatable = false)
- private long userId;
+ /*@Column(name = "user_user_id" , updatable = false,insertable = false)
+ private long userId;*/
 
  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 

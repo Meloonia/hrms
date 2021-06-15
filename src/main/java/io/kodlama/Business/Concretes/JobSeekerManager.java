@@ -20,9 +20,11 @@ import io.kodlama.Inmemory.Concretes.MernisInMemory;
 import io.kodlama.Utils.Controls.JobSeekerControl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -69,6 +71,7 @@ public class JobSeekerManager implements JobSeekerService {
                        modelMapper.map(jobSeekerEntity , JobSeekerEntity.class);
                            userManager.insertUser(modelMapper.map(jobSeeker , UserEntity.class));
                            jobSeekerService.save(jobSeekerEntity);
+
 
 
 
@@ -123,11 +126,6 @@ public class JobSeekerManager implements JobSeekerService {
         jobSeekerService.saveAndFlush(jobSeekerEntity);
 
         return null;
-    }
-
-    @Override
-    public List<JobSeekerEntity> getbyDate() {
-     return jobSeekerService.findAllByStartYearAndGradiuationYearOrderByStartYearDesc();
     }
 
 

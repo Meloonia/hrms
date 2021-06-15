@@ -25,7 +25,7 @@ public class JobSeekerController {
     }
 
     @PostMapping("/insert")
-    public Result insert( JobSeekerDto jobSeeker) {
+    public Result insert(@RequestBody JobSeekerDto jobSeeker) {
 
         return this.jobSeekerService.insert(jobSeeker);
 
