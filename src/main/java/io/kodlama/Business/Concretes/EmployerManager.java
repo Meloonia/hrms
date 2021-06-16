@@ -60,7 +60,7 @@ public class EmployerManager implements EmployerServices {
 
         } catch (Exception e) {
 
-            return new UnsuccessfulResult(false, "Kullanıcı eklenemiyor.");
+            return new UnsuccessfulResult(false, e.getMessage());
 
         }
     }
@@ -81,9 +81,9 @@ public class EmployerManager implements EmployerServices {
     public List<BusinessSectorToEmployerDto> getAllJobAdvert(EmployerEntity employer) {
 
 
-       return businessSectorToEmployerDtoConverter.businessSectorToEmployerDtoConverter(
-              employersDao.getAllByJobAdverstisementEntitiesOrderByUserEmployerId(employer.getUser().getUserId())
-       );
+       return null ;//businessSectorToEmployerDtoConverter.businessSectorToEmployerDtoConverter(
+              //employersDao.getAllByJobAdverstisementEntitiesOrderByUserEmployerId(employer.getUser().getUserId())
+       //);
     }
 
 

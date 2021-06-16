@@ -11,5 +11,5 @@ import java.util.Set;
 public interface EmployersDao extends JpaRepository<EmployerEntity,Long> {
 
 
-    List<JobAdverstisementEntity> getAllByJobAdverstisementEntitiesOrderByUserEmployerId(long userId);
+   // List<JobAdverstisementEntity> getAllByJobAdverstisementEntitiesOrderByUserEmployerId(long userId);
 }

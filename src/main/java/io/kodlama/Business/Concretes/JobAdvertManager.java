@@ -13,6 +13,8 @@ import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class JobAdvertManager implements JobAdverstisementServices {
 
@@ -40,7 +42,7 @@ public class JobAdvertManager implements JobAdverstisementServices {
 
         return  (List<ActiveJobAdverstisementDto>) addJobAdvertDtoConverter
               .insertJobAdvert((AddJobAdvertDto) jobAdvertisementDao.findByActiveOrderByActiveDateAsc(true)
-                       .stream().toList());
+                       .stream().collect(Collectors.toList()));
 
 
     }

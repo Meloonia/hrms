@@ -15,17 +15,17 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EmployerDtoConverter {
 
-    @Mappings({
+   /* @Mappings({
 
-    })
+    })*/
     EmployerEntity insertEmployerDtoConverter(EmployerDto employerDto);
 
     List<EmployerEntity> listEmployerDtoConverter(List<EmployerEntity> employerEntity);
-    @Mappings({
+   /* @Mappings({
             @Mapping(source = "userEmail ",target = "userEmail"),
             @Mapping(source = "userPassword",target = "userPassword"),
             @Mapping(source = "rePassword",target = "rePassword"),
-    })
+    })*/
     UserEntity insertuserDtoConverter(EmployerDto employerDto);
 
     List<getAllEmployerDto> listAllEmployer(List<EmployerEntity> employerEntity);

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface BusinessSectorToEmployerDtoConverter {
-
+/*
     @Mappings({
             @Mapping(source = "minSalary",target="minSaray"),
             @Mapping(source = "maxSalary",target="maxSalary"),
@@ -20,6 +20,6 @@ public interface BusinessSectorToEmployerDtoConverter {
             @Mapping(source = "relaseDate",target="relaseDate"),
             @Mapping(source = "activeDate",target="activeDate"),
             @Mapping(source = "active",target="active"),
-    })
+    })*/
     List<BusinessSectorToEmployerDto> businessSectorToEmployerDtoConverter(List<JobAdverstisementEntity> businessSectorToEmployerDto);
 }

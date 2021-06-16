@@ -5,14 +5,14 @@ import io.kodlama.Entites.dto.CvDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.springframework.stereotype.Component;
+
 
 @Mapper(componentModel = "spring")
 public interface CvDtoConverter {
 
-    @Mappings({
-            @Mapping(source =" imageUrl",target = "imageUrl")
-    })
+  /*  @Mappings({
+            @Mapping(source = "imageUrl", target = "imageUrl"),
+    })*/
     JobSeekerCvEntity cvDtoConverter(CvDto jobCvDto);
 
 }

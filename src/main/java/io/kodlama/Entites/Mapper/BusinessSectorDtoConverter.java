@@ -13,11 +13,11 @@ import java.util.List;
 public interface BusinessSectorDtoConverter {
 
 
-    @Mapping(source = "businessSectorName", target = "businessSectorName")
+    //@Mapping(source = "businessSectorName", target = "businessSectorName")
     BusinessSectorsEntity businessSectorConverterDto(BusinessSectorDto businessSectorDto);
 
 
-   @Mapping(source="businessSectorName" , target ="businessSectorName")
+   //@Mapping(source="businessSectorName" , target ="businessSectorName")
 
     List<BusinessSectorDto> businessSectorListConvertDto(List<BusinessSectorsEntity> businessSectorsEntity);
 

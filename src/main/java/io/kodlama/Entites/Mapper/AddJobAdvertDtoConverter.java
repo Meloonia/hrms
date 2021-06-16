@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public interface AddJobAdvertDtoConverter {
 
-    @Mappings({
+  /*  @Mappings({
 
             @Mapping(source = "relaseDate", target ="relaseDate"),
             @Mapping(source = "activeDate", target ="activeDate"),
@@ -20,7 +20,7 @@ public interface AddJobAdvertDtoConverter {
             @Mapping(source = "active",target = "active"),
             @Mapping(source ="desciription",target = "desciription"),
             @Mapping(source ="openPosition",target ="openPosition")
-    })
+    })*/
     JobAdverstisementEntity insertJobAdvert(AddJobAdvertDto addJobAdvertDto);
 
 

@@ -67,7 +67,7 @@ public class JobSeekerManager implements JobSeekerService {
                    if (jobSeekerControl.userControl(jobSeeker)) {
 
 
-
+                        jobSeekerEntity.setUser(jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker));
                            jobSeekerService.save(jobSeekerEntity);
 
 
@@ -122,6 +122,8 @@ public class JobSeekerManager implements JobSeekerService {
       //  JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
     //    modelMapper.map(accountDto,JobSeekerEntity.class);
        // jobSeekerService.saveAndFlush(jobSeekerEntity);
+
+
 
         return null;
     }

@@ -9,10 +9,10 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring")
 public interface EmailValidationDtoConverter {
 
-    @Mappings({
+    /*@Mappings({
             @Mapping(source = "email",target ="email"),
             @Mapping(source = "validation",target ="validation")
-    })
+    })*/
     EmailValidationEntity emailValidationDtoConverter(EmailValidationDto emailValidationDto);
 
 }
