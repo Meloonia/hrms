@@ -15,8 +15,8 @@ public class JobSeekerDto {
     private String rePassword;
     private String jobSeekerName;
     private String jobSeekerSurname;
-    private long jobSeekerNationalId;
-    private int birtday;
+    private long   jobSeekerNationalId;
+    private int    birtday;
     private String jobSeekerPhone;
     private String jobSeekerAdress;
 

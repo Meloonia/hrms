@@ -9,14 +9,16 @@ import io.kodlama.Entites.Concretes.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserManager implements UserManagerServices {
 
 
-    UserManagerDao userManagerservices;
+    private final UserManagerDao userManagerservices;
 
 
-    @Autowired
+
     private UserManager(UserManagerDao usersEntity) {
         this.userManagerservices = usersEntity;
 
@@ -35,4 +37,10 @@ public class UserManager implements UserManagerServices {
         }
         else return new UnsuccessfulResult(false);
     }
+
+    public Optional<UserEntity> returnEmployerId(long id){
+
+        return userManagerservices.findById(id);
+    }
+
 }

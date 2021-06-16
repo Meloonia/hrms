@@ -26,7 +26,7 @@ public class JobAdverstisementEntity{
     private String desciription;
 
     @Column(name="active")
-    private boolean active = true;
+    private boolean active;
     @NotNull
     @NotBlank
 

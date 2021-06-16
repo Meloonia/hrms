@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface BusinessAreaDao extends JpaRepository<BusinessSectorsEntity,Integer> {
 
-    BusinessSectorsEntity getBusinessSectorsEntityByBusinessSectorId(int id);
+    BusinessSectorsEntity getByBusinessSectorName(String name);
 
 }

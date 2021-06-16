@@ -10,6 +10,7 @@ import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.Entites.Mapper.JobSeekerDtoConverter;
 import io.kodlama.Entites.dto.AccountDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
@@ -18,34 +19,31 @@ import io.kodlama.Inmemory.Abstracts.Mernis;
 import io.kodlama.Inmemory.Concretes.MernisInMemory;
 
 import io.kodlama.Utils.Controls.JobSeekerControl;
-import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
 
     Mernis fakeMernis = new MernisInMemory();
-    JobSeekerControl jobSeekerControl;
-    JobSeekerManagerDao jobSeekerService;
-    UserManagerDao userManagerDao;
-    UserManagerServices userManager;
-    ModelMapper modelMapper;
+  private final JobSeekerControl jobSeekerControl;
+  private final JobSeekerManagerDao jobSeekerService;
+  private final UserManagerDao userManagerDao;
+  private final UserManagerServices userManager;
+  private final JobSeekerDtoConverter jobSeekerDtoConverter;
 
     @Autowired
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
-                            UserManagerServices userManager , ModelMapper modelMapper ,
-                            JobSeekerControl jobSeekerControl) {
+                            UserManagerServices userManager,
+                            JobSeekerControl jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter) {
 
         this.jobSeekerService = jobSeekerService;
         this.userManager = userManager;
         this.userManagerDao = userManagerDao;
-        this.modelMapper = modelMapper;
+        this.jobSeekerDtoConverter = jobSeekerDtoConverter;
         this.jobSeekerControl = jobSeekerControl;
     }
 
@@ -55,7 +53,7 @@ public class JobSeekerManager implements JobSeekerService {
 
         try {
 
-            JobSeekerEntity jobSeekerEntity = modelMapper.map(jobSeeker,JobSeekerEntity.class);
+            JobSeekerEntity jobSeekerEntity = jobSeekerDtoConverter.jobSeekerDtoConverter(jobSeeker);
 
            if (jobSeekerControl.nullControl(jobSeeker)) {
               //  if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
@@ -68,8 +66,8 @@ public class JobSeekerManager implements JobSeekerService {
 
                    if (jobSeekerControl.userControl(jobSeeker)) {
 
-                       modelMapper.map(jobSeekerEntity , JobSeekerEntity.class);
-                           userManager.insertUser(modelMapper.map(jobSeeker , UserEntity.class));
+
+
                            jobSeekerService.save(jobSeekerEntity);
 
 
@@ -102,9 +100,9 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Override
     public Result insertJobExperience(JobSeekerExperienceDto jobSeekerExperienceDto) {
-        JobSeekerEntity jobSeekerEntity = new JobSeekerEntity();
-        modelMapper.map(jobSeekerEntity,JobSeekerExperienceDto.class);
-        jobSeekerService.save(jobSeekerEntity);
+
+
+        jobSeekerService.save(jobSeekerDtoConverter.jobSeekerExperienceDtoConverter(jobSeekerExperienceDto));
         return new SuccessResult(true,"eklendi.");
     }
 
@@ -112,18 +110,18 @@ public class JobSeekerManager implements JobSeekerService {
     public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long userId) {
         JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
 
-        modelMapper.map(jobSeekerSchoolDto,JobSeekerEntity.class);
+        ;
 
-        jobSeekerService.saveAndFlush(jobSeekerEntity);
+        jobSeekerService.saveAndFlush(jobSeekerDtoConverter.jobSeekerSchoolDtoConverter(jobSeekerSchoolDto));
         return new SuccessResult(true,"eklendi.");
     }
 
     @Override
     public Result insertAccount(AccountDto accountDto, long userId) {
 
-        JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
-        modelMapper.map(accountDto,JobSeekerEntity.class);
-        jobSeekerService.saveAndFlush(jobSeekerEntity);
+      //  JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
+    //    modelMapper.map(accountDto,JobSeekerEntity.class);
+       // jobSeekerService.saveAndFlush(jobSeekerEntity);
 
         return null;
     }

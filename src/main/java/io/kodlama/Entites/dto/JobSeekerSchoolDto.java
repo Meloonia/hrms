@@ -14,11 +14,11 @@ import java.util.Date;
 public class JobSeekerSchoolDto {
 
 
-    private String jobSeekerSchool;
+    private String  jobSeekerSchool;
 
-    private Date gradiuationYear;
-    private String jobSeekerCollageDepartment;
-    private Date startYear;
+    private Date    gradiuationYear;
+    private String  jobSeekerCollageDepartment;
+    private Date    startYear;
 
 
 

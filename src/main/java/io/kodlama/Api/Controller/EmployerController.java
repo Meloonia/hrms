@@ -1,13 +1,11 @@
 package io.kodlama.Api.Controller;
 
 import io.kodlama.Business.Abstracts.EmployerServices;
+import io.kodlama.Business.Concretes.JobAdvertManager;
 import io.kodlama.Core.utilities.results.Result;
-import io.kodlama.DataAccess.Abstracts.EmployersDao;
-import io.kodlama.Entites.Concretes.EmployerEntity;
-import io.kodlama.Entites.Concretes.UserEntity;
 import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.EmployerDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.kodlama.Entites.dto.getAllEmployerDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,16 +14,17 @@ import java.util.List;
 @RequestMapping("/Employer")
 public class EmployerController {
 
-    private EmployerServices employerServices;
-    @Autowired
-    public EmployerController(EmployerServices employerServices)
+    private final EmployerServices employerServices;
+    private final JobAdvertManager jobAdvertManager;
+    public EmployerController(EmployerServices employerServices, JobAdvertManager jobAdvertManager)
     {
         this.employerServices = employerServices;
+        this.jobAdvertManager = jobAdvertManager;
     }
 
 
         @GetMapping("/getemployer")
-    public List<EmployerEntity> getallEmployer() {
+    public List<getAllEmployerDto> getallEmployer() {
 
         return this.employerServices.getAll();
         }
@@ -42,6 +41,6 @@ public class EmployerController {
 
     public Result insertJobAdvert(@RequestBody AddJobAdvertDto addJobAdvertDto) {
 
-        return this.employerServices.addJobAdvert( addJobAdvertDto);
+        return this.jobAdvertManager.addJobAdvert( addJobAdvertDto);
         }
 }
