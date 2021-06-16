@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="AutoImportedSourceRoots">
+    <option name="directories">
+      <list>
+        <option value="D:\JavaKamp\hrms/src/main/java" />
+        <option value="D:\JavaKamp\hrms/src/main/kotlin" />
+        <option value="D:\JavaKamp\hrms/src/test/java" />
+        <option value="D:\JavaKamp\hrms/src/test/kotlin" />
+      </list>
+    </option>
+  </component>
   <component name="FacetManager">
     <facet type="web" name="Web">
       <configuration>
@@ -25,6 +35,33 @@
     <facet type="Spring" name="Spring">
       <configuration />
     </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="JVM 16" allPlatforms="JVM [16]" useProjectSettings="false">
+        <compilerSettings>
+          <option name="additionalArguments" value="-java-parameters -Xskip-prerelease-check" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="jvmTarget" value="16" />
+          <option name="languageVersion" value="1.5" />
+          <option name="apiVersion" value="1.5" />
+          <option name="pluginOptions">
+            <array>
+              <option value="plugin:org.jetbrains.kotlin.noarg:annotation=javax.persistence.Entity" />
+              <option value="plugin:org.jetbrains.kotlin.noarg:annotation=javax.persistence.Embeddable" />
+              <option value="plugin:org.jetbrains.kotlin.noarg:annotation=javax.persistence.MappedSuperclass" />
+            </array>
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$KOTLIN_BUNDLED$/lib/noarg-compiler-plugin.jar" />
+            </array>
+          </option>
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_16">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -37,6 +74,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="EasyWSDLLib" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.6" level="project" />
@@ -89,12 +127,20 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.3.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.ws:spring-ws-core:3.0.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.ws:spring-xml:3.0.10.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.5.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.5.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.5.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-kotlin:2.11.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.4" level="project" />
     <orderEntry type="library" name="Maven: com.cloudinary:cloudinary-core:1.29.0" level="project" />
     <orderEntry type="library" name="Maven: wsdl4j:wsdl4j:1.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-json:2.4.5" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.4" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.11.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.11.4" level="project" />
@@ -107,7 +153,6 @@
     <orderEntry type="library" name="Maven: io.springfox:springfox-swagger2:2.9.2" level="project" />
     <orderEntry type="library" name="Maven: io.swagger:swagger-annotations:1.5.20" level="project" />
     <orderEntry type="library" name="Maven: io.swagger:swagger-models:1.5.20" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.4" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-spi:2.9.2" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-core:2.9.2" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-schema:2.9.2" level="project" />
@@ -117,13 +162,12 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.2.0.Final" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework.boot:spring-boot-devtools:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.4.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.postgresql:postgresql:42.2.19" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
-    <orderEntry type="library" name="Maven: org.modelmapper:modelmapper:2.3.5" level="project" />
+    <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.4.2.Final" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.4.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.4.5" level="project" />
@@ -154,6 +198,5 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.3.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.7.0" level="project" />
-    <orderEntry type="library" name="EasyWSDLLib" level="project" />
   </component>
 </module>
