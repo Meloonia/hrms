@@ -5,30 +5,28 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.BusinessAreaDao;
-import io.kodlama.DataAccess.Abstracts.JobAdvertisementDao;
+
 import io.kodlama.Entites.Mapper.BusinessSectorDtoConverter;
 import io.kodlama.Entites.dto.BusinessSectorDto;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-
+@ComponentScan
 public class BusinessAreaManager implements BusinessAreaServices {
 
  // DataAccesess katmanını enjekte eder.
 	private final  BusinessAreaDao businessAreaDao;
-	private final JobAdvertisementDao jobAdvertisementDao;
 	private final BusinessSectorDtoConverter businessSectorDtoConverter;
 
 
 
-	public BusinessAreaManager(BusinessAreaDao businessAreaDao,
-							   JobAdvertisementDao jobAdvertisementDao, BusinessSectorDtoConverter businessSectorDtoConverter) {
+	public BusinessAreaManager(BusinessAreaDao businessAreaDao,BusinessSectorDtoConverter businessSectorDtoConverter) {
 
 		this.businessAreaDao = businessAreaDao;
-		this.jobAdvertisementDao = jobAdvertisementDao;
 		this.businessSectorDtoConverter = businessSectorDtoConverter;
 
 
