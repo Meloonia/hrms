@@ -1,6 +1,7 @@
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Business\Abstracts\SystemManagerService.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Business\Concretes\JobSeekerCvManager.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Api\Controller\BusinessAreaController.java
+D:\JavaKamp\hrms\src\main\java\io\kodlama\Entites\Mapper\ActiveJobAdverstisementDtoConverter.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Business\Abstracts\EmployerServices.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Entites\Mapper\EmailValidationDtoConverter.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Business\Concretes\SystemManager.java

@@ -5,8 +5,10 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.DataAccess.Abstracts.JobAdvertisementDao;
 import io.kodlama.Entites.Concretes.JobAdverstisementEntity;
+import io.kodlama.Entites.Mapper.ActiveJobAdverstisementDtoConverter;
 import io.kodlama.Entites.Mapper.AddJobAdvertDtoConverter;
 import io.kodlama.Entites.Mapper.BusinessSectorToEmployerDtoConverter;
+import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import io.kodlama.Entites.dto.AddJobAdvertDto;
 import io.kodlama.Entites.dto.BusinessSectorToEmployerDto;
 
@@ -22,12 +24,14 @@ public class JobAdvertManager implements JobAdverstisementServices {
     private final AddJobAdvertDtoConverter addJobAdvertDtoConverter;
     private final BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter;
     private final BusinessAreaManager businessAreaManager;
-    public JobAdvertManager(EmployerManager employerManager, JobAdvertisementDao jobAdvertisementDao, AddJobAdvertDtoConverter addJobAdvertDtoConverter, BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter, BusinessAreaManager businessAreaManager) {
+    private final ActiveJobAdverstisementDtoConverter activeJobAdverstisementDtoConverter;
+    public JobAdvertManager(EmployerManager employerManager, JobAdvertisementDao jobAdvertisementDao, AddJobAdvertDtoConverter addJobAdvertDtoConverter, BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter, BusinessAreaManager businessAreaManager, ActiveJobAdverstisementDtoConverter activeJobAdverstisementDtoConverter) {
         this.employerManager = employerManager;
         this.jobAdvertisementDao = jobAdvertisementDao;
         this.addJobAdvertDtoConverter = addJobAdvertDtoConverter;
         this.businessSectorToEmployerDtoConverter = businessSectorToEmployerDtoConverter;
         this.businessAreaManager = businessAreaManager;
+        this.activeJobAdverstisementDtoConverter = activeJobAdverstisementDtoConverter;
     }
 
     @Override
@@ -41,11 +45,11 @@ public class JobAdvertManager implements JobAdverstisementServices {
        return new SuccessResult(true , "veri kaydedildi");
     }
 
-    public List<AddJobAdvertDto> getAllActiveSectors() {
+    public List<ActiveJobAdverstisementDto> getAllActiveSectors() {
 
 
 
-        return  addJobAdvertDtoConverter.getAllActiveJobAdvert(jobAdvertisementDao.getAllByActive(true));
+        return  activeJobAdverstisementDtoConverter.getAllActiveJobAdvert(jobAdvertisementDao.getAllByActive(true));
 
 
     }

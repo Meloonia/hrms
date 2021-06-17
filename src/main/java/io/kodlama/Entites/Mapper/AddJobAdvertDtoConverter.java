@@ -1,6 +1,7 @@
 package io.kodlama.Entites.Mapper;
 
 import io.kodlama.Entites.Concretes.JobAdverstisementEntity;
+import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import io.kodlama.Entites.dto.AddJobAdvertDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -25,7 +26,6 @@ public interface AddJobAdvertDtoConverter {
     })*/
     JobAdverstisementEntity insertJobAdvert(AddJobAdvertDto addJobAdvertDto);
 
-    List<AddJobAdvertDto> getAllActiveJobAdvert(List<JobAdverstisementEntity> jobAdverstisementEntities);
 
 
 }
