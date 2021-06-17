@@ -6,6 +6,7 @@ import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Entites.dto.CvDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class JobSeekerCvController {
     }
 
     @PostMapping(name = "/addCv")
-    public void AddCv(CvDto cvDto) throws IOException {
+    public void AddCv(@RequestBody CvDto cvDto) throws IOException {
         jobSeekerCvService.addCv(cvDto);
 
     }
