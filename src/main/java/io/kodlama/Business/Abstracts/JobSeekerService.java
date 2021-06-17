@@ -8,9 +8,9 @@ import io.kodlama.Entites.dto.AccountDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 public interface JobSeekerService {
 
     Result insert(JobSeekerDto jobSeekerdto);

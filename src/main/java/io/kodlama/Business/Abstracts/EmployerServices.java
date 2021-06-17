@@ -12,4 +12,5 @@ public interface EmployerServices {
     List<getAllEmployerDto> getAll();
 
     List<BusinessSectorToEmployerDto> getAllJobAdvert (EmployerEntity employer);
+    EmployerEntity getEmployer(long userId);
 }

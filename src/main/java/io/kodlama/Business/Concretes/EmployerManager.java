@@ -49,8 +49,8 @@ public class EmployerManager implements EmployerServices {
             if (
                     employerControlService.nameLenghtControl(employerEntity)
             ) {
-                if (employerControlService.emailControl(employerEntity)) {
-                    if (employerControlService.emailDomainControl(employerEntity)) {
+                if (employerControlService.emailControl(employerEntity)) { //employerControlService.emailControl(employerEntity)
+                    if (employerControlService.emailDomainControl(employerEntity)) {//employerControlService.emailDomainControl(employerEntity)
                         employerEntities.setUser(user);
                         employersDao.save(employerEntities);
                         return new SuccessResult(true, "Şirket başarı ile kaydedildi.");
@@ -81,9 +81,14 @@ public class EmployerManager implements EmployerServices {
     public List<BusinessSectorToEmployerDto> getAllJobAdvert(EmployerEntity employer) {
 
 
-       return null ;//businessSectorToEmployerDtoConverter.businessSectorToEmployerDtoConverter(
-              //employersDao.getAllByJobAdverstisementEntitiesOrderByUserEmployerId(employer.getUser().getUserId())
-       //);
+       return businessSectorToEmployerDtoConverter.businessSectorToEmployerDtoConverter(
+              employersDao.findEmployerEntityByJobAdverstisementEntities(employer.getUser().getUserId()));
+
+    }
+
+    @Override
+    public EmployerEntity getEmployer(long userId) {
+        return employersDao.getOne(userId);
     }
 
 

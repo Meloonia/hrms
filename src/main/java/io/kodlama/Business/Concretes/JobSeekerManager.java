@@ -110,22 +110,26 @@ public class JobSeekerManager implements JobSeekerService {
     public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long userId) {
         JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
 
-        ;
+        jobSeekerEntity.setStartYear(jobSeekerSchoolDto.getStartYear());
+        jobSeekerEntity.setJobSekerSchool(jobSeekerSchoolDto.getJobSeekerSchool());
+        jobSeekerEntity.setGradiuationYear(jobSeekerSchoolDto.getGradiuationYear());
+        jobSeekerEntity.setJobSeekerCollageDepartment(jobSeekerSchoolDto.getJobSeekerCollageDepartment());
 
-        jobSeekerService.saveAndFlush(jobSeekerDtoConverter.jobSeekerSchoolDtoConverter(jobSeekerSchoolDto));
+        jobSeekerService.saveAndFlush(jobSeekerEntity);
         return new SuccessResult(true,"eklendi.");
     }
 
     @Override
     public Result insertAccount(AccountDto accountDto, long userId) {
 
-      //  JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
-    //    modelMapper.map(accountDto,JobSeekerEntity.class);
-       // jobSeekerService.saveAndFlush(jobSeekerEntity);
+    JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
+    jobSeekerEntity.setJobSeekerGithubAdress(accountDto.getJobSeekerGithubAdress());
+    jobSeekerEntity.setJobSeekerLinkedlnAdress(accountDto.getJobSeekerLinkedlnAdress());
+
+        jobSeekerService.saveAndFlush(jobSeekerEntity);
 
 
-
-        return null;
+        return new SuccessResult(true,"eklendi.");
     }
 
 

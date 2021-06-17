@@ -2,6 +2,7 @@ package io.kodlama.Entites.Mapper;
 
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.Entites.dto.AccountDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-06-16T16:51:29+0300",
+    date = "2021-06-17T11:53:07+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -75,5 +76,19 @@ public class JobSeekerDtoConverterImpl implements JobSeekerDtoConverter {
         jobSeekerEntity.setJobSeekerCollageDepartment( jobSeekerSchoolDto.getJobSeekerCollageDepartment() );
 
         return jobSeekerEntity;
+    }
+
+    @Override
+    public AccountDto jobSeekerDtoConverterToEntity(JobSeekerEntity jobSeekerEntity) {
+        if ( jobSeekerEntity == null ) {
+            return null;
+        }
+
+        AccountDto accountDto = new AccountDto();
+
+        accountDto.setJobSeekerLinkedlnAdress( jobSeekerEntity.getJobSeekerLinkedlnAdress() );
+        accountDto.setJobSeekerGithubAdress( jobSeekerEntity.getJobSeekerGithubAdress() );
+
+        return accountDto;
     }
 }

@@ -32,7 +32,7 @@ public class EmployerControl implements EmployerControlService{
 
     @Override
     public boolean emailDomainControl(EmployerDto employerEntity) {
-        String regex = "^[A-Za-z0-9._%+-]+@" + employerEntity.getEmployerWebsite().split("@") +"$";
+        String regex = "^[A-Za-z0-9._%+-]+@" + employerEntity.getEmployerWebsite().split("@")[0]+ "$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(employerEntity.getUserEmail());
         if(matcher.matches()) {

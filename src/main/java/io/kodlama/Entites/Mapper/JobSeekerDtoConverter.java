@@ -3,6 +3,7 @@ package io.kodlama.Entites.Mapper;
 
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
+import io.kodlama.Entites.dto.AccountDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
@@ -47,4 +48,5 @@ public interface JobSeekerDtoConverter {
     })*/
     JobSeekerEntity jobSeekerSchoolDtoConverter(JobSeekerSchoolDto jobSeekerSchoolDto);
 
+    AccountDto jobSeekerDtoConverterToEntity(JobSeekerEntity jobSeekerEntity);
 }

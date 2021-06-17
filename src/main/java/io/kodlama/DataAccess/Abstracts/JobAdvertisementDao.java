@@ -10,5 +10,6 @@ import java.util.List;
 public interface JobAdvertisementDao extends JpaRepository<JobAdverstisementEntity , Long> {
 
    List<JobAdverstisementEntity> findByActiveOrderByActiveDateAsc(boolean isActive);
+   List<JobAdverstisementEntity> getAllByActive(boolean active);
 
 }

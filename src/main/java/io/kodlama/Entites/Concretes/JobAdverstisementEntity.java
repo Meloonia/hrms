@@ -30,10 +30,6 @@ public class JobAdverstisementEntity{
     @NotNull
     @NotBlank
 
-    @Column(name = "business_sector")
-
-    private int businessSector;
-
     @Temporal(TemporalType.DATE)
     @NotNull
     @NotBlank
@@ -62,8 +58,8 @@ public class JobAdverstisementEntity{
     @ManyToOne(fetch = FetchType.LAZY )
     private CityEntity city;
 
-    @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "business_sector", insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @JoinColumn()
     private BusinessSectorsEntity businessSectorsEntity;
 
     @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)

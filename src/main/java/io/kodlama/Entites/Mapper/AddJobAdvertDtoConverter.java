@@ -7,6 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @Mapper(componentModel = "spring")
 public interface AddJobAdvertDtoConverter {
@@ -22,6 +24,8 @@ public interface AddJobAdvertDtoConverter {
             @Mapping(source ="openPosition",target ="openPosition")
     })*/
     JobAdverstisementEntity insertJobAdvert(AddJobAdvertDto addJobAdvertDto);
+
+    List<AddJobAdvertDto> getAllActiveJobAdvert(List<JobAdverstisementEntity> jobAdverstisementEntities);
 
 
 }

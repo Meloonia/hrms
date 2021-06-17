@@ -28,7 +28,7 @@ public class BusinessSectorsEntity {
     @Column(name = "business_sector_name",nullable = false)
     private String businessSectorName;
 
-    @OneToMany(mappedBy = "businessSector" ,fetch =FetchType.LAZY )
+    @OneToMany(mappedBy = "businessSectorsEntity" ,fetch =FetchType.LAZY ,cascade = CascadeType.ALL)
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
 

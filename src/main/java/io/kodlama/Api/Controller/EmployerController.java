@@ -31,7 +31,7 @@ public class EmployerController {
 
     @PostMapping("/insertemployer")
 
-    public Result insertEmployer(@RequestBody EmployerDto employer) {
+    public Result insertEmployer( EmployerDto employer) {
 
         return this.employerServices.insert(employer);
 

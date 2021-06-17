@@ -6,6 +6,7 @@ import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.BusinessAreaDao;
 
+import io.kodlama.Entites.Concretes.BusinessSectorsEntity;
 import io.kodlama.Entites.Mapper.BusinessSectorDtoConverter;
 import io.kodlama.Entites.dto.BusinessSectorDto;
 
@@ -55,6 +56,10 @@ public class BusinessAreaManager implements BusinessAreaServices {
 		else return new UnsuccessfulResult(false , "İş alanı zaten mevcut");
 	}
 
+	@Override
+	public BusinessSectorsEntity getOne(String i) {
+		return businessAreaDao.findByBusinessSectorName(i);
+	}
 
 
 }

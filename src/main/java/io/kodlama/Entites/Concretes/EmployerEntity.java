@@ -20,7 +20,7 @@ public class EmployerEntity {
 
     @Id
     @Column(name = "employer_id")
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long employerId;
     @NotNull
     @NotBlank
