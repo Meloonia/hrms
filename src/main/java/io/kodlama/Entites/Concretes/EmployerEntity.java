@@ -20,7 +20,8 @@ public class EmployerEntity {
 
     @Id
     @Column(name = "employer_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long employerId;
     @NotNull
     @NotBlank
@@ -53,8 +54,8 @@ public class EmployerEntity {
     @JoinColumn(name ="employer_city")
     private int cityId;
 
-    @ManyToOne( fetch =  FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY , cascade =  CascadeType.REFRESH , targetEntity = CityEntity.class)

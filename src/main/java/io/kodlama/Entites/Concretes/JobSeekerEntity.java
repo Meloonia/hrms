@@ -25,7 +25,7 @@ public class JobSeekerEntity {
 
 
  @Column(name = "job_seeker_id")
- @GeneratedValue(strategy = GenerationType.AUTO)
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
  private long jobSeekerId;
 
  @NotNull
@@ -87,8 +87,8 @@ public class JobSeekerEntity {
  /*@Column(name = "user_user_id" , updatable = false,insertable = false)
  private long userId;*/
 
- @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
- @JoinColumn(name = "user_id")
+ @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
+ @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
  private UserEntity user;
 
  @OneToMany(targetEntity = JobSeekerCvEntity.class , cascade = CascadeType.ALL)

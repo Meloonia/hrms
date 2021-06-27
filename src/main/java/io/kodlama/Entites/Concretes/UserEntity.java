@@ -25,16 +25,16 @@ public class UserEntity {
     @Column(name = "user_id", unique = true)
     private long userId;
 
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY )
-    private Set<SystemManagerEntity> systemManagerEntities = new HashSet<>();
+    @OneToOne(mappedBy = "user" , fetch = FetchType.LAZY )
+    private SystemManagerEntity systemManagerEntity;
 
 
-    @OneToMany(mappedBy =  "user" , fetch = FetchType.LAZY )
-    private Set<JobSeekerEntity> jobSeekerEntities = new HashSet<>();
+    @OneToOne(mappedBy =  "user" , fetch = FetchType.LAZY )
+    private JobSeekerEntity jobSeekerEntity;
 
 
-    @OneToMany(fetch = FetchType.LAZY )
-    private Set<EmployerEntity> employerEntities = new HashSet<>();
+    @OneToOne(fetch = FetchType.LAZY )
+    private EmployerEntity employerEntity;
 
 
     @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)

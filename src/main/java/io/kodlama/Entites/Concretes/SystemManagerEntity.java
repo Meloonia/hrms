@@ -25,6 +25,7 @@ public class SystemManagerEntity {
 
     @Id
     @Column(name = "system_manager_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long systemManagerId;
     @NotNull
@@ -49,8 +50,8 @@ public class SystemManagerEntity {
     @Column(name = "system_manager_adress")
     private String SystemManagerAdress;
 
-    @ManyToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
     private UserEntity user;
 
 
