@@ -12,41 +12,22 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Mapper(componentModel = "spring")
 public interface JobSeekerDtoConverter {
 
-   /* @Mappings({
-            @Mapping(source = "jobSeekerName;      ",target = "jobSeekerName"),
-            @Mapping(source = "jobSeekerSurname;   ",target = "jobSeekerSurname"),
-            @Mapping(source = "jobSeekerNationalId;",target = "jobSeekerNationalId"),
-            @Mapping(source = "birtday;            ",target = "birtday"),
-            @Mapping(source = "jobSeekerPhone;     ",target = "jobSeekerPhone"),
-            @Mapping(source = "jobSeekerAdress;    ",target = "jobSeekerAdress")
-    })*/
     JobSeekerEntity jobSeekerDtoConverter(JobSeekerDto jobSeekerDto);
-/*
-    @Mappings({
-            @Mapping(source = "userEmail ",target = "userEmail"),
-            @Mapping(source = "userPassword",target = "userPassword"),
-            @Mapping(source = "rePassword",target = "rePassword"),
-    })*/
+
+
     UserEntity jobSeekerToUserDtoConverter(JobSeekerDto jobSeekerDto);
 
-
-    /*@Mappings({
-            @Mapping(source = "jobSeekerExperience",target ="jobSeekerExperience")
-
-    })*/
     JobSeekerEntity jobSeekerExperienceDtoConverter(JobSeekerExperienceDto jobSeekerExperienceDto);
 
-  /*  @Mappings({
-            @Mapping(source = "jobSeekerSchool",target ="jobSekerSchool"),
-            @Mapping(source = "startYear",target ="startYear"),
-            @Mapping(source = "gradiuationYear",target ="gradiuationYear"),
-            @Mapping(source = "jobSeekerCollageDepartment",target ="jobSeekerCollageDepartment"),
-    })*/
     JobSeekerEntity jobSeekerSchoolDtoConverter(JobSeekerSchoolDto jobSeekerSchoolDto);
 
     AccountDto jobSeekerDtoConverterToEntity(JobSeekerEntity jobSeekerEntity);
+
+    List<JobSeekerDto> getAllJobSeekerDtoConverter(List<JobSeekerEntity> jobSeekerEntityList);
 }

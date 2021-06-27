@@ -18,7 +18,7 @@ public class JobSeekerController {
 
     private final JobSeekerService jobSeekerService;
 
-    @Autowired
+
     public JobSeekerController(JobSeekerService jobSeekerService) {
         this.jobSeekerService = jobSeekerService;
 
@@ -33,7 +33,7 @@ public class JobSeekerController {
     }
     @GetMapping("/getall")
 
-    public List<JobSeekerEntity> getAllJobSeeker() {
+    public List<JobSeekerDto> getAllJobSeeker() {
         return jobSeekerService.getAll();
     }
 

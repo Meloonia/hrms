@@ -23,6 +23,7 @@ import io.kodlama.Utils.Controls.JobSeekerControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -93,9 +94,10 @@ public class JobSeekerManager implements JobSeekerService {
     }
 
     @Override
-    public List<JobSeekerEntity> getAll() {
+    public List<JobSeekerDto> getAll() {
 
-        return jobSeekerService.findAll();
+
+        return jobSeekerDtoConverter.getAllJobSeekerDtoConverter(jobSeekerService.findAll());
     }
 
     @Override

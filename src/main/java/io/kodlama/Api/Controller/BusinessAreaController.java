@@ -1,8 +1,10 @@
 package io.kodlama.Api.Controller;
 
 import io.kodlama.Business.Abstracts.BusinessAreaServices;
+import io.kodlama.Business.Concretes.BusinessAreaManager;
 import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Entites.dto.BusinessSectorDto;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class BusinessAreaController {
 	
 
 
-	public BusinessAreaController(BusinessAreaServices businessAreaServices) {
-		this.businessAreaServices = businessAreaServices;
+	public BusinessAreaController(BusinessAreaServices businessAreaManager) {
+		this.businessAreaServices = businessAreaManager;
 	}
 	//Get adresi.
 	@GetMapping("/getall")

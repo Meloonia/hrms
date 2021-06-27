@@ -6,12 +6,14 @@ import io.kodlama.Entites.dto.AccountDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-06-17T13:13:02+0300",
+    date = "2021-06-27T14:46:33+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -90,5 +92,36 @@ public class JobSeekerDtoConverterImpl implements JobSeekerDtoConverter {
         accountDto.setJobSeekerGithubAdress( jobSeekerEntity.getJobSeekerGithubAdress() );
 
         return accountDto;
+    }
+
+    @Override
+    public List<JobSeekerDto> getAllJobSeekerDtoConverter(List<JobSeekerEntity> jobSeekerEntityList) {
+        if ( jobSeekerEntityList == null ) {
+            return null;
+        }
+
+        List<JobSeekerDto> list = new ArrayList<JobSeekerDto>( jobSeekerEntityList.size() );
+        for ( JobSeekerEntity jobSeekerEntity : jobSeekerEntityList ) {
+            list.add( jobSeekerEntityToJobSeekerDto( jobSeekerEntity ) );
+        }
+
+        return list;
+    }
+
+    protected JobSeekerDto jobSeekerEntityToJobSeekerDto(JobSeekerEntity jobSeekerEntity) {
+        if ( jobSeekerEntity == null ) {
+            return null;
+        }
+
+        JobSeekerDto jobSeekerDto = new JobSeekerDto();
+
+        jobSeekerDto.setJobSeekerName( jobSeekerEntity.getJobSeekerName() );
+        jobSeekerDto.setJobSeekerSurname( jobSeekerEntity.getJobSeekerSurname() );
+        jobSeekerDto.setJobSeekerNationalId( jobSeekerEntity.getJobSeekerNationalId() );
+        jobSeekerDto.setBirtday( jobSeekerEntity.getBirtday() );
+        jobSeekerDto.setJobSeekerPhone( jobSeekerEntity.getJobSeekerPhone() );
+        jobSeekerDto.setJobSeekerAdress( jobSeekerEntity.getJobSeekerAdress() );
+
+        return jobSeekerDto;
     }
 }

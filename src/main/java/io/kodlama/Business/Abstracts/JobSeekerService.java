@@ -14,7 +14,7 @@ import java.util.List;
 public interface JobSeekerService {
 
     Result insert(JobSeekerDto jobSeekerdto);
-    List<JobSeekerEntity> getAll();
+    List<JobSeekerDto> getAll();
     Result insertJobExperience(JobSeekerExperienceDto jobSeekerExperienceDto);
     Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long UserId);
     Result insertAccount(AccountDto accountDto,long userId);

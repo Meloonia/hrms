@@ -14,9 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
-@ComponentScan
 public class BusinessAreaManager implements BusinessAreaServices {
 
  // DataAccesess katmanını enjekte eder.
