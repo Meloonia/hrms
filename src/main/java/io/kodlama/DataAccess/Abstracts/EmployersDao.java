@@ -11,5 +11,6 @@ public interface EmployersDao extends JpaRepository<EmployerEntity,Long> {
 
     List<JobAdverstisementEntity> findEmployerEntityByJobAdverstisementEntities(long id);
 
+    EmployerEntity getAllByUser_UserId(long id);
 }
 

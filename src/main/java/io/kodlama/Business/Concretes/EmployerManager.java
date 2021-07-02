@@ -1,6 +1,7 @@
 package io.kodlama.Business.Concretes;
 
 import io.kodlama.Business.Abstracts.EmployerServices;
+import io.kodlama.Business.Abstracts.UserManagerServices;
 import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
@@ -24,19 +25,20 @@ import java.util.List;
 
 public class EmployerManager implements EmployerServices {
 
-    private final UserManager userManager;
+    private final UserManagerServices userManager;
     private final EmployersDao employersDao;
     private final EmployerDtoConverter employerDtoConverter;
     private final EmployerControlService employerControlService;
     private final BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter;
 
-    public EmployerManager(UserManager userManager, EmployersDao employersDao, EmployerDtoConverter employerDtoConverter,
-                           EmployerControlService employerControlService,
+    public EmployerManager(UserManagerServices userManager, EmployersDao employersDao,
+                           EmployerDtoConverter employerDtoConverter,
+                           EmployerControlService employerControl,
                            BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter) {
         this.userManager = userManager;
         this.employersDao = employersDao;
         this.employerDtoConverter = employerDtoConverter;
-        this.employerControlService = employerControlService;
+        this.employerControlService = employerControl;
         this.businessSectorToEmployerDtoConverter = businessSectorToEmployerDtoConverter;
     }
 
@@ -88,7 +90,7 @@ public class EmployerManager implements EmployerServices {
 
     @Override
     public EmployerEntity getEmployer(long userId) {
-        return employersDao.getOne(userId);
+        return employersDao.getAllByUser_UserId(userId);
     }
 
 

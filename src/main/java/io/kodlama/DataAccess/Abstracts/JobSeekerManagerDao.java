@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface JobSeekerManagerDao extends JpaRepository<JobSeekerEntity , Long> {
 
-
+    JobSeekerEntity getAllByUser_UserId(long id);
 
 }

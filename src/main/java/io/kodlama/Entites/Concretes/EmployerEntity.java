@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,14 +16,20 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name="employers")
+public class EmployerEntity implements Serializable {
 
-public class EmployerEntity {
+
+
+
 
     @Id
     @Column(name = "employer_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @JoinColumn(referencedColumnName = "user_id")
     private long employerId;
+
+
+
+
     @NotNull
     @NotBlank
     @Column(name = "employer_name",nullable = false)
@@ -54,13 +61,19 @@ public class EmployerEntity {
     @JoinColumn(name ="employer_city")
     private int cityId;
 
-    @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
-    private UserEntity user;
+
 
     @ManyToOne(fetch = FetchType.LAZY , cascade =  CascadeType.REFRESH , targetEntity = CityEntity.class)
     private CityEntity cityEntity;
 
     @OneToMany(mappedBy = "employer",fetch = FetchType.LAZY)
     private Set<JobAdverstisementEntity> jobAdverstisementEntities  = new HashSet<>();
+
+    @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL )
+    // @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
+
+
+    private UserEntity user;
+
+
 }

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,14 +20,22 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "job_seekers")
-
-public class JobSeekerEntity {
- @Id
+public class JobSeekerEntity implements Serializable {
 
 
+
+ //@PrimaryKeyJoinColumn(referencedColumnName = "user_id")
+
+
+
+ @JoinColumn(referencedColumnName = "user_id")
  @Column(name = "job_seeker_id")
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- private long jobSeekerId;
+ @Id
+ private long jobSeekerId ;
+
+
+
+
 
  @NotNull
  @NotBlank
@@ -87,11 +96,11 @@ public class JobSeekerEntity {
  /*@Column(name = "user_user_id" , updatable = false,insertable = false)
  private long userId;*/
 
- @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
- @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
+ @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL )
  private UserEntity user;
 
- @OneToMany(targetEntity = JobSeekerCvEntity.class , cascade = CascadeType.ALL)
+
+ @OneToMany(mappedBy = "jobSeekerEntity", cascade = CascadeType.ALL)
  Set<JobSeekerCvEntity> jobSeekerCvEntitySet = new HashSet<>();
 
 }

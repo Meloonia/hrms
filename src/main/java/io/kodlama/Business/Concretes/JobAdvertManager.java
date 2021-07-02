@@ -1,5 +1,7 @@
 package io.kodlama.Business.Concretes;
 
+import io.kodlama.Business.Abstracts.BusinessAreaServices;
+import io.kodlama.Business.Abstracts.EmployerServices;
 import io.kodlama.Business.Abstracts.JobAdverstisementServices;
 import io.kodlama.Core.utilities.results.Result;
 import io.kodlama.Core.utilities.results.SuccessResult;
@@ -19,13 +21,19 @@ import java.util.List;
 @Service
 public class JobAdvertManager implements JobAdverstisementServices {
 
-    private final EmployerManager employerManager;
+    private final EmployerServices employerManager;
     private final JobAdvertisementDao jobAdvertisementDao;
     private final AddJobAdvertDtoConverter addJobAdvertDtoConverter;
     private final BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter;
-    private final BusinessAreaManager businessAreaManager;
+    private final BusinessAreaServices businessAreaManager;
     private final ActiveJobAdverstisementDtoConverter activeJobAdverstisementDtoConverter;
-    public JobAdvertManager(EmployerManager employerManager, JobAdvertisementDao jobAdvertisementDao, AddJobAdvertDtoConverter addJobAdvertDtoConverter, BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter, BusinessAreaManager businessAreaManager, ActiveJobAdverstisementDtoConverter activeJobAdverstisementDtoConverter) {
+
+
+    public JobAdvertManager(EmployerServices employerManager, JobAdvertisementDao jobAdvertisementDao,
+                            AddJobAdvertDtoConverter addJobAdvertDtoConverter,
+                            BusinessSectorToEmployerDtoConverter businessSectorToEmployerDtoConverter,
+                            BusinessAreaServices businessAreaManager,
+                            ActiveJobAdverstisementDtoConverter activeJobAdverstisementDtoConverter) {
         this.employerManager = employerManager;
         this.jobAdvertisementDao = jobAdvertisementDao;
         this.addJobAdvertDtoConverter = addJobAdvertDtoConverter;

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -15,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "job_advertisement")
-public class JobAdverstisementEntity{
+public class JobAdverstisementEntity {
 
     @Id
     @Column(name = "job_advert_id")
@@ -27,8 +28,6 @@ public class JobAdverstisementEntity{
 
     @Column(name="active")
     private boolean active;
-    @NotNull
-    @NotBlank
 
     @Temporal(TemporalType.DATE)
     @NotNull
@@ -42,14 +41,17 @@ public class JobAdverstisementEntity{
     @NotBlank
     @Column(name = "active_date")
     private Date activeDate;
+
     @NotNull
     @NotBlank
     @Column(name = "min_salary")
     private int minSaray;
+
     @NotNull
     @NotBlank
     @Column(name = "max_salary")
     private int maxSalary;
+
     @NotNull
     @NotBlank
     @Column(name = "open_positions")

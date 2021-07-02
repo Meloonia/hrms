@@ -11,7 +11,7 @@ import java.util.List;
 
 //Controller olduğunu ve frontend den gelen istek adresini belirtir.
 @RestController
-@RequestMapping("/api/businessareas")
+@RequestMapping("/api/v1/businessareas")
 public class BusinessAreaController {
 	
 	private final BusinessAreaServices businessAreaServices;
@@ -22,7 +22,7 @@ public class BusinessAreaController {
 		this.businessAreaServices = businessAreaManager;
 	}
 	//Get adresi.
-	@GetMapping("/getall")
+	@GetMapping("/v1/getall")
 	
 	public List<BusinessSectorDto> getAll() {
 		
@@ -30,7 +30,7 @@ public class BusinessAreaController {
 	}
 
 
-	@PostMapping("/insert")
+	@PostMapping("/v1/insert")
 
 	public Result insert(@RequestBody BusinessSectorDto businessAreasEntity) {
 		return this.businessAreaServices.insert(businessAreasEntity);

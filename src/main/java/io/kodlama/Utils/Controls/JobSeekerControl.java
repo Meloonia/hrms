@@ -5,7 +5,6 @@ import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.kodlama.Utils.Controls.JobSeekerControl;
 
 @Service
 public

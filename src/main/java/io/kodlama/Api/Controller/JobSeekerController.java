@@ -13,36 +13,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/jobseeker")
+@RequestMapping("/api/v1/jobseeker")
 public class JobSeekerController {
 
     private final JobSeekerService jobSeekerService;
 
 
-    public JobSeekerController(JobSeekerService jobSeekerService) {
-        this.jobSeekerService = jobSeekerService;
+    public JobSeekerController(JobSeekerService jobSeekerManager) {
+        this.jobSeekerService = jobSeekerManager;
 
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/v1/insert")
     public Result insert(@RequestBody JobSeekerDto jobSeeker) {
 
         return this.jobSeekerService.insert(jobSeeker);
 
 
     }
-    @GetMapping("/getall")
+    @GetMapping("/v1/getall")
 
     public List<JobSeekerDto> getAllJobSeeker() {
         return jobSeekerService.getAll();
     }
 
-    @PatchMapping("/addSchool{userId}")
+    @PatchMapping("/v1/addSchool{userId}")
     public Result addSchool(@PathVariable("userId") long UserId, @RequestBody JobSeekerSchoolDto jobSeekerSchoolDto) {
 
         return this.jobSeekerService.insertJobSchool(jobSeekerSchoolDto,UserId);
     }
-    @PatchMapping("/addaccount{userId}")
+    @PatchMapping("/v1/addaccount{userId}")
     public Result addSchool(@PathVariable("userId") long UserId, @RequestBody AccountDto accountDto) {
 
         return this.jobSeekerService.insertAccount(accountDto,UserId);

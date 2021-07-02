@@ -10,6 +10,7 @@ import io.kodlama.Entites.Mapper.CvDtoConverter;
 import io.kodlama.Entites.dto.CvDto;
 import io.kodlama.adapters.CloudinaryAdapter;
 
+import io.kodlama.adapters.UploadImageServices;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,21 +18,22 @@ import java.io.IOException;
 public class JobSeekerCvManager implements JobSeekerCvService {
     private final  JobSeekerCvDao jobSeekerCvDao;
   private final CvDtoConverter cvDtoConverter;
-    private final   CloudinaryAdapter cloudinaryAdapter;
+    private final UploadImageServices uploadImageServices;
 
 
-    public JobSeekerCvManager(JobSeekerCvDao jobSeekerCvDao, CvDtoConverter cvDtoConverter, CloudinaryAdapter cloudinaryAdapter) {
+    public JobSeekerCvManager(JobSeekerCvDao jobSeekerCvDao, CvDtoConverter cvDtoConverter,
+                              UploadImageServices cloudinaryAdapter) {
         this.jobSeekerCvDao = jobSeekerCvDao;
         this.cvDtoConverter = cvDtoConverter;
 
-        this.cloudinaryAdapter= cloudinaryAdapter;
+        this.uploadImageServices= cloudinaryAdapter;
     }
 
     @Override
     public Result addCv(CvDto cvDto) throws IOException {
 
 
-        cloudinaryAdapter.CloudinaryAdapter().uploader().upload(cvDto.getImageUrl(), ObjectUtils.emptyMap());
+        uploadImageServices.CloudinaryAdapter().uploader().upload(cvDto.getImageUrl(), ObjectUtils.emptyMap());
             jobSeekerCvDao.save(cvDtoConverter.cvDtoConverter(cvDto));
 
         return new SuccessResult(true,"Kaydedildi");

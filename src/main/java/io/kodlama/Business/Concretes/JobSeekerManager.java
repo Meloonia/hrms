@@ -20,6 +20,7 @@ import io.kodlama.Inmemory.Concretes.MernisInMemory;
 
 import io.kodlama.Utils.Controls.JobSeekerControl;
 
+import io.kodlama.Utils.Controls.JobSeekerControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ import java.util.List;
 public class JobSeekerManager implements JobSeekerService {
 
     Mernis fakeMernis = new MernisInMemory();
-  private final JobSeekerControl jobSeekerControl;
+  private final JobSeekerControlService jobSeekerControl;
   private final JobSeekerManagerDao jobSeekerService;
   private final UserManagerDao userManagerDao;
   private final UserManagerServices userManager;
@@ -39,7 +40,7 @@ public class JobSeekerManager implements JobSeekerService {
     @Autowired
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
                             UserManagerServices userManager,
-                            JobSeekerControl jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter) {
+                            JobSeekerControlService jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter) {
 
         this.jobSeekerService = jobSeekerService;
         this.userManager = userManager;
@@ -110,7 +111,7 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Override
     public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long userId) {
-        JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
+        JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
 
         jobSeekerEntity.setStartYear(jobSeekerSchoolDto.getStartYear());
         jobSeekerEntity.setJobSekerSchool(jobSeekerSchoolDto.getJobSeekerSchool());
@@ -124,7 +125,7 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public Result insertAccount(AccountDto accountDto, long userId) {
 
-    JobSeekerEntity jobSeekerEntity = jobSeekerService.getOne(userId);
+    JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
     jobSeekerEntity.setJobSeekerGithubAdress(accountDto.getJobSeekerGithubAdress());
     jobSeekerEntity.setJobSeekerLinkedlnAdress(accountDto.getJobSeekerLinkedlnAdress());
 

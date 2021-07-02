@@ -11,27 +11,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/jobadvert")
 public class JobAdvertController {
 
     JobAdverstisementServices jobAdverstisementServices;
 
     @Autowired
-    private JobAdvertController(JobAdverstisementServices jobAdverstisementServices) {
-        this.jobAdverstisementServices = jobAdverstisementServices;
+    private JobAdvertController(JobAdverstisementServices jobAdvertManager) {
+        this.jobAdverstisementServices = jobAdvertManager;
     }
 
-    @GetMapping("/getallactivesectors")
+    @GetMapping("/v1/getallactivesectors")
 
     public List<ActiveJobAdverstisementDto> getAllActiveSectors(){
         return jobAdverstisementServices.getAllActiveSectors();
     }
 
-    @GetMapping("/gettallactivesectordate")
+    @GetMapping("/v1/gettallactivesectordate")
     public List<BusinessSectorToEmployerDto> getAllActiveSectorsDate() {
         return jobAdverstisementServices.getAllActiveSectorsDate();
     }
 
-    @PostMapping("/addjobadvert")
+    @PostMapping("/v1/addjobadvert")
     public Result addJobAdvert(@RequestBody AddJobAdvertDto addJobAdvertDto) {
 
         return jobAdverstisementServices.addJobAdvert(addJobAdvertDto);

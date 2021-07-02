@@ -10,8 +10,8 @@ import java.util.List;
 @Service
 public class SystemManager implements SystemManagerService {
 
-    SystemManagerDao systemManagerDao;
-    @Autowired
+   private final SystemManagerDao systemManagerDao;
+
     public SystemManager(SystemManagerDao systemManagerDao) {
         this.systemManagerDao = systemManagerDao;
     }

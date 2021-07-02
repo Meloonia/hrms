@@ -17,17 +17,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "system_managers")
-
 public class SystemManagerEntity {
-
-
 
 
     @Id
     @Column(name = "system_manager_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(referencedColumnName = "user_id")
+    private long systemManagerId ;
 
-    private long systemManagerId;
     @NotNull
     @NotBlank
     @Column(name = "system_manager_name",nullable = false)
@@ -51,8 +48,9 @@ public class SystemManagerEntity {
     private String SystemManagerAdress;
 
     @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
-    private UserEntity user;
 
+
+
+    private UserEntity user;
 
 }
