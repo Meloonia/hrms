@@ -20,17 +20,12 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "job_seekers")
-public class JobSeekerEntity implements Serializable {
+public class JobSeekerEntity{
 
 
-
- //@PrimaryKeyJoinColumn(referencedColumnName = "user_id")
-
-
-
- @JoinColumn(referencedColumnName = "user_id")
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
  @Column(name = "job_seeker_id")
- @Id
  private long jobSeekerId ;
 
 
@@ -97,6 +92,7 @@ public class JobSeekerEntity implements Serializable {
  private long userId;*/
 
  @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL )
+ @JoinColumn(referencedColumnName = "user_id")
  private UserEntity user;
 
 

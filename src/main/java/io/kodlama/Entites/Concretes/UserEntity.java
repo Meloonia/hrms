@@ -17,8 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-
-public class UserEntity  {
+public class UserEntity implements Serializable  {
 
 
     @Id
@@ -34,7 +33,7 @@ public class UserEntity  {
     private JobSeekerEntity jobSeekerEntity;
 
 
-    @OneToOne(fetch = FetchType.LAZY )
+    @OneToOne(fetch = FetchType.LAZY ,mappedBy = "user")
     private EmployerEntity employerEntity;
 
 

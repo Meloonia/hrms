@@ -17,12 +17,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "system_managers")
-public class SystemManagerEntity {
+public class SystemManagerEntity{
 
 
     @Id
     @Column(name = "system_manager_id")
-    @JoinColumn(referencedColumnName = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long systemManagerId ;
 
     @NotNull
@@ -49,7 +49,7 @@ public class SystemManagerEntity {
 
     @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL)
 
-
+    @JoinColumn(referencedColumnName = "user_id")
 
     private UserEntity user;
 

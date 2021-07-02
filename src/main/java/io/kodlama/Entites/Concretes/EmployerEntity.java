@@ -16,15 +16,15 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name="employers")
-public class EmployerEntity implements Serializable {
 
+public class EmployerEntity{
 
 
 
 
     @Id
     @Column(name = "employer_id")
-    @JoinColumn(referencedColumnName = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long employerId;
 
 
@@ -69,9 +69,9 @@ public class EmployerEntity implements Serializable {
     @OneToMany(mappedBy = "employer",fetch = FetchType.LAZY)
     private Set<JobAdverstisementEntity> jobAdverstisementEntities  = new HashSet<>();
 
-    @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL )
-    // @PrimaryKeyJoinColumn(referencedColumnName = "user_id")
 
+    @OneToOne( fetch =  FetchType.LAZY , cascade = CascadeType.ALL )
+    @JoinColumn(referencedColumnName = "user_id")
 
     private UserEntity user;
 

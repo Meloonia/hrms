@@ -13,7 +13,6 @@ public class EmployerControl implements EmployerControlService{
 
     EmailValidationDao emailValidationDao;
 
-    @Autowired
     public EmployerControl( EmailValidationDao emailValidationDao) {
         this.emailValidationDao = emailValidationDao;
     }

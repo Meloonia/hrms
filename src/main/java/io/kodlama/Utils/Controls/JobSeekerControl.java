@@ -13,7 +13,7 @@ class JobSeekerControl implements JobSeekerControlService {
     private final UserManagerDao userManagerDao;
     private final JobSeekerManagerDao jobSeekerManagerDao;
 
-    @Autowired
+
 
     public JobSeekerControl(UserManagerDao userManagerDao, JobSeekerManagerDao jobSeekerManagerDao) {
         this.userManagerDao = userManagerDao;

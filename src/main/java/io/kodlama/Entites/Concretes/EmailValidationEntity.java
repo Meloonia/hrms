@@ -21,9 +21,14 @@ import java.io.Serializable;
 public class EmailValidationEntity  {
 
 
+    @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long validationId;
+
     @Column private boolean validation;
 
-    @Id
+
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn()
     private UserEntity user;
@@ -36,6 +41,7 @@ public class EmailValidationEntity  {
 
     @Column(name ="email_validation_code")
     private String emailValidationCode;
+
 
 
 }
