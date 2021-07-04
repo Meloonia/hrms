@@ -10,17 +10,21 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
+import static io.kodlama.Utils.ValidationMessages.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "job_seekers")
 public class JobSeekerEntity{
+
 
 
 @Id
@@ -32,32 +36,44 @@ public class JobSeekerEntity{
 
 
 
- @NotNull
- @NotBlank
+ @NotNull(message = nationalIdendityNull)
+ @NotBlank(message = nationalIdendityblank)
+ @Pattern(message = nationalIdendityPattern,regexp = "0-9")
  @Column(name = "job_seeker_national_id",nullable = false)
  private long jobSeekerNationalId;
- @NotNull
- @NotBlank
+
+ @NotNull(message = nameNull)
+ @NotBlank(message = nameBlank)
+ @Size(message = nameLenght , min = 3)
  @Column(name = "job_seeker_name",nullable = false)
  private String jobSeekerName;
- @NotNull
- @NotBlank
+
+ @NotNull(message = surNameNull)
+ @NotBlank(message = surNameNull)
+ @Size(min = 3 , message = surNameSize)
  @Column(name = "job_seeker_surname",nullable = false)
  private String jobSeekerSurname;
- @NotNull
- @NotBlank
+
+
+ @NotNull(message = phoneNull)
+ @NotBlank(message = phoneBlank)
+ @Size(min = 10,max = 10,message = phoneSize)
  @Column(name = "job_seeker_phone")
  private String jobSeekerPhone;
- @NotNull
- @NotBlank
+
+ @NotNull(message = adressNull)
+ @NotBlank(message =adressBlank)
+
  @Column(name = "job_seeker_adress")
  private String jobSeekerAdress;
- @NotNull
- @NotBlank
+
+ @NotNull(message = birtdayNull)
+ @NotBlank(message = birtdayBlank)
+ @Size(min =4,max =4 ,message = birtdayBlank)
  @Column(name = "job_seeker_birtday",nullable = false)
- private int birtday;
- @NotNull
- @NotBlank
+ private LocalTime birtday;
+
+
  @Column(name = "job_seeker_school")
  private String jobSekerSchool;
 

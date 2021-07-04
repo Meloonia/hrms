@@ -7,9 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import static io.kodlama.Utils.ValidationMessages.*;
 
 
 @Data
@@ -43,19 +45,24 @@ public class UserEntity implements Serializable  {
     @OneToMany(mappedBy = "userEntity" ,fetch =FetchType.LAZY )
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
 
-    @NotNull
-    @NotBlank
-    @Email
+    @NotNull(message = emailNull)
+    @NotBlank(message = emailBlank)
+
+
     @Column(name = "user_email",nullable = false)
     private String userEmail;
-    @NotNull
-    @NotBlank
+    @NotNull(message = emailNull)
+    @NotBlank(message = emailBlank)
 
     @Column(name = "user_password",nullable = false)
-
+    @NotNull(message = passwordNull)
+    @NotBlank(message = passwordBlank)
+    @Size(min = 8 , message = passwordSize)
     private String userPassword;
-    @NotNull
-    @NotBlank
+
+    @NotNull(message = passwordNull)
+    @NotBlank(message = passwordBlank)
+    @Size(min = 8 , message = passwordSize)
     @Column(name = "user_repassword",nullable = false)
     private String rePassword;
 

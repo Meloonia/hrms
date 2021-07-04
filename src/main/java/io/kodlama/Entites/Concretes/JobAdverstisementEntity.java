@@ -4,13 +4,14 @@ import io.kodlama.Entites.dto.ActiveJobAdverstisementDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-
+import static io.kodlama.Utils.ValidationMessages.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,8 +22,9 @@ public class JobAdverstisementEntity {
     @Id
     @Column(name = "job_advert_id")
     private long jobAdvertId;
-    @NotNull
-    @NotBlank
+
+    @NotNull(message = jobAdvertNull)
+    @NotBlank(message = jobAdvertBlank)
     @Column(name = "desciription",nullable = false)
     private String desciription;
 
@@ -30,8 +32,9 @@ public class JobAdverstisementEntity {
     private boolean active;
 
     @Temporal(TemporalType.DATE)
-    @NotNull
-    @NotBlank
+    @NotNull(message = jobAdvertRelaseDateNull)
+    @NotBlank(message = jobAdvertRelaseDateblank)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "relase_date")
     private Date relaseDate;
 
