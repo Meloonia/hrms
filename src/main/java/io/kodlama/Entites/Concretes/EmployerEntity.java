@@ -1,5 +1,6 @@
 package io.kodlama.Entites.Concretes;
 
+import io.kodlama.Utils.ValidationMessages;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import javax.validation.constraints.Size;
+
 import java.util.HashSet;
 import java.util.Set;
+import static io.kodlama.Utils.ValidationMessages.*;
 
 @Data
 @NoArgsConstructor
@@ -30,33 +33,34 @@ public class EmployerEntity{
 
 
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = nameNull)
+    @NotBlank(message = nameBlank)
+    @Size(message = nameLenght,min =3)
     @Column(name = "employer_name",nullable = false)
     private String employerName;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = phoneNull)
+    @NotBlank(message = phoneBlank)
+    @Size(min = 10 , max = 14 ,message = ValidationMessages.employerPhone)
     @Column(name = "employer_phone")
     private String employerPhone;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = adressNull)
+    @NotBlank(message = adressBlank)
     @Column(name ="employer_adress")
     private String employerAdress;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = employerWebSiteNullAndBlank)
+    @NotBlank(message = employerWebSiteNullAndBlank)
     @Column (name = "employer_website",nullable = false)
     private String EmployerWebsite;
 
-    @NotNull
-    @NotBlank
+
     @Column (name = "employer_personel_validation")
     private boolean personelValidation;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = cityNullAndBlank)
+    @NotBlank(message = cityNullAndBlank)
     @Column(name = "employer_city")
     @JoinColumn(name ="employer_city")
     private int cityId;

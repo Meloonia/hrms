@@ -6,10 +6,10 @@ import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 import io.kodlama.Entites.Concretes.UserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+
 
 @Service
 public class UserManager implements UserManagerServices {
@@ -29,7 +29,7 @@ public class UserManager implements UserManagerServices {
     @Override
     public Result insertUser(UserEntity userEntity) {
 
-        if(userManagerservices.findAll().stream().anyMatch(u -> u.getUserId() == userEntity.getUserId())
+        if(userManagerservices.findAll().stream().anyMatch(u -> u.getUserEmail() == userEntity.getUserEmail())
         && userEntity.getUserPassword().equals(userEntity.getRePassword())) {
 
             this.userManagerservices.save(userEntity);
@@ -38,9 +38,9 @@ public class UserManager implements UserManagerServices {
         else return new UnsuccessfulResult(false);
     }
 
-    public Optional<UserEntity> returnEmployerId(long id){
+/*    public Optional<UserEntity> returnEmployerId(long id){
 
         return userManagerservices.findById(id);
-    }
+    }*/
 
 }

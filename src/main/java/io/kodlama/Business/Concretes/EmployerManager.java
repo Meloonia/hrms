@@ -49,15 +49,16 @@ public class EmployerManager implements EmployerServices {
            UserEntity user = employerDtoConverter.insertuserDtoConverter(employerEntity);
 
 
-                if (employerControlService.emailControl(employerEntity)) {
-                    if (employerControlService.emailDomainControl(employerEntity)) {
+                if (employerControlService.emailControl(employerEntity) &&
+                        employerControlService.emailDomainControl(employerEntity)) {
+
                         employerEntities.setUser(user);
                         employersDao.save(employerEntities);
 
                         return new SuccessResult(true, "Şirket başarı ile kaydedildi.");
 
-                } else return new UnsuccessfulResult(false, "Email zaten mevcut");
-            } else return new UnsuccessfulResult(false, "Email Doğrulanamadı");
+                } else return new UnsuccessfulResult(false, "Email zaten mevcut veya email doğru değil. " );
+
         } catch (Exception e) {
 
             return new UnsuccessfulResult(false, e.getMessage());

@@ -21,6 +21,7 @@ public  class ValidationMessages {
      public static final String phoneNull = "Telefon alanı boş olamaz.";
      public static final String phoneBlank = "Telefon alanını düzgün giriniz.";
      public static final String phoneSize  ="Telefon numaraları Başında sıfır olmadan girilmelidir.";
+     public static final String employerPhone = "iş veren telefonu minimum 10 karakter olmalı ve başında 00+ülke kodu bulunmalıdır";
      public static final String nationalIdendityNull = "Tc kimlik alanı boş olamaz";
      public static final String nationalIdendityblank = "Tc kimlik alanı 11 haneden oluşmalıdır.";
      public static final String nationalIdendityPattern = "Tc kimlik alanı sadece sayılardan oluşmalıdır";
@@ -30,4 +31,12 @@ public  class ValidationMessages {
      public static final String jobAdvertBlank = "İş ilanı açıklaması boş olamaz. ";
      public static final String jobAdvertRelaseDateNull = "Yayın tarihi boş olamaz.";
      public static final String jobAdvertRelaseDateblank = "Yayın tarihi düzgün formatta girilmeli.";
+     public static final String jobAdvertActiveDateNull = "Aktiflik tarihi boş olamaz.";
+     public static final String jobAdvertActiveDateblank = "Aktiflik tarihi düzgün formatta girilmeli.";
+     public static final String jobAdvertMinSalaryNullAndBlank = "Minimum fiyat Boş olamaz. ";
+     public static final String jobAdvertMaxSalaryNullAndBlank = "Maksimum fiyat Boş olamaz. ";
+     public static final String jobAdvertOpenPositionNullAndBlank = "Açık pozisyon sayısı Boş olamaz. ";
+     public static final String employerWebSiteNullAndBlank = "Web site alanı boş olamaz.";
+     public static final String cityNullAndBlank = "Şehir alanı boş olamaz.";
+     public static final String businessSectorNullAndBlank = "Sektör ismi boş olamaz.";
 }

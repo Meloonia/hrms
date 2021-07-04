@@ -10,7 +10,7 @@ import io.kodlama.Entites.Concretes.BusinessSectorsEntity;
 import io.kodlama.Entites.Mapper.BusinessSectorDtoConverter;
 import io.kodlama.Entites.dto.BusinessSectorDto;
 
-import org.springframework.context.annotation.ComponentScan;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

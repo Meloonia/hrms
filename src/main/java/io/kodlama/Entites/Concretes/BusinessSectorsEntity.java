@@ -12,21 +12,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import static io.kodlama.Utils.ValidationMessages.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "business_sectors")
-public class BusinessSectorsEntity implements Serializable {
+public class BusinessSectorsEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_sector_id")
     private long businessSectorId;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = businessSectorNullAndBlank)
+    @NotBlank(message = businessSectorNullAndBlank)
     @Column(name = "business_sector_name",nullable = false)
     private String businessSectorName;
 

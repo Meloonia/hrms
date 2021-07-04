@@ -34,10 +34,8 @@ public class EmailValidationEntity  {
     private UserEntity user;
 
     @Column
-    @NotNull
-    @NotBlank
-    @Email
-    private String email;
+
+    private String email = user.getUserEmail();
 
     @Column(name ="email_validation_code")
     private String emailValidationCode;

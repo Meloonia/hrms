@@ -37,7 +37,7 @@ public class JobSeekerManager implements JobSeekerService {
   private final UserManagerServices userManager;
   private final JobSeekerDtoConverter jobSeekerDtoConverter;
 
-    @Autowired
+
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
                             UserManagerServices userManager,
                             JobSeekerControlService jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter) {
@@ -57,33 +57,29 @@ public class JobSeekerManager implements JobSeekerService {
 
             JobSeekerEntity jobSeekerEntity = jobSeekerDtoConverter.jobSeekerDtoConverter(jobSeeker);
 
-           if (jobSeekerControl.nullControl(jobSeeker)) {
-              //  if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
-                //       jobSeeker.getJobSeekerName()
-                  //     , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
+
+              if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
+                    jobSeeker.getJobSeekerName()
+                     , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
 
                if (
-                      jobSeekerControl.emailControl(jobSeeker)) {
+                      jobSeekerControl.emailControl(jobSeeker) && jobSeekerControl.userControl(jobSeeker)) {
 
-
-                   if (jobSeekerControl.userControl(jobSeeker)) {
-
-
-                        jobSeekerEntity.setUser(jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker));
-                           jobSeekerService.save(jobSeekerEntity);
+                       jobSeekerEntity.setUser(jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker));
+                       jobSeekerService.save(jobSeekerEntity);
 
 
 
 
 
                             return new SuccessResult(true, "Kullanıcı başarı ile kaydedildi.");
-                        } else return new UnsuccessfulResult(false, "Email Kayıtlı");
-                    } else return new UnsuccessfulResult(false, "kullanıcı zaten kayıtlı.");
+                        } else return new UnsuccessfulResult(false, "Email veya Kullanıcı Kayıtlı");
+                    }
 
-                } //else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");}
-               else return new UnsuccessfulResult(false,"Alanlar boş bırakılamaz.");
+                 else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");}
 
-        }
+
+
 
         catch (Exception e) {
 

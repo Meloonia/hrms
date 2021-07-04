@@ -71,7 +71,7 @@ public class JobSeekerEntity{
  @NotBlank(message = birtdayBlank)
  @Size(min =4,max =4 ,message = birtdayBlank)
  @Column(name = "job_seeker_birtday",nullable = false)
- private LocalTime birtday;
+ private int birtday;
 
 
  @Column(name = "job_seeker_school")
