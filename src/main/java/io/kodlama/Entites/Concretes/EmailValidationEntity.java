@@ -33,9 +33,10 @@ public class EmailValidationEntity  {
     @PrimaryKeyJoinColumn()
     private UserEntity user;
 
-    @Column
 
-    private String email = user.getUserEmail();
+    @Column
+    @JoinColumn(referencedColumnName = "user_email")
+    private String email;
 
     @Column(name ="email_validation_code")
     private String emailValidationCode;
