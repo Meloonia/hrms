@@ -38,12 +38,6 @@ public class SystemManagerEntity{
     @Column(name = "system_manager_surname",nullable = false)
     private String SystemManagersurname;
 
-    @NotNull(message = emailNull)
-    @NotBlank(message = emailBlank)
-    @Column(name = "system_manager_email",nullable = false)
-    @Email
-    private String SystemManagerEmail;
-
     @NotNull(message = phoneNull)
     @NotBlank(message = phoneBlank)
     @Size(min = 10,max = 10,message = phoneSize)

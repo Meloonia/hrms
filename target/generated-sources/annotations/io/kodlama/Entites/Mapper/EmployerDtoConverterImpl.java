@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-07-04T21:29:36+0300",
+    date = "2021-07-05T15:26:40+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -57,7 +57,7 @@ public class EmployerDtoConverterImpl implements EmployerDtoConverter {
         userEntity.setUserEmail( employerDto.getUserEmail() );
         userEntity.setUserPassword( employerDto.getUserPassword() );
         userEntity.setRePassword( employerDto.getRePassword() );
-
+        userEntity.setRole("EMPLOYER");
         return userEntity;
     }
 

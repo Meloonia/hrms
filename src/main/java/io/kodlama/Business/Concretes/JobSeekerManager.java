@@ -56,7 +56,8 @@ public class JobSeekerManager implements JobSeekerService {
         try {
 
             JobSeekerEntity jobSeekerEntity = jobSeekerDtoConverter.jobSeekerDtoConverter(jobSeeker);
-
+            UserEntity user = jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker);
+            user.setRole("JOBSEEKER");
 
               if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
                     jobSeeker.getJobSeekerName()
@@ -65,7 +66,7 @@ public class JobSeekerManager implements JobSeekerService {
                if (
                       jobSeekerControl.emailControl(jobSeeker) && jobSeekerControl.userControl(jobSeeker)) {
 
-                       jobSeekerEntity.setUser(jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker));
+                       jobSeekerEntity.setUser(user);
                        jobSeekerService.save(jobSeekerEntity);
 
 

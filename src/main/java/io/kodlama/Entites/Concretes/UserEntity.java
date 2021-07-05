@@ -67,6 +67,9 @@ public class UserEntity implements Serializable  {
     @Column(name = "user_repassword",nullable = false)
     private String rePassword;
 
+    @Column(name = "role")
+    private String role;
+
     @OneToMany(mappedBy = "user")
     Set<JobSeekerCvEntity> jobSeekerCvEntitySet = new HashSet<>();
 
