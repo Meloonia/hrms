@@ -57,7 +57,7 @@ public class JobSeekerEntity{
 
  @NotNull(message = phoneNull)
  @NotBlank(message = phoneBlank)
- @Size(min = 10,max = 10,message = phoneSize)
+ @Size(min = 10,max = 14,message = phoneSize)
  @Column(name = "job_seeker_phone")
  private String jobSeekerPhone;
 

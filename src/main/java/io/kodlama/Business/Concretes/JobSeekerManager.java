@@ -18,35 +18,36 @@ import io.kodlama.Entites.dto.JobSeekerSchoolDto;
 import io.kodlama.Inmemory.Abstracts.Mernis;
 import io.kodlama.Inmemory.Concretes.MernisInMemory;
 
-import io.kodlama.Utils.Controls.JobSeekerControl;
-
 import io.kodlama.Utils.Controls.JobSeekerControlService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.kodlama.adapters.MernisServices;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
 
-    Mernis fakeMernis = new MernisInMemory();
+
   private final JobSeekerControlService jobSeekerControl;
   private final JobSeekerManagerDao jobSeekerService;
   private final UserManagerDao userManagerDao;
   private final UserManagerServices userManager;
   private final JobSeekerDtoConverter jobSeekerDtoConverter;
+  private final MernisServices mernisServices;
 
 
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
                             UserManagerServices userManager,
-                            JobSeekerControlService jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter) {
+                            JobSeekerControlService jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter,
+                            @Qualifier("MernisImpl") MernisServices MernisServices) {
 
         this.jobSeekerService = jobSeekerService;
         this.userManager = userManager;
         this.userManagerDao = userManagerDao;
         this.jobSeekerDtoConverter = jobSeekerDtoConverter;
         this.jobSeekerControl = jobSeekerControl;
+        this.mernisServices = MernisServices;
     }
 
 
@@ -59,9 +60,9 @@ public class JobSeekerManager implements JobSeekerService {
             UserEntity user = jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker);
             user.setRole("JOBSEEKER");
 
-              if (fakeMernis.TCNoDogrula(jobSeeker.getJobSeekerNationalId(),
-                    jobSeeker.getJobSeekerName()
-                     , jobSeeker.getJobSeekerSurname(), jobSeeker.getBirtday())) {
+              if (mernisServices.MernisImpl().TCKimlikNoDogrula(jobSeeker.getJobSeekerNationalId(),
+                    jobSeeker.getJobSeekerName().toUpperCase()
+                     , jobSeeker.getJobSeekerSurname().toUpperCase(), jobSeeker.getBirtday())) {
 
                if (
                       jobSeekerControl.emailControl(jobSeeker) && jobSeekerControl.userControl(jobSeeker)) {
