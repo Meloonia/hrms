@@ -11,8 +11,12 @@ import io.kodlama.Entites.dto.CvDto;
 import io.kodlama.adapters.CloudinaryAdapter;
 
 import io.kodlama.adapters.UploadImageServices;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.print.attribute.standard.Media;
+import java.io.File;
 import java.io.IOException;
 @Service
 public class JobSeekerCvManager implements JobSeekerCvService {
@@ -32,8 +36,10 @@ public class JobSeekerCvManager implements JobSeekerCvService {
     @Override
     public Result addCv(CvDto cvDto) throws IOException {
 
+    File file  = new File(cvDto.getImageUrl());
 
-        uploadImageServices.CloudinaryAdapter().uploader().upload(cvDto.getImageUrl(), ObjectUtils.emptyMap());
+
+        uploadImageServices.CloudinaryAdapter().uploader().upload(file, ObjectUtils.emptyMap());
             jobSeekerCvDao.save(cvDtoConverter.cvDtoConverter(cvDto));
 
         return new SuccessResult(true,"Kaydedildi");
