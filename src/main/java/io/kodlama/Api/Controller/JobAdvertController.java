@@ -32,9 +32,9 @@ public class JobAdvertController {
         return jobAdverstisementServices.getAllActiveSectorsDate();
     }
 
-    @PostMapping("/v1/addjobadvert")
-    public Result addJobAdvert(@RequestBody AddJobAdvertDto addJobAdvertDto) {
+    @PostMapping("/v1/addjobadvert/{userId}")
+    public Result addJobAdvert(@PathVariable("userId") long userId ,@RequestBody AddJobAdvertDto addJobAdvertDto) {
 
-        return jobAdverstisementServices.addJobAdvert(addJobAdvertDto);
+        return jobAdverstisementServices.addJobAdvert(userId,addJobAdvertDto);
     }
 }

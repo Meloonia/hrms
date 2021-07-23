@@ -67,10 +67,10 @@ public class EmployerEntity{
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY , cascade =  CascadeType.REFRESH , targetEntity = CityEntity.class)
-    private CityEntity cityEntity;
+    @ManyToOne(fetch = FetchType.LAZY , cascade =  CascadeType.REFRESH,targetEntity = CityEntity.class)
+    private CityEntity cities;
 
-    @OneToMany(mappedBy = "employer",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employer",fetch = FetchType.LAZY,targetEntity = JobAdverstisementEntity.class)
     private Set<JobAdverstisementEntity> jobAdverstisementEntities  = new HashSet<>();
 
 

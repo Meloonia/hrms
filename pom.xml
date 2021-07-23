@@ -38,7 +38,7 @@
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
 
-		<!--	<dependency>
+			<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
@@ -47,8 +47,15 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency> -->
+		</dependency>
 
+
+		<!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary -->
+		<dependency>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary</artifactId>
+			<version>1.0.14</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-core -->
 		<dependency>
@@ -56,6 +63,7 @@
 			<artifactId>cloudinary-core</artifactId>
 			<version>1.29.0</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>wsdl4j</groupId>

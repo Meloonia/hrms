@@ -13,7 +13,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddJobAdvertDto {
-    private long Id;
     private String businessSectorName;
 
     @Temporal(TemporalType.DATE)
@@ -26,7 +25,8 @@ public class AddJobAdvertDto {
     private int maxSalary;
     private boolean active;
     private String desciription;
-
+    private String cityName;
+    private String workType;
 
 
 

@@ -10,6 +10,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;
+import java.util.Optional;
+
 import static io.kodlama.Utils.ValidationMessages.*;
 
 
@@ -22,6 +24,7 @@ public class JobAdverstisementEntity {
 
     @Id
     @Column(name = "job_advert_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long jobAdvertId;
 
     @NotNull(message = jobAdvertNull)
@@ -62,11 +65,17 @@ public class JobAdverstisementEntity {
     @Column(name = "open_positions")
     private int openPosition;
 
+    @NotBlank(message = "Boş geçilemez")
+    @NotNull(message = "Boş geçilemez")
+    @Column(name = "work_type")
+    private String workType;
+
     @ManyToOne(fetch = FetchType.LAZY )
-    private CityEntity city;
+    @JoinColumn(name = "city_city_id")
+    private CityEntity cityEntites;
 
     @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    @JoinColumn()
+    @JoinColumn(name ="business_sectors_entity_business_sector_id")
     private BusinessSectorsEntity businessSectorsEntity;
 
     @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
@@ -74,6 +83,7 @@ public class JobAdverstisementEntity {
 
     private UserEntity userEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY )
+    @JoinColumn(name = "employer_employer_id")
     private EmployerEntity employer;
 }

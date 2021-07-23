@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.print.attribute.standard.Media;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
+
 @Service
 public class JobSeekerCvManager implements JobSeekerCvService {
     private final  JobSeekerCvDao jobSeekerCvDao;
@@ -38,8 +40,9 @@ public class JobSeekerCvManager implements JobSeekerCvService {
 
     File file  = new File(cvDto.getImageUrl());
 
-
+        Map uploadResult =
         uploadImageServices.CloudinaryAdapter().uploader().upload(file, ObjectUtils.emptyMap());
+        cvDto.setImageUrl((String) uploadResult.get("url"));
             jobSeekerCvDao.save(cvDtoConverter.cvDtoConverter(cvDto));
 
         return new SuccessResult(true,"Kaydedildi");

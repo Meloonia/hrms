@@ -11,6 +11,6 @@ public interface JobAdverstisementServices {
 
     List<ActiveJobAdverstisementDto> getAllActiveSectors();
     List<BusinessSectorToEmployerDto> getAllActiveSectorsDate();
-    Result addJobAdvert(AddJobAdvertDto addJobAdvertDto);
+    Result addJobAdvert(Long userId ,AddJobAdvertDto addJobAdvertDto);
 
 }

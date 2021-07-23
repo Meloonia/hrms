@@ -38,10 +38,5 @@ public class EmployerController {
 
     }
 
-        @PostMapping("/v1/addJobAdvert")
 
-    public Result insertJobAdvert(@RequestBody AddJobAdvertDto addJobAdvertDto) {
-
-        return this.jobAdvertManager.addJobAdvert( addJobAdvertDto);
-        }
 }
