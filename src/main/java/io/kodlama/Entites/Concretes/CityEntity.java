@@ -24,9 +24,6 @@ public class CityEntity {
     @Column(name = "city_name")
     private String cityname;
 
-    @OneToMany(mappedBy = "cities" , fetch = FetchType.LAZY)
-    private Set<EmployerEntity> employerEntity = new HashSet<>();
-
     @OneToMany (targetEntity = JobAdverstisementEntity.class,fetch =  FetchType.LAZY  )
     private Set<CityEntity> cityEntitySet = new HashSet<>();
 }

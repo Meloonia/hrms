@@ -68,7 +68,6 @@ public class JobAdvertManager implements JobAdverstisementServices {
 
         JobAdverstisementEntity jobAdverstisementEntity = addJobAdvertDtoConverter.insertJobAdvert(addJobAdvertDto);
         EmployerEntity  employer = employersDao.getEmployerEntityByUser_UserId(userId);
-
         BusinessSectorsEntity businessSectorsEntity = businessAreaManager.getOne(addJobAdvertDto.getBusinessSectorName());
         UserEntity user = employer.getUser();
         CityEntity city = cityDao.findByCityname(addJobAdvertDto.getCityName());

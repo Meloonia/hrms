@@ -53,7 +53,7 @@ public class JobAdverstisementEntity {
     @NotNull(message = jobAdvertMinSalaryNullAndBlank)
     @NotBlank(message = jobAdvertMinSalaryNullAndBlank)
     @Column(name = "min_salary")
-    private int minSaray;
+    private int minSalary;
 
     @NotNull(message = jobAdvertMaxSalaryNullAndBlank)
     @NotBlank(message = jobAdvertMaxSalaryNullAndBlank)

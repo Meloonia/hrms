@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-07-23T21:14:36+0300",
+    date = "2021-07-24T14:11:12+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -25,6 +25,7 @@ public class AddJobAdvertDtoConverterImpl implements AddJobAdvertDtoConverter {
         jobAdverstisementEntity.setActive( addJobAdvertDto.isActive() );
         jobAdverstisementEntity.setRelaseDate( addJobAdvertDto.getRelaseDate() );
         jobAdverstisementEntity.setActiveDate( addJobAdvertDto.getActiveDate() );
+        jobAdverstisementEntity.setMinSalary( addJobAdvertDto.getMinSalary() );
         jobAdverstisementEntity.setMaxSalary( addJobAdvertDto.getMaxSalary() );
         jobAdverstisementEntity.setOpenPosition( addJobAdvertDto.getOpenPosition() );
         jobAdverstisementEntity.setWorkType( addJobAdvertDto.getWorkType() );
