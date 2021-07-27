@@ -8,9 +8,10 @@ import io.kodlama.DataAccess.Abstracts.JobSeekerCvDao;
 
 import io.kodlama.Entites.Mapper.CvDtoConverter;
 import io.kodlama.Entites.dto.CvDto;
-import io.kodlama.adapters.CloudinaryAdapter;
+
 
 import io.kodlama.adapters.UploadImageServices;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,12 +24,12 @@ import java.util.Map;
 @Service
 public class JobSeekerCvManager implements JobSeekerCvService {
     private final  JobSeekerCvDao jobSeekerCvDao;
-  private final CvDtoConverter cvDtoConverter;
+    private final CvDtoConverter cvDtoConverter;
     private final UploadImageServices uploadImageServices;
 
 
     public JobSeekerCvManager(JobSeekerCvDao jobSeekerCvDao, CvDtoConverter cvDtoConverter,
-                              UploadImageServices cloudinaryAdapter) {
+                        @Qualifier("cloudinaryAdapter")   UploadImageServices cloudinaryAdapter) {
         this.jobSeekerCvDao = jobSeekerCvDao;
         this.cvDtoConverter = cvDtoConverter;
 

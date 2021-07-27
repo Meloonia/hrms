@@ -52,8 +52,8 @@ public class EmployerEntity{
 
     @NotNull(message = employerWebSiteNullAndBlank)
     @NotBlank(message = employerWebSiteNullAndBlank)
-    @Column (name = "employer_website",nullable = false)
-    private String EmployerWebsite;
+    @Column (name = "employer_website")
+    private String employerWebsite;
 
 
     @Column (name = "employer_personel_validation")
