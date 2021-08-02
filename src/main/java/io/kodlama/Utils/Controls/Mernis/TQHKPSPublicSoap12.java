@@ -11,10 +11,11 @@ package io.kodlama.Utils.Controls.Mernis;
 
 
 
+//import org.ksoap2.HeaderProperty;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.serialization.*;
 import org.ksoap2.transport.*;
-import org.kxml2.kdom.Element;
+//import org.kxml2.kdom.Element;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class TQHKPSPublicSoap12
 
     int timeOut=60000;
     
-    public List< HeaderProperty> httpHeaders= new ArrayList< HeaderProperty>();
+  public List<HeaderProperty> httpHeaders= new ArrayList< HeaderProperty>();
     public boolean enableLogging;
 
     TQHIServiceEvents callback;
@@ -59,7 +60,7 @@ public class TQHKPSPublicSoap12
         this.timeOut=timeOut;
     }
 
-    protected org.ksoap2.transport.Transport createTransport()
+   protected org.ksoap2.transport.Transport createTransport()
     {
         try
         {

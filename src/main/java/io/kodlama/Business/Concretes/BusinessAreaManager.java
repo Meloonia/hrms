@@ -35,10 +35,10 @@ public class BusinessAreaManager implements BusinessAreaServices {
 	@Override
 	public List<BusinessSectorDto> getAll() {
 
-		List<BusinessSectorDto> list = businessSectorDtoConverter.businessSectorListConvertDto(businessAreaDao.findAll());
+		return businessSectorDtoConverter.businessSectorListConvertDto(businessAreaDao.findAll());
 
 
-	return list;	}
+			}
 
 	@Override
 	public Result insert(BusinessSectorDto businessAreas) {
@@ -55,8 +55,8 @@ public class BusinessAreaManager implements BusinessAreaServices {
 	}
 
 	@Override
-	public BusinessSectorsEntity getOne(String i) {
-		return businessAreaDao.findByBusinessSectorName(i);
+	public BusinessSectorsEntity getOne(String id) {
+		return businessAreaDao.findByBusinessSectorName(id);
 	}
 
 

@@ -11,12 +11,7 @@ import io.kodlama.Entites.Concretes.JobSeekerEntity;
 
 import io.kodlama.Entites.Concretes.UserEntity;
 import io.kodlama.Entites.Mapper.JobSeekerDtoConverter;
-import io.kodlama.Entites.dto.AccountDto;
-import io.kodlama.Entites.dto.JobSeekerDto;
-import io.kodlama.Entites.dto.JobSeekerExperienceDto;
-import io.kodlama.Entites.dto.JobSeekerSchoolDto;
-import io.kodlama.Inmemory.Abstracts.Mernis;
-import io.kodlama.Inmemory.Concretes.MernisInMemory;
+import io.kodlama.Entites.dto.*;
 
 import io.kodlama.Utils.Controls.JobSeekerControlService;
 import io.kodlama.adapters.MernisServices;
@@ -121,17 +116,31 @@ public class JobSeekerManager implements JobSeekerService {
     }
 
     @Override
-    public Result insertAccount(AccountDto accountDto, long userId) {
+    public Result LinkedLnUpdate(LinkedLnPatchDto linkedLnPatchDto, long userId) {
 
     JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
-    jobSeekerEntity.setJobSeekerGithubAdress(accountDto.getJobSeekerGithubAdress());
-    jobSeekerEntity.setJobSeekerLinkedlnAdress(accountDto.getJobSeekerLinkedlnAdress());
+
+    jobSeekerEntity.setJobSeekerLinkedlnAdress(linkedLnPatchDto.getJobSeekerLinkedlnAdress());
 
         jobSeekerService.saveAndFlush(jobSeekerEntity);
 
 
         return new SuccessResult(true,"eklendi.");
     }
+
+    @Override
+    public Result  gitHubUpdate(GithubPatchDto githubPatchDto,long userId) {
+
+        JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
+
+        jobSeekerEntity.setJobSeekerGithubAdress(githubPatchDto.getJobSeekerGithubAdress());
+
+        jobSeekerService.saveAndFlush(jobSeekerEntity);
+
+
+        return new SuccessResult(true,"eklendi.");
+    }
+
 
 
 }

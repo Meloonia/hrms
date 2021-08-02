@@ -17,12 +17,12 @@ import java.util.Set;
 @Table(name = "city")
 public class CityEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "city_id")
     private int cityId;
 
     @Column(name = "city_name")
-    private String cityname;
+    private String cityName;
 
     @OneToMany (targetEntity = JobAdverstisementEntity.class,fetch =  FetchType.LAZY  )
     private Set<CityEntity> cityEntitySet = new HashSet<>();

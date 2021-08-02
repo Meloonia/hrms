@@ -2,10 +2,10 @@ package io.kodlama.Entites.Mapper;
 
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
-import io.kodlama.Entites.dto.AccountDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
+import io.kodlama.Entites.dto.LinkedLnPatchDto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-07-25T12:15:37+0300",
+    date = "2021-08-02T14:23:22+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -81,17 +81,16 @@ public class JobSeekerDtoConverterImpl implements JobSeekerDtoConverter {
     }
 
     @Override
-    public AccountDto jobSeekerDtoConverterToEntity(JobSeekerEntity jobSeekerEntity) {
+    public LinkedLnPatchDto jobSeekerDtoConverterToEntity(JobSeekerEntity jobSeekerEntity) {
         if ( jobSeekerEntity == null ) {
             return null;
         }
 
-        AccountDto accountDto = new AccountDto();
+        LinkedLnPatchDto linkedLnPatchDto = new LinkedLnPatchDto();
 
-        accountDto.setJobSeekerLinkedlnAdress( jobSeekerEntity.getJobSeekerLinkedlnAdress() );
-        accountDto.setJobSeekerGithubAdress( jobSeekerEntity.getJobSeekerGithubAdress() );
+        linkedLnPatchDto.setJobSeekerLinkedlnAdress( jobSeekerEntity.getJobSeekerLinkedlnAdress() );
 
-        return accountDto;
+        return linkedLnPatchDto;
     }
 
     @Override

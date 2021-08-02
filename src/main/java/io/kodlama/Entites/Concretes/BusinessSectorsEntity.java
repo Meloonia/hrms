@@ -24,7 +24,7 @@ public class BusinessSectorsEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_sector_id")
-    private long businessSectorId;
+    private int businessSectorId;
 
     @NotNull(message = businessSectorNullAndBlank)
     @NotBlank(message = businessSectorNullAndBlank)
@@ -32,7 +32,6 @@ public class BusinessSectorsEntity{
     private String businessSectorName;
 
     @OneToMany(mappedBy = "businessSectorsEntity" ,fetch =FetchType.LAZY ,cascade = CascadeType.ALL)
-    private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet();
-
+    private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet<>();
 
 }

@@ -82,6 +82,7 @@ public class EmployerManager implements EmployerServices {
     public List<BusinessSectorToEmployerDto> getAllJobAdvert(EmployerEntity employer) {
 
 
+
        return businessSectorToEmployerDtoConverter.businessSectorToEmployerDtoConverter(
               employersDao.findEmployerEntityByJobAdverstisementEntities(employer.getUser().getUserId()));
 

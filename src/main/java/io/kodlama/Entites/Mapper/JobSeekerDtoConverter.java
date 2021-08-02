@@ -3,13 +3,11 @@ package io.kodlama.Entites.Mapper;
 
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.Concretes.UserEntity;
-import io.kodlama.Entites.dto.AccountDto;
+import io.kodlama.Entites.dto.LinkedLnPatchDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerExperienceDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,7 +25,7 @@ public interface JobSeekerDtoConverter {
 
     JobSeekerEntity jobSeekerSchoolDtoConverter(JobSeekerSchoolDto jobSeekerSchoolDto);
 
-    AccountDto jobSeekerDtoConverterToEntity(JobSeekerEntity jobSeekerEntity);
+    LinkedLnPatchDto jobSeekerDtoConverterToEntity(JobSeekerEntity jobSeekerEntity);
 
     List<JobSeekerDto> getAllJobSeekerDtoConverter(List<JobSeekerEntity> jobSeekerEntityList);
 }

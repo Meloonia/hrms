@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 public class BusinessSectorDto {
 
+    private int businessSectorId;
     private String businessSectorName;
 
 

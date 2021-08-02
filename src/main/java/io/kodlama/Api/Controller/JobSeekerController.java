@@ -2,12 +2,10 @@ package io.kodlama.Api.Controller;
 
 import io.kodlama.Business.Abstracts.JobSeekerService;
 import io.kodlama.Core.utilities.results.Result;
-import io.kodlama.Entites.Concretes.JobSeekerEntity;
-import io.kodlama.Entites.Concretes.UserEntity;
-import io.kodlama.Entites.dto.AccountDto;
+import io.kodlama.Entites.dto.GithubPatchDto;
+import io.kodlama.Entites.dto.LinkedLnPatchDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
 import io.kodlama.Entites.dto.JobSeekerSchoolDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,16 +35,22 @@ public class JobSeekerController {
         return jobSeekerService.getAll();
     }
 
-    @PatchMapping("/v1/addSchool{userId}")
+    @PutMapping("/v1/addSchool/{userId}")
     public Result addSchool(@PathVariable("userId") long UserId, @RequestBody JobSeekerSchoolDto jobSeekerSchoolDto) {
 
         return this.jobSeekerService.insertJobSchool(jobSeekerSchoolDto,UserId);
     }
-    @PatchMapping("/v1/addaccount{userId}")
-    public Result addSchool(@PathVariable("userId") long UserId, @RequestBody AccountDto accountDto) {
+    @PutMapping("/v1/linkedlnAccount/{userId}")
+    public Result addGithubAccount(@PathVariable("userId") long UserId, @RequestBody LinkedLnPatchDto linkedLnPatchDto) {
 
-        return this.jobSeekerService.insertAccount(accountDto,UserId);
+        return this.jobSeekerService.LinkedLnUpdate(linkedLnPatchDto,UserId);
     }
 
+    @PutMapping("/v1/githubAccount/{userId}")
+
+    public Result addLinkedLnAccount(@PathVariable("userId") long userId, @RequestBody GithubPatchDto github) {
+        return this.jobSeekerService.gitHubUpdate(github,userId);
+        }
 
 }
+//githubAccount

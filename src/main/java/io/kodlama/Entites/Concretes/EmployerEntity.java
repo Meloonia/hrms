@@ -59,6 +59,9 @@ public class EmployerEntity{
     @Column (name = "employer_personel_validation")
     private boolean personelValidation;
 
+   /* @Column (name = "employer_inf_validation" , nullable = false)
+    private boolean employerInfValidation;*/
+
     @NotNull(message = cityNullAndBlank)
     @NotBlank(message = cityNullAndBlank)
     @Column(name = "employer_city")
@@ -77,6 +80,14 @@ public class EmployerEntity{
     @JoinColumn(referencedColumnName = "user_id")
 
     private UserEntity user;
+
+
+    @ManyToOne
+    @JoinColumn(name = "employer_Child")
+    private EmployerEntity employerChild;
+
+    @OneToMany(mappedBy = "employerChild")
+    private Set<EmployerEntity> employerParents = new HashSet<>();
 
 
 }
