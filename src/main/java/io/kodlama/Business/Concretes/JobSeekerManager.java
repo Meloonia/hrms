@@ -14,9 +14,11 @@ import io.kodlama.Entites.Mapper.JobSeekerDtoConverter;
 import io.kodlama.Entites.dto.*;
 
 import io.kodlama.Utils.Controls.JobSeekerControlService;
-import io.kodlama.adapters.MernisServices;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import tr.gov.nvi.tckimlik.ws.KPSPublic;
+import tr.gov.nvi.tckimlik.ws.KPSPublicSoap;
 
 import java.util.List;
 
@@ -29,20 +31,19 @@ public class JobSeekerManager implements JobSeekerService {
   private final UserManagerDao userManagerDao;
   private final UserManagerServices userManager;
   private final JobSeekerDtoConverter jobSeekerDtoConverter;
-  private final MernisServices mernisServices;
-
+  private final KPSPublicSoap mernis;
 
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
                             UserManagerServices userManager,
                             JobSeekerControlService jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter,
-                            @Qualifier("MernisImpl") MernisServices MernisServices) {
+                            KPSPublicSoap kpsPublicSoap) {
 
         this.jobSeekerService = jobSeekerService;
         this.userManager = userManager;
         this.userManagerDao = userManagerDao;
         this.jobSeekerDtoConverter = jobSeekerDtoConverter;
         this.jobSeekerControl = jobSeekerControl;
-        this.mernisServices = MernisServices;
+        this.mernis = kpsPublicSoap;
     }
 
 
@@ -55,7 +56,7 @@ public class JobSeekerManager implements JobSeekerService {
             UserEntity user = jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker);
             user.setRole("JOBSEEKER");
 
-              if (mernisServices.MernisImpl().TCKimlikNoDogrula(jobSeeker.getJobSeekerNationalId(),
+              if (mernis.tcKimlikNoDogrula(jobSeeker.getJobSeekerNationalId(),
                     jobSeeker.getJobSeekerName().toUpperCase()
                      , jobSeeker.getJobSeekerSurname().toUpperCase(), jobSeeker.getBirtday())) {
 

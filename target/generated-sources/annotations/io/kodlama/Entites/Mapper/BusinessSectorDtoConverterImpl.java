@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-02T14:23:23+0300",
+    date = "2021-08-03T11:58:42+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,7 @@ public class BusinessSectorDtoConverterImpl implements BusinessSectorDtoConverte
 
         BusinessSectorsEntity businessSectorsEntity = new BusinessSectorsEntity();
 
+        businessSectorsEntity.setBusinessSectorId( businessSectorDto.getBusinessSectorId() );
         businessSectorsEntity.setBusinessSectorName( businessSectorDto.getBusinessSectorName() );
 
         return businessSectorsEntity;
@@ -49,7 +50,9 @@ public class BusinessSectorDtoConverterImpl implements BusinessSectorDtoConverte
 
         BusinessSectorDto businessSectorDto = new BusinessSectorDto();
 
+        businessSectorDto.setBusinessSectorId( businessSectorsEntity.getBusinessSectorId() );
         businessSectorDto.setBusinessSectorName( businessSectorsEntity.getBusinessSectorName() );
+
         return businessSectorDto;
     }
 }
