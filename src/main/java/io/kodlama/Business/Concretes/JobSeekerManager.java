@@ -15,10 +15,9 @@ import io.kodlama.Entites.dto.*;
 
 import io.kodlama.Utils.Controls.JobSeekerControlService;
 
+import io.kodlama.adapters.MernisService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import tr.gov.nvi.tckimlik.ws.KPSPublic;
-import tr.gov.nvi.tckimlik.ws.KPSPublicSoap;
 
 import java.util.List;
 
@@ -26,24 +25,25 @@ import java.util.List;
 public class JobSeekerManager implements JobSeekerService {
 
 
-  private final JobSeekerControlService jobSeekerControl;
-  private final JobSeekerManagerDao jobSeekerService;
-  private final UserManagerDao userManagerDao;
-  private final UserManagerServices userManager;
-  private final JobSeekerDtoConverter jobSeekerDtoConverter;
-  private final KPSPublicSoap mernis;
+    private final JobSeekerControlService jobSeekerControl;
+    private final JobSeekerManagerDao jobSeekerService;
+    private final UserManagerDao userManagerDao;
+    private final UserManagerServices userManager;
+    private final JobSeekerDtoConverter jobSeekerDtoConverter;
+    private final MernisService mernis;
 
     public JobSeekerManager(JobSeekerManagerDao jobSeekerService, UserManagerDao userManagerDao,
                             UserManagerServices userManager,
                             JobSeekerControlService jobSeekerControl, JobSeekerDtoConverter jobSeekerDtoConverter,
-                            KPSPublicSoap kpsPublicSoap) {
+                            @Qualifier("mernis") MernisService mernis) {
 
         this.jobSeekerService = jobSeekerService;
         this.userManager = userManager;
         this.userManagerDao = userManagerDao;
         this.jobSeekerDtoConverter = jobSeekerDtoConverter;
         this.jobSeekerControl = jobSeekerControl;
-        this.mernis = kpsPublicSoap;
+
+        this.mernis = mernis;
     }
 
 
@@ -56,35 +56,26 @@ public class JobSeekerManager implements JobSeekerService {
             UserEntity user = jobSeekerDtoConverter.jobSeekerToUserDtoConverter(jobSeeker);
             user.setRole("JOBSEEKER");
 
-              if (mernis.tcKimlikNoDogrula(jobSeeker.getJobSeekerNationalId(),
+            if (mernis.mernis().TCKimlikNoDogrula(jobSeeker.getJobSeekerNationalId(),
                     jobSeeker.getJobSeekerName().toUpperCase()
-                     , jobSeeker.getJobSeekerSurname().toUpperCase(), jobSeeker.getBirtday())) {
+                    , jobSeeker.getJobSeekerSurname().toUpperCase(), jobSeeker.getBirtday())) {
 
-               if (
-                      jobSeekerControl.emailControl(jobSeeker) && jobSeekerControl.userControl(jobSeeker)) {
+                if (
+                        jobSeekerControl.emailControl(jobSeeker) && jobSeekerControl.userControl(jobSeeker)) {
 
-                       jobSeekerEntity.setUser(user);
-                       jobSeekerService.save(jobSeekerEntity);
-
-
+                    jobSeekerEntity.setUser(user);
+                    jobSeekerService.save(jobSeekerEntity);
 
 
-
-                            return new SuccessResult(true, "Kullanıcı başarı ile kaydedildi.");
-                        } else return new UnsuccessfulResult(false, "Email veya Kullanıcı Kayıtlı");
-                    }
-
-                 else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");}
-
-
-
-
-        catch (Exception e) {
+                    return new SuccessResult(true, "Kullanıcı başarı ile kaydedildi.");
+                } else return new UnsuccessfulResult(false, "Email veya Kullanıcı Kayıtlı");
+            } else return new UnsuccessfulResult(false, "Mernis doğrulanamıyor");
+        } catch (Exception e) {
 
             System.out.println(e.getMessage());
-            return new UnsuccessfulResult(false,"Kullanıcı eklenemiyor.");
+            return new UnsuccessfulResult(false, "Kullanıcı eklenemiyor.");
 
-    }
+        }
 
     }
 
@@ -100,11 +91,11 @@ public class JobSeekerManager implements JobSeekerService {
 
 
         jobSeekerService.save(jobSeekerDtoConverter.jobSeekerExperienceDtoConverter(jobSeekerExperienceDto));
-        return new SuccessResult(true,"eklendi.");
+        return new SuccessResult(true, "eklendi.");
     }
 
     @Override
-    public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long userId) {
+    public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto, long userId) {
         JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
 
         jobSeekerEntity.setStartYear(jobSeekerSchoolDto.getStartYear());
@@ -113,24 +104,24 @@ public class JobSeekerManager implements JobSeekerService {
         jobSeekerEntity.setJobSeekerCollageDepartment(jobSeekerSchoolDto.getJobSeekerCollageDepartment());
 
         jobSeekerService.saveAndFlush(jobSeekerEntity);
-        return new SuccessResult(true,"eklendi.");
+        return new SuccessResult(true, "eklendi.");
     }
 
     @Override
     public Result LinkedLnUpdate(LinkedLnPatchDto linkedLnPatchDto, long userId) {
 
-    JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
+        JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
 
-    jobSeekerEntity.setJobSeekerLinkedlnAdress(linkedLnPatchDto.getJobSeekerLinkedlnAdress());
+        jobSeekerEntity.setJobSeekerLinkedlnAdress(linkedLnPatchDto.getJobSeekerLinkedlnAdress());
 
         jobSeekerService.saveAndFlush(jobSeekerEntity);
 
 
-        return new SuccessResult(true,"eklendi.");
+        return new SuccessResult(true, "eklendi.");
     }
 
     @Override
-    public Result  gitHubUpdate(GithubPatchDto githubPatchDto,long userId) {
+    public Result gitHubUpdate(GithubPatchDto githubPatchDto, long userId) {
 
         JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
 
@@ -139,9 +130,8 @@ public class JobSeekerManager implements JobSeekerService {
         jobSeekerService.saveAndFlush(jobSeekerEntity);
 
 
-        return new SuccessResult(true,"eklendi.");
+        return new SuccessResult(true, "eklendi.");
     }
-
 
 
 }
