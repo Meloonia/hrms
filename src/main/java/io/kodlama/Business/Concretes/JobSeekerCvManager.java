@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 @CrossOrigin
@@ -40,16 +41,16 @@ public class JobSeekerCvManager implements JobSeekerCvService {
     }
 
     @Override
-    public Result addCv(long userId, File cvDto) throws IOException {
+    public Result addCv(long userId, MultipartFile cvDto) throws IOException {
 
      //   JobSeekerCvEntity cvEntity = jobSeekerCvDao.findJobSeekerCvEntityByJobSeekerEntity_User_UserId(userId);
 
      //   if(cvEntity == null) {
-
+            File file = convertToFile(cvDto);
             JobSeekerCvEntity cvEntity1  = new JobSeekerCvEntity();
             cvEntity1.setJobSeekerEntity(jobSeekerService.getById((int) userId));
             Map uploadResult =
-                    uploadImageServices.CloudinaryAdapter().uploader().upload(cvDto, ObjectUtils.emptyMap());
+                    uploadImageServices.CloudinaryAdapter().uploader().upload(file, ObjectUtils.emptyMap());
             cvEntity1.setImageUrl((String) uploadResult.get("url"));
             jobSeekerCvDao.save(cvEntity1);
 
@@ -71,5 +72,14 @@ public class JobSeekerCvManager implements JobSeekerCvService {
 
 
         return new SuccessResult(true,"Kaydedildi");
+    }
+
+    private File convertToFile(MultipartFile multipartFile) throws IOException {
+        File file = new File(multipartFile.getOriginalFilename());
+        FileOutputStream stream = new FileOutputStream(file);
+        stream.write(multipartFile.getBytes());
+        stream.close();
+
+        return file;
     }
 }

@@ -26,7 +26,7 @@ public class JobSeekerCvController {
     }
 
     @PostMapping("/addCv/{userId}/")
-    public Result AddCv(@PathVariable( "userId")  long userId, @RequestParam File cvDto) throws IOException {
+    public Result AddCv(@PathVariable( "userId")  long userId, @RequestParam("file") MultipartFile cvDto) throws IOException {
       return  jobSeekerCvService.addCv(userId,cvDto);
 
     }
