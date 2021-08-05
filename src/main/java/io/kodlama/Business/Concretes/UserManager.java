@@ -7,9 +7,6 @@ import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.UserManagerDao;
 import io.kodlama.Entites.Concretes.UserEntity;
 
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -42,7 +39,7 @@ public class UserManager implements UserManagerServices {
         else return new UnsuccessfulResult(false);
     }
 
-    @Override
+   /* @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
             // kullanıcının adından kullanıcıyı bulup geri şifresi ile geri döndermen lazım
@@ -58,7 +55,7 @@ public class UserManager implements UserManagerServices {
         } catch (Exception e) {
             throw new UsernameNotFoundException(username);
         }
-    }
+    }*/
 
 /*    public Optional<UserEntity> returnEmployerId(long id){
 

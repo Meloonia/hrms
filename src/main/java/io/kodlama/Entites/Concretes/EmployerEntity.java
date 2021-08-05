@@ -59,16 +59,14 @@ public class EmployerEntity{
     @Column (name = "employer_personel_validation")
     private boolean personelValidation;
 
-   /* @Column (name = "employer_inf_validation" , nullable = false)
-    private boolean employerInfValidation;*/
+    @Column (name = "employer_inf_validation")
+    private Boolean employerInfValidation;
 
     @NotNull(message = cityNullAndBlank)
     @NotBlank(message = cityNullAndBlank)
     @Column(name = "employer_city")
-    @JoinColumn(name ="employer_city")
-    private int cityId;
-
-
+    @OneToMany(mappedBy = "employer")
+    private Set<CityEntity> cities = new HashSet<>();
 
 
 

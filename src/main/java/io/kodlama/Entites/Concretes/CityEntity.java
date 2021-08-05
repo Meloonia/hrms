@@ -26,4 +26,8 @@ public class CityEntity {
 
     @OneToMany (targetEntity = JobAdverstisementEntity.class,fetch =  FetchType.LAZY  )
     private Set<CityEntity> cityEntitySet = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn
+    private EmployerEntity employer;
 }

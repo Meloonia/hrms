@@ -25,12 +25,9 @@ public class JobSeekerCvEntity implements Serializable {
     @Column(name = "cv_image_url")
     private String imageUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
-
 
     @ManyToOne
+    @JoinColumn
     private JobSeekerEntity jobSeekerEntity;
 
 }

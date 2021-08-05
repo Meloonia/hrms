@@ -3,6 +3,7 @@ package io.kodlama.Business.Concretes;
 import io.kodlama.Business.Abstracts.JobSeekerService;
 import io.kodlama.Business.Abstracts.UserManagerServices;
 import io.kodlama.Core.utilities.results.Result;
+import io.kodlama.Core.utilities.results.SuccessDataResult;
 import io.kodlama.Core.utilities.results.SuccessResult;
 import io.kodlama.Core.utilities.results.UnsuccessfulResult;
 import io.kodlama.DataAccess.Abstracts.JobSeekerManagerDao;
@@ -131,6 +132,13 @@ public class JobSeekerManager implements JobSeekerService {
 
 
         return new SuccessResult(true, "eklendi.");
+    }
+
+    @Override
+    public JobSeekerEntity getById(int id) {
+
+        return jobSeekerService.getAllByUser_UserId(id);
+
     }
 
 

@@ -34,4 +34,5 @@ public class BusinessSectorsEntity{
     @OneToMany(mappedBy = "businessSectorsEntity" ,fetch =FetchType.LAZY ,cascade = CascadeType.ALL)
     private Set<JobAdverstisementEntity> jobAdverstisementEntity = new HashSet<>();
 
+
 }
