@@ -78,10 +78,10 @@ public class JobSeekerEntity{
  private String jobSekerSchool;
 
  @Column(name = "job_seeker_gradiuation_year")
- private Date gradiuationYear;
+ private String gradiuationYear;
 
  @Column(name = "job_seeker_school_start_year")
- private Date startYear;
+ private String schoolStartYear;
 
  @Column(name = "job_seekers_work_experiences")
  private String jobSeekerExperience;

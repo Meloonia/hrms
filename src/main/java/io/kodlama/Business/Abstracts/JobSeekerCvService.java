@@ -9,6 +9,6 @@ import java.io.IOException;
 
 public interface JobSeekerCvService {
 
-    Result addCv(long userId, MultipartFile cvDto) throws IOException;
+    Result addCv(long userId, CvDto cvDto);
 
 }

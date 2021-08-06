@@ -1,6 +1,7 @@
 package io.kodlama.DataAccess.Abstracts;
 
 import io.kodlama.Entites.Concretes.JobSeekerEntity;
+import io.kodlama.Entites.Concretes.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

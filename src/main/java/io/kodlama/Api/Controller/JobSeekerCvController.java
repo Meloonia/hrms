@@ -16,6 +16,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/jobseekercv")
+@CrossOrigin
 public class JobSeekerCvController {
 
     private final JobSeekerCvService jobSeekerCvService;
@@ -25,8 +26,8 @@ public class JobSeekerCvController {
         this.jobSeekerCvService = jobSeekerCvManager;
     }
 
-    @PostMapping("/addCv/{userId}/")
-    public Result AddCv(@PathVariable( "userId")  long userId, @RequestParam("file") MultipartFile cvDto) throws IOException {
+    @PutMapping("/addCv/{userId}/")
+    public Result AddCv(@PathVariable( "userId")  long userId, @RequestBody CvDto cvDto) {
       return  jobSeekerCvService.addCv(userId,cvDto);
 
     }

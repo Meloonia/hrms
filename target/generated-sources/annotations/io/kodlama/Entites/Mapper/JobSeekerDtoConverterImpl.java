@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-05T18:06:49+0300",
+    date = "2021-08-06T14:25:39+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -74,7 +74,6 @@ public class JobSeekerDtoConverterImpl implements JobSeekerDtoConverter {
         JobSeekerEntity jobSeekerEntity = new JobSeekerEntity();
 
         jobSeekerEntity.setGradiuationYear( jobSeekerSchoolDto.getGradiuationYear() );
-        jobSeekerEntity.setStartYear( jobSeekerSchoolDto.getStartYear() );
         jobSeekerEntity.setJobSeekerCollageDepartment( jobSeekerSchoolDto.getJobSeekerCollageDepartment() );
 
         return jobSeekerEntity;

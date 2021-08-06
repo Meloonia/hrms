@@ -39,6 +39,14 @@ public class UserManager implements UserManagerServices {
         else return new UnsuccessfulResult(false);
     }
 
+
+    public  UserEntity getUserById(long id ){
+
+
+        return userManagerservices.findUserEntityByUserId(id);
+    }
+
+
    /* @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {

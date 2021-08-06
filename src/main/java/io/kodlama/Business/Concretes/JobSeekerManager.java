@@ -99,7 +99,7 @@ public class JobSeekerManager implements JobSeekerService {
     public Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto, long userId) {
         JobSeekerEntity jobSeekerEntity = jobSeekerService.getAllByUser_UserId(userId);
 
-        jobSeekerEntity.setStartYear(jobSeekerSchoolDto.getStartYear());
+        jobSeekerEntity.setSchoolStartYear(jobSeekerSchoolDto.getStartYear());
         jobSeekerEntity.setJobSekerSchool(jobSeekerSchoolDto.getJobSeekerSchool());
         jobSeekerEntity.setGradiuationYear(jobSeekerSchoolDto.getGradiuationYear());
         jobSeekerEntity.setJobSeekerCollageDepartment(jobSeekerSchoolDto.getJobSeekerCollageDepartment());
@@ -135,7 +135,7 @@ public class JobSeekerManager implements JobSeekerService {
     }
 
     @Override
-    public JobSeekerEntity getById(int id) {
+    public JobSeekerEntity getById(long id) {
 
         return jobSeekerService.getAllByUser_UserId(id);
 

@@ -6,5 +6,5 @@ import io.kodlama.Entites.Concretes.UserEntity;
 public interface UserManagerServices {
 
     Result insertUser(UserEntity userEntiy);
-
+     UserEntity getUserById(long id);
    }

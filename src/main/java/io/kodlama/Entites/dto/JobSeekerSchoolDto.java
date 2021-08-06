@@ -16,9 +16,9 @@ public class JobSeekerSchoolDto {
 
     private String  jobSeekerSchool;
 
-    private Date    gradiuationYear;
+    private String    gradiuationYear;
     private String  jobSeekerCollageDepartment;
-    private Date    startYear;
+    private String    startYear;
 
 
 

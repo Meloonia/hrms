@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserManagerDao extends JpaRepository<UserEntity,Long> {
 
     UserEntity getByUserEmail(String email);
-
+    UserEntity findUserEntityByUserId(long id);
 
 }
