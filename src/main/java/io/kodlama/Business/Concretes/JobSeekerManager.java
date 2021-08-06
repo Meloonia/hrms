@@ -20,7 +20,9 @@ import io.kodlama.adapters.MernisService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
@@ -83,8 +85,12 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public List<JobSeekerDto> getAll() {
 
+        List<JobSeekerEntity> list = jobSeekerService.findAll();
+        List<JobSeekerDto> list2 = jobSeekerDtoConverter.getAllJobSeekerDtoConverter
+                (jobSeekerService.findAll());
 
-        return jobSeekerDtoConverter.getAllJobSeekerDtoConverter(jobSeekerService.findAll());
+        list2.stream().iterator().next().setUserEmail(list.stream().iterator().next().getUser().getUserEmail());
+        return list2;
     }
 
     @Override
@@ -141,6 +147,10 @@ public class JobSeekerManager implements JobSeekerService {
 
     }
 
+    public List<JobSeekerEntity> getAllEntity() {
+
+        return jobSeekerService.findAll();
+    }
 
 }
 

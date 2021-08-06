@@ -1,6 +1,7 @@
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Business\Abstracts\CityServices.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Business\Abstracts\SystemManagerService.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Business\Concretes\JobSeekerCvManager.java
+D:\JavaKamp\hrms\src\main\java\io\kodlama\Entites\Mapper\JobSeekerConverterToEntity.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\adapters\MernisService.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Api\Controller\BusinessAreaController.java
 D:\JavaKamp\hrms\src\main\java\io\kodlama\Entites\Mapper\ActiveJobAdverstisementDtoConverter.java

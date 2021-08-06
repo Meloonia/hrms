@@ -11,8 +11,9 @@ public interface JobSeekerService {
     List<JobSeekerDto> getAll();
     Result insertJobExperience(JobSeekerExperienceDto jobSeekerExperienceDto);
     Result insertJobSchool(JobSeekerSchoolDto jobSeekerSchoolDto,long UserId);
-    public Result LinkedLnUpdate(LinkedLnPatchDto linkedLnPatchDto, long userId);
-    public Result gitHubUpdate(GithubPatchDto githubPatchDto,long userId);
+    Result LinkedLnUpdate(LinkedLnPatchDto linkedLnPatchDto, long userId);
+    Result gitHubUpdate(GithubPatchDto githubPatchDto,long userId);
     JobSeekerEntity getById(long id);
+    List<JobSeekerEntity> getAllEntity();
 
 }

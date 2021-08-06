@@ -2,6 +2,7 @@ package io.kodlama.Api.Controller;
 
 import io.kodlama.Business.Abstracts.JobSeekerService;
 import io.kodlama.Core.utilities.results.Result;
+import io.kodlama.Entites.Concretes.JobSeekerEntity;
 import io.kodlama.Entites.dto.GithubPatchDto;
 import io.kodlama.Entites.dto.LinkedLnPatchDto;
 import io.kodlama.Entites.dto.JobSeekerDto;
@@ -52,5 +53,10 @@ public class JobSeekerController {
         return this.jobSeekerService.gitHubUpdate(github,userId);
         }
 
+
+        @GetMapping("/v1/getAllEntity")
+        public List<JobSeekerEntity> getAllEntity() {
+        return jobSeekerService.getAllEntity();
+        }
 }
 //githubAccount

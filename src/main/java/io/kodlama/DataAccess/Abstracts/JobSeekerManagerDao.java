@@ -13,4 +13,6 @@ public interface JobSeekerManagerDao extends JpaRepository<JobSeekerEntity , Lon
 
     JobSeekerEntity getAllByUser_UserId(long id);
 
+
+
 }

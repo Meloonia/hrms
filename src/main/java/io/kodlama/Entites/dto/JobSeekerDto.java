@@ -1,5 +1,6 @@
 package io.kodlama.Entites.dto;
 
+import io.kodlama.Entites.Concretes.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class JobSeekerDto {
     private int    birtday;
     private String jobSeekerPhone;
     private String jobSeekerAdress;
+
 
 
 

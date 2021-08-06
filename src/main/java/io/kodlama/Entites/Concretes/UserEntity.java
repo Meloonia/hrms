@@ -51,9 +51,11 @@ public class UserEntity implements Serializable  {
 
 
     @Column(name = "user_email",nullable = false)
-    private String userEmail;
     @NotNull(message = emailNull)
     @NotBlank(message = emailBlank)
+
+    private String userEmail;
+
 
     @Column(name = "user_password",nullable = false)
     @NotNull(message = passwordNull)

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-06T14:25:39+0300",
+    date = "2021-08-06T19:49:01+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 16.0.1 (Oracle Corporation)"
 )
 @Component
@@ -101,6 +101,20 @@ public class JobSeekerDtoConverterImpl implements JobSeekerDtoConverter {
         List<JobSeekerDto> list = new ArrayList<JobSeekerDto>( jobSeekerEntityList.size() );
         for ( JobSeekerEntity jobSeekerEntity : jobSeekerEntityList ) {
             list.add( jobSeekerEntityToJobSeekerDto( jobSeekerEntity ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<UserEntity> USER_ENTITIESConvertDto(List<UserEntity> userEntities) {
+        if ( userEntities == null ) {
+            return null;
+        }
+
+        List<UserEntity> list = new ArrayList<UserEntity>( userEntities.size() );
+        for ( UserEntity userEntity : userEntities ) {
+            list.add( userEntity );
         }
 
         return list;

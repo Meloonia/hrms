@@ -23,9 +23,7 @@ class JobSeekerControl implements JobSeekerControlService {
     @Override
     public boolean nullControl(JobSeekerDto jobSeekerDto) {
 
-        return jobSeekerDto.getUserEmail() != null && jobSeekerDto.getRePassword() != null &&
-                jobSeekerDto.getUserPassword() != null && jobSeekerDto.getJobSeekerName() != null
-                && jobSeekerDto.getJobSeekerSurname() != null
+        return  jobSeekerDto.getJobSeekerSurname() != null
                 && jobSeekerDto.getJobSeekerNationalId() != 0
                 && jobSeekerDto.getBirtday() != 0
                 && jobSeekerDto.getJobSeekerPhone() != null
